@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 
 @FeignClient("FEATURES")
-public interface DBInterfaces {
+public interface FeaturesInterfaces {
     // in this class all the required methods from the other service are
     // interfaces are stored here and then the object is injected to required method
     // using the autowire and method from this classes are called
