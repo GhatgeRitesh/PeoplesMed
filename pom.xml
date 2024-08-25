@@ -10,8 +10,9 @@
   <url>http://maven.apache.org</url>
   <modules>
     <module>Eureka-Server</module>
-<!--    <module>FrontEnd</module>-->
-    <!--<module>BackEnd</module>-->
+    <module>Features</module>
+    <module>Web-InterFace</module>
+    <module>PeoplesMedDB</module>
   </modules>
   <dependencies>
     <dependency>

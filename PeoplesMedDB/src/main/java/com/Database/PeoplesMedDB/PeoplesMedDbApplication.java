@@ -1,17 +1,15 @@
-package com.BackEnd.Features;
+package com.Database.PeoplesMedDB;
 
-import lombok.extern.java.Log;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@Log
 @EnableFeignClients
-public class DbComputationApplication {
+public class PeoplesMedDbApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DbComputationApplication.class, args);
+		SpringApplication.run(PeoplesMedDbApplication.class, args);
 	}
 
 }
