@@ -1,2 +1,2 @@
 # PeoplesMed
-Project that connects Doctors to Common people with ease. 
+Project that connects Doctors and  Peoples with ease. 
