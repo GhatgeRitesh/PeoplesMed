@@ -15,7 +15,7 @@ public class JDBCConfig {
                 .driverClassName("com.mysql.cj.jdbc.Driver")
                 .url("jdbc:mysql://peoplesmed-test1-trialproject1.h.aivencloud.com:26564/peoplesMed_test?createDatabaseIfNotExist=TRUE")
                 .username("avnadmin")
-                .password("AVNS_aCchR85UjJZKlHuf4pI")
+                .password("#")
                 .build();
         return dataSource;
     }
