@@ -1,0 +1,1 @@
+CREATE TABLE if NOT EXISTS Names(id int(10) PRIMARY KEY AUTO_INCREMENT, Name varchar(200));
