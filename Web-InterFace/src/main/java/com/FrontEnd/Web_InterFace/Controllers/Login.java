@@ -24,13 +24,10 @@ public class Login {
         return mv;
     }
     @PostMapping("/Login/Submit")
-    public ModelAndView loginSubmission(@ModelAttribute TestEntity newTestEntity, ModelAndView mv){
-        System.out.println(newTestEntity.getId()+" "+newTestEntity.getRole()+" "+newTestEntity.getName());
-        testEntity.setId(newTestEntity.getId());
-        testEntity.setName(newTestEntity.getName());
-        testEntity.setRole(newTestEntity.getRole());
+    public ModelAndView loginSubmission(@ModelAttribute TestEntity testEntity, ModelAndView mv){
+
         System.out.println(testEntity.getId()+" "+testEntity.getName()+" "+testEntity.getRole());
-        if(dBinterface.checkUser(newTestEntity)){
+        if(dBinterface.checkUser(testEntity)){
             mv.addObject("Welcome","Admin");
         }
         mv.addObject("Welcome","User");
