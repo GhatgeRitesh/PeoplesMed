@@ -4,8 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-## ignore database passwords
-PeoplesMedDB/src/resources/application.properties
+## ignore database password
+/src/resources/application.properties
 
 
 ### STS ###
