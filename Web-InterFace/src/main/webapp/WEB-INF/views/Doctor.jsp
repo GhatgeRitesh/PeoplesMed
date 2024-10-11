@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
 <body>
     <div class="container">
         <div class="form-wrapper">
-            <form id="registration-form">
+            <form id="registration-form" action="/Reg/sub/D" method="Post">
                 <h2> Registration </h2>
                 
                 <label for="name">Name:</label>
