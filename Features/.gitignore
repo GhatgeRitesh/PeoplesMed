@@ -4,8 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### Application Properties
-!**/src/main/resources/application.properties
+# Ignore application.properties file
+/src/main/resources/application.properties
 
 ### STS ###
 .apt_generated
