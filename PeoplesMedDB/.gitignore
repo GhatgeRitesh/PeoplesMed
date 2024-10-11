@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 ## ignore database password
-/src/resources/application.properties
+/src/main/resources/application.properties
 
 
 ### STS ###
