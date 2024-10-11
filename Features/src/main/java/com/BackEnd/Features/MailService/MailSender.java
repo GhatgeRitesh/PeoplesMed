@@ -5,6 +5,7 @@ import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMultipart;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import jakarta.mail.*;
@@ -22,6 +23,8 @@ public class MailSender {
     @Autowired
     private Templates mail;
 
+    @Value("$email.appkey")
+    private String appkey;
 
     @PostMapping("/SendMail")
     public Boolean SendEmail(@RequestBody GMailEntity gMailEntity) {
@@ -56,7 +59,7 @@ public class MailSender {
 
         // Account and App password
         String username = "riteshghatge5555";
-        String password = "xchu jpes veot kyxt";
+        String password = appkey;
         String from = "riteshghatge5555@gmail.com";
 
         //session coding creating session to Gmail API
