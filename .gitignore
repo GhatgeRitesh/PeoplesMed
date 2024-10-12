@@ -4,8 +4,7 @@ target/
 !**/src/test/**/target/
 
 ## ignore secrets
-/PeoplesMedDB/src/main/resources/application.properties
-/Features/src/main/resources/application.properties
+**/application.properties
 
 
 ### IntelliJ IDEA ###
