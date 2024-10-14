@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 @Getter @Setter
 public class Users {
     private String username;
