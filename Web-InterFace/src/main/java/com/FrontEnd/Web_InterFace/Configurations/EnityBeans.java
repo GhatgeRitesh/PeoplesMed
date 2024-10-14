@@ -7,7 +7,7 @@
 //@Configuration
 //public class EnityBeans {
 //    @Bean
-//    public Doctor doctor(){
-//        return new Doctor();
+//    public Users users(){
+//        return new Users();
 //    }
 //}

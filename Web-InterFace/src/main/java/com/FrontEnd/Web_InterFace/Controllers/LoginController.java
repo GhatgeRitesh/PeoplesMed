@@ -30,4 +30,9 @@ public class LoginController {
         mv.setViewName("/Admin");
         return mv;
     }
+    @GetMapping("/Failure")
+    public ModelAndView failure(ModelAndView mv){
+        mv.setViewName("loginFailure");
+        return mv;
+    }
 }

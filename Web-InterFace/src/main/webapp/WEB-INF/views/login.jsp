@@ -14,8 +14,8 @@ pageEncoding="UTF-8"%>
         <h1>Login</h1>
         <form action="/loginform" method="post">
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+                <label for="email">Username</label>
+                <input type="text" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

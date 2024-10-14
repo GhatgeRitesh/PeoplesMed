@@ -38,7 +38,7 @@ public class RegistrationForms {
             gMailEntity.setSubject("Register");
             features.SendEmail(gMailEntity);
             ResponseEntity<?> response= userClient.AddDoc(doc);
-            if(response.getStatusCode().is5xxServerError()){
+            if(response.getStatusCode().is2xxSuccessful()){
                 features.SendEmail(gMailEntity);
                 log.info("User Registered Successfully");
             }

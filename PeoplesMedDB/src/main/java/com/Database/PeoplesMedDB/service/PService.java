@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 @Log
 public class PService {
@@ -29,5 +31,10 @@ public class PService {
             return new ResponseEntity<>(patient,HttpStatus.EXPECTATION_FAILED);
         }
        return new ResponseEntity<>(patient,HttpStatus.CREATED);
+    }
+
+    public List<Patient> findAll(){
+        List<Patient> list=pRepo.findAll();
+        return list;
     }
 }

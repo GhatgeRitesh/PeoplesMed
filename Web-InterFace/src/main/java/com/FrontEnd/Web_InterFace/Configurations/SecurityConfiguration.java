@@ -41,7 +41,7 @@ public class SecurityConfiguration{
                 .loginProcessingUrl("/loginform") // URL to submit the login form
                 .permitAll() // Allow all to access the login page
                 .defaultSuccessUrl("/home", true) // Redirect to home after successful login
-                .failureUrl("/login?error=true") // Redirect to login with error on failure
+                .failureUrl("/login/Failure") // Redirect to login with error on failure
                 .usernameParameter("email") // Optional: specify the username parameter
                 .passwordParameter("password") // Optional: specify the password parameter
         );
@@ -51,6 +51,7 @@ public class SecurityConfiguration{
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
+        System.out.println("Authentication Provider Intiated process");
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider() {
             @Override
             public Authentication authenticate(Authentication authentication) {
