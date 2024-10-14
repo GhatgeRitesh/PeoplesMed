@@ -3,6 +3,7 @@ package com.FrontEnd.Web_InterFace.FeignServices;
 import com.FrontEnd.Web_InterFace.Configurations.Users;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -28,4 +29,6 @@ public interface UserClient {
     public List<Patient> getAllPatients();
     @PostMapping("/getPUser")
     public ResponseEntity<Patient> getUserProfile(String Email);
+    @PostMapping("/")
+    public ResponseEntity<?> setSchedule(Schedule schedule);
 }
