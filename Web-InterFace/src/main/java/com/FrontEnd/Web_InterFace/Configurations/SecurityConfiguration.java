@@ -31,6 +31,7 @@ public class SecurityConfiguration{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        System.out.println("The Error");
         http.csrf(customizer -> customizer.disable());
         http.authorizeHttpRequests(authz -> authz.requestMatchers("/D/*","/P/*").authenticated()
                 .anyRequest().permitAll());
@@ -45,7 +46,7 @@ public class SecurityConfiguration{
                 .usernameParameter("email") // Optional: specify the username parameter
                 .passwordParameter("password") // Optional: specify the password parameter
         );
-       // http.httpBasic(Customizer.withDefaults());
+        http.httpBasic(Customizer.withDefaults());
         return http.build();
     }
 

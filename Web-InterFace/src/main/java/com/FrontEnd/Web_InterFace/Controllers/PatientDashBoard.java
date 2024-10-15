@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 
-@RequestMapping("/P")
+@RequestMapping("/p")
 @Controller
 @Log4j2
 public class PatientDashBoard {

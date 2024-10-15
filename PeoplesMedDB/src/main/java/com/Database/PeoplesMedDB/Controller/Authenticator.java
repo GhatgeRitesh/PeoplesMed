@@ -29,6 +29,7 @@ public class Authenticator {
     @PostMapping("/ValidateUser")
     public Users verifyUser(@RequestBody Users user) {
 
+        System.out.println("DB Process Started for Login");
         // check the user fields are correct or not
         if(user==null){
             log.info("the Login form data received empty");
@@ -37,6 +38,7 @@ public class Authenticator {
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder(12);
         // Check if the user is a doctor
         Optional<Doctor> doctorOpt = docRepo.findByEmail(user.getEmail());
+        System.out.println(doctorOpt.toString());
         if (doctorOpt.isPresent()) {
             Doctor doctor = doctorOpt.get();
             // Validate password

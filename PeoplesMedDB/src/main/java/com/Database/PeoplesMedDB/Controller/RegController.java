@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
@@ -30,6 +27,8 @@ public class RegController {
     private final DocService docService;
     @Autowired
     private PRepo pRepo;
+    @Autowired
+    private DocRepo docRepo;
 
     private final PService pService;
     public RegController(DocService docService , PService pservice){
@@ -100,5 +99,10 @@ public class RegController {
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(p,HttpStatus.OK);
+    }
+    @PostMapping("/GetDoctor")
+    public ResponseEntity<?> getDoc(@ModelAttribute String EMail){
+        Optional<Doctor> doc= docRepo.findByEmail(EMail);
+        return new ResponseEntity<>(doc,HttpStatus.OK);
     }
 }

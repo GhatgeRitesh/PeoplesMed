@@ -24,4 +24,7 @@ public class DocService {
         List<Doctor> list=docRepo.findAll();
         return list;
     }
+    public Doctor getDocByEMail(){
+        
+    }
 }
