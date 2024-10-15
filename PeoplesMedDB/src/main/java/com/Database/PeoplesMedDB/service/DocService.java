@@ -24,4 +24,10 @@ public class DocService {
         List<Doctor> list=docRepo.findAll();
         return list;
     }
+
+    public Doctor getDoctor(String email){
+        Doctor validDoctor = docRepo.findByEmail(email);
+        if(validDoctor != null) return validDoctor;
+        return null;
+    }
 }

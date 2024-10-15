@@ -125,8 +125,8 @@ public class RegController {
     }
 
     @PostMapping("/GetDoctor")
-    public ResponseEntity<?> getDoc(@ModelAttribute String EMail){
-        Optional<Doctor> doc= docRepo.findByEmail(EMail);
-        return new ResponseEntity<>(doc,HttpStatus.OK);
+    public ResponseEntity<?> getDoc(@ModelAttribute String email){
+        Doctor doctor = docRepo.findByEmail(email);
+        return  new ResponseEntity<>(doctor,HttpStatus.OK);
     }
 }
