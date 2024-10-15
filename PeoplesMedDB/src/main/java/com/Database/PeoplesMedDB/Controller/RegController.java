@@ -2,10 +2,12 @@ package com.Database.PeoplesMedDB.Controller;
 
 import com.Database.PeoplesMedDB.Entity.Doctor;
 import com.Database.PeoplesMedDB.Entity.Patient;
+import com.Database.PeoplesMedDB.Entity.Schedule;
 import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
 import com.Database.PeoplesMedDB.service.DocService;
 import com.Database.PeoplesMedDB.service.PService;
+import com.Database.PeoplesMedDB.service.ScheduleService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,11 +31,13 @@ public class RegController {
     private PRepo pRepo;
     @Autowired
     private DocRepo docRepo;
-
+    @Autowired
+    private ScheduleService scheduleService;
     private final PService pService;
-    public RegController(DocService docService , PService pservice){
+    public RegController(DocService docService , PService pservice,ScheduleService scheduleService){
         this.docService=docService;
         this.pService=pservice;
+        this.scheduleService=scheduleService;
     }
     @PostMapping("/AddDoctor")
     public ResponseEntity<Doctor> AddDoc(@RequestBody Doctor doc){
@@ -100,6 +104,26 @@ public class RegController {
         }
         return new ResponseEntity<>(p,HttpStatus.OK);
     }
+
+    @PostMapping("/SetSchedule")
+    public ResponseEntity<?> saveSchedule(@RequestBody Schedule schedule){
+        log.info("DB Service Save Schedule Method accessed");
+        if(schedule == null){
+            log.info("Entity received empty ");
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        System.out.println(schedule.toString());
+        try {
+            scheduleService.SaveSchedule(schedule);
+            log.info("schedule Saved successfully");
+        }
+        catch (Exception e){
+            log.info( " Error while saving schedule :" + e);
+            return  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     @PostMapping("/GetDoctor")
     public ResponseEntity<?> getDoc(@ModelAttribute String EMail){
         Optional<Doctor> doc= docRepo.findByEmail(EMail);
