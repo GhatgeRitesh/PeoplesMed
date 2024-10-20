@@ -13,6 +13,7 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
 import java.util.Properties;
 
 @Component
@@ -23,7 +24,7 @@ public class MailSender {
     @Autowired
     private Templates mail;
 
-    @Value("$email.appkey")
+    @Value("${mail.server.password}")
     private String appkey;
 
     @PostMapping("/SendMail")
@@ -38,17 +39,26 @@ public class MailSender {
         }
        log.info(""+gMailEntity.toString());
         // Setting Attributes
-        String subject="";
-        if(gMailEntity.getSubject()=="Register"){
+        StringBuilder sub=new StringBuilder();
+        if(Objects.equals(gMailEntity.getSubject(), "Register")){
             System.out.println("subject is register");
-            subject="Thank You for Registering on PeoplesMed.pvt"+subject;
+            sub.append("Thank You for Registering on PeoplesMed.pvt");
         } else if (gMailEntity.getSubject()=="Link") {
-            subject="Oppointment Link With Patient"+subject;
+            sub.append("Oppointment Link With Patient");
         }
-        String message= mail.RegisertDoc();
+
+        StringBuilder mes=new StringBuilder();
+        if(gMailEntity.getRole().equals("Doc")){
+            System.out.println("message set for doc");
+            mes.append(mail.RegisertDoc());
+        }
+        if(gMailEntity.getRole().equals("Pat")){
+            System.out.println("message set for pat");
+            mes.append(mail.RegisterPatient());
+        }
 
 
-        String receiver= gMailEntity.getReceiver();
+
 
         //SMTP Server details
         Properties prop = new Properties();
@@ -73,13 +83,13 @@ public class MailSender {
         //MimeMessage Code to develop matter of the Email
         try {
             Message msg = new MimeMessage(session);
-            msg.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
+            msg.setRecipient(Message.RecipientType.TO, new InternetAddress(gMailEntity.getReceiver()));
             msg.setFrom(new InternetAddress(from));
-            msg.setSubject(subject);
+            msg.setSubject(sub.toString());
 
             MimeBodyPart mssg = new MimeBodyPart();
 
-            mssg.setContent(message, "text/html");
+            mssg.setContent(mes.toString(), "text/html");
 
             // Attach the images to the mail using MimeBodyPart() and add it to the Multipart Object
 //            MimeBodyPart image = new MimeBodyPart();

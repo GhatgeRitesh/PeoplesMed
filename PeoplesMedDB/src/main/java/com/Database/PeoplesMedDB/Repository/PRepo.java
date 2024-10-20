@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface PRepo extends JpaRepository<Patient,Long> {
-    ResponseEntity<Patient> findByEmail(String email);
+    Optional<Patient> findByEmail(String email);
 }

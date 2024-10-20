@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class Users {
     private String username;
     private String password;
+    private String role;
 
     // Default constructor
     public Users() {
@@ -25,6 +26,7 @@ public class Users {
         return "Users{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

@@ -34,9 +34,10 @@ public class RegistrationForms {
 
         try {
             gMailEntity.setReceiver(doc.getEmail());
-            gMailEntity.setRole("Doctor");
+            gMailEntity.setRole("Doc");
             gMailEntity.setSubject("Register");
             features.SendEmail(gMailEntity);
+            doc.setRole("Doctor");
             ResponseEntity<?> response= userClient.AddDoc(doc);
             if(response.getStatusCode().is2xxSuccessful()){
                 features.SendEmail(gMailEntity);
@@ -56,16 +57,19 @@ public class RegistrationForms {
             log.info("The Patient Body is Empty!");
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
-        System.out.println(P.toString());
+        gMailEntity.setRole("Pat");
+        gMailEntity.setSubject("Register");
+        gMailEntity.setReceiver(P.getEmail());
         try{
+          P.setRole("ROLE_Patient");
           ResponseEntity<?> res= userClient.savePatient(P);
           if(res.getStatusCode().is2xxSuccessful()){
-              //features.SendEmail(P);
+              features.SendEmail(gMailEntity);
           }
         }catch(Exception e){
             log.info("Error While Saving Patient :"+e);
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
         }
-        return new ResponseEntity<>(P,HttpStatus.EXPECTATION_FAILED);
+        return new ResponseEntity<>(P,HttpStatus.OK);
     }
 }

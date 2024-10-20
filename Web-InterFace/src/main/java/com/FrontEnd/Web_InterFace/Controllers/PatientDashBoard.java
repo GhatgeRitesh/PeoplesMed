@@ -1,6 +1,7 @@
 package com.FrontEnd.Web_InterFace.Controllers;
 
 import com.FrontEnd.Web_InterFace.Configurations.Users;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.CacheData;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
@@ -25,18 +26,22 @@ public class PatientDashBoard {
     @Autowired
     private Patient p;
 
+    private CacheData cacheData;
+
     private Users users;
 
-    public PatientDashBoard(Users users){this.users=users;}
+    public PatientDashBoard(Users users, CacheData cacheData){this.users=users; this.cacheData=cacheData;}
     @GetMapping("/profile")
     public ModelAndView pProfile(ModelAndView mv){
         log.info("Patient Profile Method Access");
         try{
            ResponseEntity<Patient> p= userClient.getUserProfile(users.getUsername());
-            System.out.println( p.toString());
             if(p!=null){
                 mv.setViewName("PProfile");
                 mv.addObject("Profile",p);
+            }
+            else{
+                System.out.println("Retrived Profile is null");
             }
         }catch(Exception e){
             log.info("Error While Feting User Data");
@@ -47,23 +52,35 @@ public class PatientDashBoard {
         return mv;
     }
 
-    @GetMapping("/listDocs")
+    @GetMapping("/findDoctor")
     public ModelAndView PDashBoard(ModelAndView mv){
         log.info("docs list activated ");
-
             List<Doctor> list = userClient.getAllDocs();
+            cacheData.setDocList(list);
             System.out.println("List :- " + list.toString());
             mv.addObject("list", list);
             mv.setViewName("patientDashBoard");
             if(list.isEmpty()){
                 log.info(" The list is Empty :");
                 mv.addObject("list","The recieved list is empty :");
-                mv.setViewName("paitentDashBoard");
+                mv.setViewName("FindDoctor");
             }
             System.out.println("List :- " + list.toString());
             mv.addObject("list", list);
-            mv.setViewName("patientDashBoard");
+            mv.setViewName("FindDoctor");
 
         return mv;
     }
 }
+
+/*
+*  find a doctor - controller will send list of doctors .
+*  map the doctor description and co-ordinates into the doctor card
+*  have the button to select the doctor
+*  doctor profile should be displayed
+*  doctor profile should be retrieved from database
+*  doctor profile should contain the current doctor schedule
+*
+* can i save the doctor list as cache and then retrive from the list to use it in all the rest application
+*
+* */

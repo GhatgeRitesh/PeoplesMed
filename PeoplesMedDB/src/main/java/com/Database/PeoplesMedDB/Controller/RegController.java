@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
@@ -45,6 +46,9 @@ public class RegController {
             log.info("Doc Entity received null");
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+        String Password = doc.getPassword();
+        doc.setPassword(encoder.encode(Password));
         log.info("The doc Entity received in DBservice: "+doc.toString());
         try{
             docService.save(doc);
@@ -97,8 +101,8 @@ public class RegController {
     @PostMapping("/getPUser")
     public ResponseEntity<?> fetchUser(@RequestBody String EMail){
         log.info("The User Details Fetching");
-        ResponseEntity<Patient> p= pRepo.findByEmail(EMail);
-        if (p==null){
+        Optional<Patient> p= pRepo.findByEmail(EMail);
+        if (p.isEmpty()){
             log.info("The patient Recieved Null terminating Process");
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -125,8 +129,13 @@ public class RegController {
     }
 
     @PostMapping("/GetDoctor")
-    public ResponseEntity<?> getDoc(@ModelAttribute String email){
-        Doctor doctor = docRepo.findByEmail(email);
-        return  new ResponseEntity<>(doctor,HttpStatus.OK);
+    public ResponseEntity<?> getDoc(@RequestParam String email){
+        System.out.println("Method Accessed");
+        Doctor doctor = docService.getDoctor(email);
+        if(doctor != null) {
+            return new ResponseEntity<>(doctor, HttpStatus.OK);
+        }
+        System.out.println("doctor is null");
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

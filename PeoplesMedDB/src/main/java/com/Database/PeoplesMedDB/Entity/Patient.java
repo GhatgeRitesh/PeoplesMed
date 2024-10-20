@@ -36,6 +36,9 @@ public class Patient {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "role" , nullable = false)
+    private String role;
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -47,6 +50,7 @@ public class Patient {
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

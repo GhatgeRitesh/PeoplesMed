@@ -19,6 +19,7 @@ public class Patient {
     private String address;
     private String city;
     private String password;
+    private String role;
 
 
     @Override
@@ -32,6 +33,7 @@ public class Patient {
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

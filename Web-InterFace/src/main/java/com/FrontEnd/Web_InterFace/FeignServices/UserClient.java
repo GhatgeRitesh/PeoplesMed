@@ -29,6 +29,6 @@ public interface UserClient {
     public List<Patient> getAllPatients();
     @PostMapping("/getPUser")
     public ResponseEntity<Patient> getUserProfile(String Email);
-    @PostMapping("/")
+    @PostMapping("/SetSchedule")
     public ResponseEntity<?> setSchedule(Schedule schedule);
 }

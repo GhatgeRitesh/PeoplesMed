@@ -5,13 +5,22 @@ import lombok.Setter;
 
 @Getter @Setter
 public class Users {
-    private String email;
+    private String username;
     private String password;
     private String role;
 
-    public Users(String email, String password,String role) {
-        this.email=email;
+    public Users(String username, String password,String role) {
+        this.username=username;
         this.password=password;
         this.role=role;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "email='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }
