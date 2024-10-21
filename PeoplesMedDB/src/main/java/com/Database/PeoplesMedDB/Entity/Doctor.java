@@ -21,7 +21,7 @@ public class Doctor {
     private String email;
 
     @Column(name = "contact", nullable = false)
-    private Integer contact;
+    private String contact;
 
     @Column(name = "register_no", nullable = false, unique = true)
     private String registerNo;

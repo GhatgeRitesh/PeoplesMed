@@ -24,8 +24,8 @@
   <a href="#">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 <div class="login">
-  <a href="/Login/P"><button>Login</button></a>
-  <button>SignUp</button>
+  <a href="/login/P"><button>Login</button></a>
+  <a href="/Register/D"><button>SignUp</button></a>
 </div>
 </div>
 <div class="container">

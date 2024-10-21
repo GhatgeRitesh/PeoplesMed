@@ -1,6 +1,5 @@
 package com.BackEnd.Features.MailService;
 
-import com.BackEnd.Features.Models.Doctor;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMultipart;
 import lombok.extern.java.Log;

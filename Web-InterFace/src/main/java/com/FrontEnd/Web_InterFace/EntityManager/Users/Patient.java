@@ -13,7 +13,7 @@ public class Patient {
     private Long patId;
     private String name;
     private String gender;
-    private int age;
+    private String age;
     private String contact;
     private String email;
     private String address;

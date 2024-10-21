@@ -14,20 +14,14 @@ public class LoginController {
     @GetMapping("/P")
     public ModelAndView getPlogin(ModelAndView mv){
         log.info("Patient Login Form Access");
-        mv.setViewName("Patiant");
+        mv.setViewName("PLogin");
         return mv;
     }
 
     @GetMapping("/D")
     public ModelAndView getDoclogin(ModelAndView mv){
         log.info("Doctor Login Form Accessed");
-        mv.setViewName("login");
-        return mv;
-    }
-    @GetMapping("/A")
-    public ModelAndView getAdminLogin(ModelAndView mv){
-        log.info("Admin login intialized");
-        mv.setViewName("/Admin");
+        mv.setViewName("Dlogin");
         return mv;
     }
     @GetMapping("/Failure")

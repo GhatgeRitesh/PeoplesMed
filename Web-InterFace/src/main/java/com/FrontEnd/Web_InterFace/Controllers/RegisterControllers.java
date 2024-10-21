@@ -13,12 +13,13 @@ public class RegisterControllers {
     @GetMapping("/D")
     public ModelAndView getDReg(ModelAndView mv){
         log.info("Doctor Register Form Display");
-        mv.setViewName("Doctor");
+        mv.setViewName("DDsign");
         return mv;
     }
     @GetMapping("/P")
     public ModelAndView getPReg(ModelAndView mv) {
         log.info("Patient Registration Form Accessed");
+        mv.setViewName("PPsign");
         return mv;
     }
 }

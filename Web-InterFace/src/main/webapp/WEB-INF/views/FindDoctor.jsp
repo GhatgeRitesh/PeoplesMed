@@ -65,7 +65,7 @@
                 </ul>
             </div>
 
-          <div class="button"><button><% doc.getDid(); %></button></div>
+          <div class="button"><a href="p/docprofile"+ <%doc.getD_id();%>><button><% doc.getDid(); %></button></div>
 
             </div>
        <%}%>
