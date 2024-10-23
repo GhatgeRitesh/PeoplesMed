@@ -1,0 +1,353 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* background-color: rgb(178, 236, 236); */
+    width: 100%;
+    height: 100vh;
+}
+
+.div_details{
+    /* background-color: rgb(11, 110, 196); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_cntainer{
+    width: 80%;
+    /* background-color: rgb(122, 70, 70); */
+    display: flex;
+    flex-direction: row;
+
+}
+
+.div_card{
+display: flex;
+background-color:#5F9EA0;
+padding: 20px;
+
+}
+
+
+.div_left{
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background-color: rgb(59, 80, 98); */
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.div_name label{
+    margin-left: 20px;
+font-size: 35px;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.div_im_sms{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+
+
+.div_img  img{
+width: 250px;
+height: 300px;
+}
+
+
+
+.sms button{
+ width: 250px;
+  height: 60px;
+  font-size: 19px;
+  border-radius: 5px;
+  background-color: rgb(242, 140, 40);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.div_Container_Spec{
+    color: antiquewhite;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    /* background-color: rgb(125, 183, 34); */
+}
+
+span{
+    font-size: 20px;
+    color: rgb(42, 54, 55);
+    font-style: italic;
+}
+
+
+.div_specialization{
+    display: flex;
+    flex-direction: column;
+}
+   
+.div_right{
+    width: 40%;
+    /* background-color: aqua; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Doctor_bio p{
+    font-size: 15px;
+    line-height: 25px;
+    word-spacing: 0.9px;
+    font-weight: 600;
+    color: rgb(69, 91, 92);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* right side div */
+
+.div_right{
+    display: flex;
+    padding: 20px;
+
+}
+.Apt_book h1{
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 25px;
+ padding-top: 80px;
+ padding-bottom: 30px;
+}
+
+.Apt_book_Hsc p{
+    font-size: 18px;
+    font-style: italic;
+}
+
+.Apt_book_time{
+    padding:20px  0px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.div_spn{
+    padding: 10px;
+}
+
+
+.div_day{
+    display: flex;
+    gap: 10px;
+}
+
+.day{
+padding: 10px;
+ font-size: 15px;
+ width: auto;
+ border: 2px solid rgb(253, 125, 78);
+background-color: rgb(253, 125, 78);
+border-radius: 20px;
+color: azure;
+}
+
+
+.Book_Schedul{
+    display: flex;
+    flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-left: 20px;
+     padding-bottom: 10px;
+    /* background-color: rgb(223, 138, 27); */
+    border-top: 2px solid black;
+}
+
+
+/*  */
+
+.form-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #3b3b3b;
+}
+
+label {
+    display: block;
+    margin: 3px 0 3px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    border-color: #007bff;
+}
+
+
+
+
+input, textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+textarea {
+   width: 70%;
+    height: 100px;
+    resize: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.form-group textarea {
+    resize: none;
+    height: 100px;
+}
+.time-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+.time-buttons button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    /* background-color: red; */
+    color: white;
+}
+
+.time-buttons button1{
+    background-color: red;
+
+}
+
+
+.time-buttons button.selected {
+    background-color: red;
+    
+}
+.button-group {
+    display: flex;
+    justify-content: space-between;
+   
+}
+.button-group button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button-primary {
+    background-color: #28a745;
+    color: white;
+}
+.button-danger {
+    background-color: #dc3545;
+    color: white;
+}
+.button-secondary {
+    background-color: #007bff;
+    color: white;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+   
+}
+.button-group button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button-primary {
+    background-color: #28a745;
+    color: white;
+}
+.button-danger {
+    background-color: #dc3545;
+    color: white;
+}
+.button-secondary {
+    background-color: #007bff;
+    color: white;
+}
+
+.available{
+    display: flex;
+    gap: 20px;
+}
+
+
+.dot1,.dot2{
+width: 20px;
+height: 20px;
+background-color: red;
+border-radius: 10px;
+}
+
+.dot2{
+    width: 20px;
+    height: 20px;
+    background-color: rgb(68, 233, 23);
+    border-radius: 10px;
+    }
+
+    .hospital img{
+        width: 100%;
+    }

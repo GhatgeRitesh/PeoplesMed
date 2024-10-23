@@ -16,7 +16,7 @@
         </div>
         <div class="nav-bar">
           <a href="/home/Welcome">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#">Find a Doctor</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="/p/findDoctor">Find a Doctor</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="#">Services</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="#">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
@@ -24,12 +24,12 @@
         <div class="logincontainer">
 
             <div class="login">
-               <button id="toggleButton"> <a href="Dlogin.html" style="text-decoration: none; color: white;"> Login </a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <button id="toggleButton"> <a href="/login/D" style="text-decoration: none; color: white;"> Login </a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
           
           
             <div class="signin">
-              <button id="toggleButton1"> <a href="#" style="text-decoration: none; color: white;">SignUp</a></button>
+              <button id="toggleButton1"> <a href="/Register/D" style="text-decoration: none; color: white;">SignUp</a></button>
             </div>
             
           </div>

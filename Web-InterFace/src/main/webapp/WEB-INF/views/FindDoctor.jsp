@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  import="java.util.List, com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,7 @@
 
 
 
-<!--  -->
+<!--
 <%
      List<Doctor> list = (List<Doctor>) request.getAttribute("list");
 
@@ -54,7 +55,7 @@
       %>
         <div class="card_contener">
             <div class="card">
-                <img src="../images/doc1.png" alt="">
+                <img src="/images/doc1.png" alt="">
                 <div class="details">
                    <h1><%doc.getName();%></h1>
                     <span><%doc.getSpecialization();%></span>
@@ -65,11 +66,42 @@
                 </ul>
             </div>
 
-          <div class="button"><a href="p/docprofile"+ <%doc.getD_id();%>><button><% doc.getDid(); %></button></div>
+          <div class="button"><a href="/p/docprofile"+ <%doc.getD_id();%>><button><% doc.getD_id(); %></button></div>
 
             </div>
-       <%}%>
-<!--  -->
+       <%}
+       }%>
+<!--  --> -->
+        <c:forEach var="doctor" items="${list}">
+		<div class="card_contener">
+			<div class="card">
+				<img src="../images/doc1.png" alt="">
+				<div class="details">
+					<h1>Dr. ${doctor.name}</h1>
+					${doctor.d_id}
+					<div class="details" style="border:1px solid red; align-items:left;">
+					<h3>Education : ${doctor.education}</h3>
+					<h3>Experience : ${doctor.experience}</h3>
+					</div>
+					<span>Specialization</span>
+					<ul class="ul">
+						<li>${doctor.specialization}</</li>
+						<li>${doctor.specialization}</</li>
+						<li>${doctor.specialization}</</li>
+					</ul>
+				</div>
+				<div class="button">
+					<a href="/p/d/${doctor.d_id}"}>
+						<button>Book</button>
+					</a>
+				</div>
+
+			</div>
+
+
+
+		</div>
+	</c:forEach>
 
             </div>
         </div>

@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 
 import java.util.List;
+import java.util.Objects;
 
 
 @RequestMapping("/p")
@@ -57,7 +59,7 @@ public class PatientDashBoard {
         log.info("docs list activated ");
             List<Doctor> list = userClient.getAllDocs();
             cacheData.setDocList(list);
-            System.out.println("List :- " + list.toString());
+           // System.out.println("List :- " + list.toString());
             mv.addObject("list", list);
             mv.setViewName("patientDashBoard");
             if(list.isEmpty()){
@@ -65,10 +67,34 @@ public class PatientDashBoard {
                 mv.addObject("list","The recieved list is empty :");
                 mv.setViewName("FindDoctor");
             }
-            System.out.println("List :- " + list.toString());
+          //  System.out.println("List :- " + list.toString());
             mv.addObject("list", list);
             mv.setViewName("FindDoctor");
 
+        return mv;
+    }
+
+    @GetMapping("/d/{d_id}")
+    public ModelAndView DocProfile(@PathVariable("d_id") Long D_id, ModelAndView mv){
+        log.info("DocProfile Activated");
+        Doctor doc=null;
+        for(Doctor d: cacheData.getDocList()){
+            if(Objects.equals(d.getD_id(), D_id)) {
+                System.out.println("Doctor found");
+                System.out.println(d);
+                doc = d;
+                break;
+            }
+            else {
+                log.info("Doctor not found ");
+                mv.setViewName("BookAppointment");
+                mv.addObject("Error", "Doctor Not Found : Internal Error");
+                return mv;
+            }
+        }
+        System.out.println(doc);
+        mv.addObject("doc",doc);
+        mv.setViewName("BookAppointment");
         return mv;
     }
 }

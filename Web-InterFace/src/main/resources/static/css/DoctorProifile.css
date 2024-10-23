@@ -1,0 +1,110 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    display: flex;
+}
+
+.left-section {
+    background-color: #00a6d6;
+    color: white;
+    padding: 20px;
+    width: 40%;
+    text-align: center;
+    margin: 20px;
+    height: 50%;
+}
+
+
+
+
+.left-section .profile-image img {
+    width: 250px;
+    height: 350px;
+    /* border-radius: 50%; */
+    border: 3px solid white;
+    margin-bottom: 20px;
+}
+
+
+
+.left-section h2 {
+    margin: 10px 0 5px;
+}
+
+.left-section h3 {
+    margin: 0;
+    font-weight: normal;
+}
+
+.left-section p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+
+.right-section {
+    padding: 20px;
+    width: 60%;
+}
+
+
+.info-section p{
+    font-size: 19px;
+}
+
+.detail-box p{
+    font-size: 19px;
+}
+
+
+.info-section, .specialty-section, .details-section, .hospital-section, .contact-section {
+    /* margin-bottom: 20px; */
+
+}
+
+h4 {
+    color: #00a6d6;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+.specialty-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.specialty-tags span {
+    background-color: #00a6d6;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.details-section {
+    display: flex;
+}
+
+.detail-box {
+    width: 100%;
+}
+
+.contact-section p, .hospital-section p {
+    margin: 5px 0;
+    font-size: 17px;
+}
