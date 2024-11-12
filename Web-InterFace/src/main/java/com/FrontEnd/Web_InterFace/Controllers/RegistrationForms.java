@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
@@ -51,25 +52,31 @@ public class RegistrationForms {
     }
 
     @PostMapping("/sub/P")
-    public ResponseEntity<Patient> PReg(@ModelAttribute Patient P){
+    public ModelAndView PReg(@ModelAttribute Patient P,ModelAndView mv){
         log.info("The Patient Form is received");
         if(P==null){
             log.info("The Patient Body is Empty!");
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+            mv.setViewName("/error");
+            mv.addObject("error","Entity recieved empty Internale Server Error");
+            return mv;
         }
         gMailEntity.setRole("Pat");
         gMailEntity.setSubject("Register");
         gMailEntity.setReceiver(P.getEmail());
         try{
-          P.setRole("ROLE_Patient");
+          P.setRole("Patient");
+
           ResponseEntity<?> res= userClient.savePatient(P);
           if(res.getStatusCode().is2xxSuccessful()){
               features.SendEmail(gMailEntity);
           }
         }catch(Exception e){
             log.info("Error While Saving Patient :"+e);
-            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+            mv.setViewName("error");
+            mv.addObject("error", HttpStatus.EXPECTATION_FAILED);
+            return mv;
         }
-        return new ResponseEntity<>(P,HttpStatus.OK);
+        mv.setViewName("login");
+       return mv;
     }
 }

@@ -66,6 +66,10 @@ public class RegController {
             return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
         }
         log.info("Patient Saving process is started");
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+        String Password = patient.getPassword();
+        patient.setPassword(encoder.encode(Password));
+        System.out.println(patient.toString());
         try{
             pService.savePatient(patient);
         }catch(Exception e){
@@ -101,8 +105,8 @@ public class RegController {
     @PostMapping("/getPUser")
     public ResponseEntity<?> fetchUser(@RequestBody String EMail){
         log.info("The User Details Fetching");
-        Optional<Patient> p= pRepo.findByEmail(EMail);
-        if (p.isEmpty()){
+        Patient p= pRepo.findByEmail(EMail);
+        if (p == null){
             log.info("The patient Recieved Null terminating Process");
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }

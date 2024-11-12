@@ -24,7 +24,7 @@
         <div class="logincontainer">
 
             <div class="login">
-               <button id="toggleButton"> <a href="/login/P" style="text-decoration: none; color: white;"> Login </a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <button id="toggleButton"> <a href="/login" style="text-decoration: none; color: white;"> Login </a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
           
           
@@ -40,19 +40,19 @@
        
        <div class="form">
         
-    <form action="/Reg/sub/P" method="post">
-            <h1>Login-Patient</h1>
+    <form action="/loginform" method="post">
+            <h1>Login</h1>
         <div class="form-group">
-            <label for="username">Email</label>
-            <input type="text" id="p_username"  placeholder="Email" name="p_username" required>
+            <label for="email">Email</label>
+            <input type="text" id="email"  placeholder="Email" name="email" required>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="p_password"  placeholder="Password" name="p_password" required>
+            <input type="password" id="p_password"  placeholder="Password" name="password" required>
         </div>
         <button type="submit">Login</button>
           <br> <br>
-        <a href="/login/D"><samp> Login as Doctor</samp></a>
+
           
 
     </form>

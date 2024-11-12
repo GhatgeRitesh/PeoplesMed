@@ -37,4 +37,8 @@ public class PService {
         List<Patient> list=pRepo.findAll();
         return list;
     }
+    public Patient getPatient(String Email){
+         Patient patient = pRepo.findByEmail(Email);
+         return patient;
+    }
 }

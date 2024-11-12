@@ -9,6 +9,6 @@ pageEncoding="UTF-8"%>
 
 </head>
 <body>
-       <p style="font-size:5rem;"> User Not Found</p>
+       <p style="font-size:5rem;">  </p>
 </body>
 </html>

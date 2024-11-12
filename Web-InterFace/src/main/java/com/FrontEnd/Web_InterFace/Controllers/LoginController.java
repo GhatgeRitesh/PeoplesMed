@@ -11,17 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Log
 public class LoginController {
 
-    @GetMapping("/P")
-    public ModelAndView getPlogin(ModelAndView mv){
-        log.info("Patient Login Form Access");
+    @GetMapping()
+    public ModelAndView loginform(ModelAndView mv){
+        log.info("Login Form Access");
         mv.setViewName("PLogin");
-        return mv;
-    }
-
-    @GetMapping("/D")
-    public ModelAndView getDoclogin(ModelAndView mv){
-        log.info("Doctor Login Form Accessed");
-        mv.setViewName("Dlogin");
         return mv;
     }
     @GetMapping("/Failure")
@@ -29,4 +22,6 @@ public class LoginController {
         mv.setViewName("loginFailure");
         return mv;
     }
+
+
 }

@@ -19,13 +19,13 @@
 </div>
 <div class="nav-bar">
   <a href="#">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="#">Find a Doctor</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/P/findDoctor">Find a Doctor</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="#">Services</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="#">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 <div class="login">
-  <a href="/login/P"><button>Login</button></a>
-  <a href="/Register/D"><button>SignUp</button></a>
+  <a href="/login"><button>Login</button></a>
+  <a href="/Register/p"><button>SignUp</button></a>
 </div>
 </div>
 <div class="container">

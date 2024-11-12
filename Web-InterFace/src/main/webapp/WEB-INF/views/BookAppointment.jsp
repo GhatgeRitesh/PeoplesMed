@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"  import="java.util.List, com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +11,51 @@
 </head>
 <body>
     
+<!--  -->
+
+
+<div class="header">
+  <div class="logo">
+    <img src="/images/logo.png" alt="Logo" class="logo-img">
+    <h3 class="logo-h3">PeoplesMed</h3>
+  </div>
+  <div class="nav-bar">
+    <a href="/home/Welcome">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/p/findDoctor">Find a Doctor</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#">Services</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+
+  <div class="logincontainer">
+
+      <div class="back_button">
+         <a href="/p/findDoctor">
+          <p>  &larr; Back</p> </a>
+      </div>
+    
+    
+      <div class="signin">
+        <button id="toggleButton1"> <a href="PPsign.html" style="text-decoration: none; color: white;">SignUp</a></button>
+      </div>
+      
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->
+
   <form action="">
 
     <br> <br> <br> <br> <br>
@@ -18,7 +66,7 @@
                 <br>
                 
                  <div class="div_name">
-                    <label for="name">Dr.John Doe</label>
+                    <label for="name">Dr. ${doc.name}</label>
                  </div>
 
                  <br>
@@ -36,13 +84,13 @@
                        <div class="div_Container_Spec">
                       <div class="div_specialization">
                           <h1>Specialization</h1> 
-                           <span>Cosmatic Surgery</span>
-                           <span>Reconstructive Microsurgery</span>
+                           <span>${doc.specialization}</span>
+                          <!-- <span>Reconstructive Microsurgery</span> -->
                       </div>
 
                       <div class="div_Primer">
                         <h1>Primary Consultation Location</h1> 
-                        <span>Manipal Hospitals(Old Airport Road)</span>
+                        <span>${doc.hospitalName}</span>
                       </div>
 
                     </div>
@@ -188,8 +236,11 @@
         </div>
     </div>
    
-    <br> <br> <br> <br>
-  
+    <br> <br> 
+
+
+<br> <br> <br> <br> <br>
+
   </form>
 
     <script>

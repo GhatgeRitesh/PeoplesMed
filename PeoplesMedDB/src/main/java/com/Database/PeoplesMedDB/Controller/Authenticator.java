@@ -6,6 +6,7 @@ import com.Database.PeoplesMedDB.Entity.Users;
 import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
 import com.Database.PeoplesMedDB.service.DocService;
+import com.Database.PeoplesMedDB.service.PService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,10 +29,14 @@ public class Authenticator {
 
     @Autowired
     private DocService docService;
-    public Authenticator(DocRepo docRepo, PRepo pRepo, DocService docService) {
+
+    @Autowired
+    private PService pService;
+    public Authenticator(DocRepo docRepo, PRepo pRepo, DocService docService,PService pService) {
         this.docRepo = docRepo;
         this.pRepo = pRepo;
         this.docService=docService;
+        this.pService=pService;
     }
 
     @PostMapping("/ValidateUser")
@@ -49,36 +54,43 @@ public class Authenticator {
 
         System.out.println("The User from Authenticator"+ user.toString() );
         System.out.println("Entity Retrival process started");
-        // Check if the user is a doctor
-        Doctor doctor = docService.getDoctor(user.getUsername());
-        System.out.println("Entity is Retrived" + doctor.toString());
+
+        // getting user role
+        Doctor doctor;
+        Patient patient;
+        doctor = docService.getDoctor(user.getUsername());
+        patient =pService.getPatient(user.getUsername());
+        if(doctor == null && patient == null){
+            System.out.println("User not found ");
+            return null;
+        }
         // Directly fetch the doctor
         if (doctor != null) {
+            System.out.println("User is Detected as Doctor " + doctor);
             System.out.println("Checking doctor creds with bycrpt");
             // Validate password
             if (passwordEncoder.matches(user.getPassword(), doctor.getPassword())) {
                 // Return user object without password (for security)
                 System.out.println("The User Matches");
                 return new Users(doctor.getEmail(), doctor.getPassword(), "ROLE_DOCTOR");
-            }
-            else{
+            } else {
                 System.out.println("The password not matches");
             }
         }
-//
-//        // Check if the user is a patient
-//        Optional<Patient> patientOpt = pRepo.findByEmail(user.getEmail());
-//        if (patientOpt.isPresent()) {
-//            Patient patient = patientOpt.get();
-//            // Validate password
-//            if (passwordEncoder.matches(user.getPassword(), patient.getPassword())) {
-//                // Return user object without password (for security)
-//                return new Users(patient.getEmail(), null, "PATIENT");
-//            }
-//        }
+        if(patient != null){
+            System.out.println("The user is Detected as Patient ");
+            System.out.println("Checking Creds with Bcrypt ");
+            if(passwordEncoder.matches(user.getPassword(),patient.getPassword())){
+                System.out.println("User found Successfully Access Granted");
+                return new Users(patient.getEmail(),patient.getPassword(),"ROLE_PATIENT");
+            }
+            else{
+                System.out.println("Password not Matches ");
+            }
+        }
 
         // If no match for doctor or patient, return null or handle it
-        return null;
+        return new Users(null,null,null);
     }
 }
 

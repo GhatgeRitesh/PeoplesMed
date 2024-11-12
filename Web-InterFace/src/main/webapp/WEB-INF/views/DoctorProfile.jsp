@@ -12,8 +12,7 @@
 <body>
 
 
-               ${Error}
-               ${doc}
+
                 <div class="container">
                     <div class="left-section">
                         <div class="profile-image">

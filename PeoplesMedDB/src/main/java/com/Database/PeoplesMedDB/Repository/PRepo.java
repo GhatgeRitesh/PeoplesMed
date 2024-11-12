@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface PRepo extends JpaRepository<Patient,Long> {
-    Optional<Patient> findByEmail(String email);
+    Patient  findByEmail(String email);
 }

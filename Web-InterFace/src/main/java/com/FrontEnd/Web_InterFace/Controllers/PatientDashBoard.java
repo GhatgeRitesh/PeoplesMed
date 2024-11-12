@@ -8,6 +8,7 @@ import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-@RequestMapping("/p")
+@RequestMapping("/P")
 @Controller
 @Log4j2
 public class PatientDashBoard {
@@ -33,11 +34,13 @@ public class PatientDashBoard {
     private Users users;
 
     public PatientDashBoard(Users users, CacheData cacheData){this.users=users; this.cacheData=cacheData;}
+
+
     @GetMapping("/profile")
     public ModelAndView pProfile(ModelAndView mv){
         log.info("Patient Profile Method Access");
         try{
-           ResponseEntity<Patient> p= userClient.getUserProfile(users.getUsername());
+           ResponseEntity<Patient> p= userClient.getPatientProfile(users.getUsername());
             if(p!=null){
                 mv.setViewName("PProfile");
                 mv.addObject("Profile",p);
@@ -53,6 +56,7 @@ public class PatientDashBoard {
         }
         return mv;
     }
+
 
     @GetMapping("/findDoctor")
     public ModelAndView PDashBoard(ModelAndView mv){
