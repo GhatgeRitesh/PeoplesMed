@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
+@Scope("prototype")
 @Getter @Setter
 public class Patient {
     private Long patId;

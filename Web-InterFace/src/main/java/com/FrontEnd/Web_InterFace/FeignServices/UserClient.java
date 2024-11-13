@@ -7,9 +7,7 @@ import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,4 +31,6 @@ public interface UserClient {
     public ResponseEntity<Doctor> getDoctorProfile(String Email);
     @PostMapping("/SetSchedule")
     public ResponseEntity<?> setSchedule(Schedule schedule);
+    @GetMapping("/getSchedules/{doc_id}")
+    public ResponseEntity<Schedule> getSchedule(@PathVariable Long doc_id,@RequestParam("date") String date);
 }

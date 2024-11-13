@@ -33,7 +33,7 @@ public class PatientDashBoard {
 
     private Users users;
 
-    public PatientDashBoard(Users users, CacheData cacheData){this.users=users; this.cacheData=cacheData;}
+    public PatientDashBoard(Users users){this.users=users; }
 
 
     @GetMapping("/profile")

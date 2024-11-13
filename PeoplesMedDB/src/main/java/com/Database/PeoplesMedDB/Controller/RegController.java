@@ -124,15 +124,25 @@ public class RegController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PostMapping("/getSchedule")
+    @GetMapping("/getSchedule")
     public  ResponseEntity<List<Schedule>> getSchedules(@RequestParam Long doc_id,@RequestParam String date){
-        List<Schedule> schedules = scheduleService.getScheduleById(doc_id,date);
-        return  new ResponseEntity<>(schedules,HttpStatus.OK);
+        try {
+            List<Schedule> schedules = scheduleService.getScheduleById(doc_id, date);
+            return new ResponseEntity<>(schedules , HttpStatus.OK);
+        }catch(Exception e) {
+            log.info("Error while Fetching Schedule from DB :-> " + e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @PostMapping("/saveSchedule")
     public ResponseEntity<?> saveSchedules(@ModelAttribute Schedule schedule){
-        scheduleService.SaveSchedule(schedule);
-        return  new ResponseEntity<>(HttpStatus.OK);
+        try {
+            scheduleService.SaveSchedule(schedule);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+            log.info("Error While Saving Schedule into DB :-> " + e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
