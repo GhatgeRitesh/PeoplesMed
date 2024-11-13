@@ -9,6 +9,49 @@
     <title>DoctorSpecialization</title>
     <link rel="stylesheet" href="/css/BookAppointment.css">
 </head>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"></script>
+	<style>
+    .time-button-container {
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .available input[type="radio"] {
+        display: none;
+    }
+
+    .available label {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .allotted {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        margin: 5px;
+        display: inline-block;
+        cursor: not-allowed;
+    }
+
+    .available input[type="radio"]:checked + label {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+</style>
 <body>
     
 <!--  -->
@@ -56,200 +99,245 @@
 
 <!--  -->
 
-  <form action="">
+  <br>
+  	<br>
+  	<br>
+  	<br>
+  	<br>
+  	<div class="div_details">
+  		<div class="div_cntainer">
 
-    <br> <br> <br> <br> <br>
-    <div class="div_details">
-        <div class="div_cntainer">
+  			<div class="div_left">
+  				<br>
 
-            <div class="div_left">
-                <br>
-                
-                 <div class="div_name">
-                    <label for="name">Dr. ${doc.name}</label>
-                 </div>
+  				<div class="div_name">
+  					<label for="name">Dr.John Doe</label>
+  				</div>
 
-                 <br>
-                 <div class="div_card">
-                      <div class="div_im_sms">
-                          <div class="div_img">
-                            <!-- <img src="/images/dr1.jpg" alt=""> -->
-                             <img src="https://png.pngtree.com/png-vector/20240127/ourlarge/pngtree-doctor-png-png-image-png-free-png-ai-generative-png-image_11555707.png" alt="">
-                          </div>
-                          <br> 
-                          <div class="sms">
-                           <a href="#"> <button> <h4>SMS Todgdfgsd </h4> </button></a></div>
-                      </div>
+  				<br>
+  				<div class="div_card">
+  					<div class="div_im_sms">
+  						<div class="div_img">
+  							<!-- <img src="../images/dr1.jpg" alt=""> -->
+  							<img
+  								src="https://png.pngtree.com/png-vector/20240127/ourlarge/pngtree-doctor-png-png-image-png-free-png-ai-generative-png-image_11555707.png"
+  								alt="">
+  						</div>
+  						<br>
+  						<div class="sms">
+  							<a href="#">
+  								<button>
+  									<h4>SMS Todgdfgsd</h4>
+  								</button>
+  							</a>
+  						</div>
+  					</div>
 
-                       <div class="div_Container_Spec">
-                      <div class="div_specialization">
-                          <h1>Specialization</h1> 
-                           <span>${doc.specialization}</span>
-                          <!-- <span>Reconstructive Microsurgery</span> -->
-                      </div>
+  					<div class="div_Container_Spec">
+  						<div class="div_specialization">
+  							<h1>Specialization</h1>
+  							<span>Cosmatic Surgery</span> <span>Reconstructive
+  								Microsurgery</span>
+  						</div>
 
-                      <div class="div_Primer">
-                        <h1>Primary Consultation Location</h1> 
-                        <span>${doc.hospitalName}</span>
-                      </div>
+  						<div class="div_Primer">
+  							<h1>Primary Consultation Location</h1>
+  							<span>Manipal Hospitals(Old Airport Road)</span>
+  						</div>
 
-                    </div>
+  					</div>
 
-                 </div>
-                 
-       <br> <br>
+  				</div>
 
-
-               <div class="Doctor_bio">
-                <h2>Quick Bio</h2>
-                <br>
-                  <p>The first person to document a surgery was the 6th century BC Indian physician-surgeon, Sushruta. He specialized in cosmetic plastic surgery and even documented an open rhinoplasty procedure.[3] His magnum opus Suśruta-saṃhitā is one of the most important surviving ancient treatises on medicine and is considered a foundational text of both Ayurveda and surgery. The treatise addresses all aspects of general medicine, but the translator G. D. Singhal dubbed Sushruta "the father of surgical intervention" on account. </p>
-               </div>
-               <br>
-               <hr><hr><hr>
-
-
-               <div class="hospital">
-                 <img src="https://www.moh.gov.et/sites/default/files/styles/large/public/2021-04/medicalservice.jpg?itok=cGkSlaj9" alt="">              
-                 </div>
-            </div>
+  				<br> <br>
 
 
-            <div class="div_right">
-              <div class="Apt_book">
-                <h1>My Weekly Schedule</h1>
-                   <div class="Apt_book_Hsc">
-                    <p>Main Hospitals,old Airport Road</p>
-                      <div class="Apt_book_time">
-                         <div class="div_spn"><span >09:00AM - 03:00PM</span></div>
-                          <div class="div_day">
-                          <div class="day">MON</div>
-                          <div class="day">WED</div>
-                        </div>
-                      </div>
-                   </div>
+  				<div class="Doctor_bio">
+  					<h2>Quick Bio</h2>
+  					<br>
+  					<p>The first person to document a surgery was the 6th century
+  						BC Indian physician-surgeon, Sushruta. He specialized in cosmetic
+  						plastic surgery and even documented an open rhinoplasty
+  						procedure.[3] His magnum opus Suśruta-saṃhitā is one of the most
+  						important surviving ancient treatises on medicine and is
+  						considered a foundational text of both Ayurveda and surgery. The
+  						treatise addresses all aspects of general medicine, but the
+  						translator G. D. Singhal dubbed Sushruta "the father of surgical
+  						intervention" on account.</p>
+  				</div>
+  				<br>
+  				<hr>
+  				<hr>
+  				<hr>
 
 
-                   <div class="Apt_book_Hsc">
-                    <p>Clinic Name , Pune Clinic</p>
-                      <div class="Apt_book_time">
-                         <div class="div_spn"><span >10:30AM - 12:00PM</span></div>
-                          <div class="div_day">
-                          <div class="day">MON</div>
-                          <div class="day">SAT</div>
-                        </div>
-                      </div>
-                   </div>
-
-                  
-
-                   <div class="Apt_book_Hsc">
-                    <p>Home Clinic,Pune</p>
-                      <div class="Apt_book_time">
-                         <div class="div_spn"><span >05:00PM - 08:00PM</span></div>
-                          <div class="div_day">
-                          <div class="day">MON-SAT</div>
-                          
-                        </div>
-                      </div>
-                    </div>
-                     
-                    <br> <br> <br>
-
-       <!-- Book Schedule ............. -->
-                
-         
-      
+  				<div class="hospital">
+  					<!-- <img src="https://www.moh.gov.et/sites/default/files/styles/large/public/2021-04/medicalservice.jpg?itok=cGkSlaj9" alt="">               -->
+  				</div>
+  			</div>
 
 
+  			<div class="div_right">
+  				<div class="Apt_book">
+  					<h1>My Weekly Schedule</h1>
+  					<div class="Apt_book_Hsc">
+  						<p>Main Hospitals,old Airport Road</p>
+  						<div class="Apt_book_time">
+  							<div class="div_spn">
+  								<span>09:00AM - 03:00PM</span>
+  							</div>
+  							<div class="div_day">
+  								<div class="day">MON</div>
+  								<div class="day">WED</div>
+  							</div>
+  						</div>
+  					</div>
 
 
-
-
-
-       <div class="Book_Schedul">
-         <h1>Book Appointment</h1>
-         <div class="Book_div1">
-             
-           
-          <!--  -->
-
-        
-            <label for="username">Name:</label>
-            <input type="text" id="username" name="username" required>
-    
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="reason">Reason for Appointment:</label>
-            <textarea id="reason" name="reason" placeholder="Describe your symptoms or reason for visit" required></textarea>
-
-           <br>
-             
-          <!-- <button id="myButton2" class="unclicked" onclick="changeColor(2)">10:00AM</button>
-          <button id="myButton3" class="unclicked" onclick="changeColor(3)">11:00AM</button>
-          <button id="myButton4" class="unclicked" onclick="changeColor(4)">12:00PM</button>
-          <button id="myButton5" class="unclicked" onclick="changeColor(5)">01:00PM</button>
-          <button id="myButton6" class="unclicked" onclick="changeColor(6)">02:00PM</button>
-          <button id="myButton7" class="unclicked" onclick="changeColor(7)">03:00PM</button>
-          <button id="myButton8" class="unclicked" onclick="changeColor(8)">04:00PM</button>
-          <button id="myButton9" class="unclicked" onclick="changeColor(9)">05:00PM</button>
-          <br><br>
-          <button class="submit">Submit</button> -->
-
-
-          <div class="form-group">
-            <label for="timing">Selected Time</label>
-            <input type="text" id="timing" name="timing" readonly>
-        </div>
-
-        <div class="time-buttons">
-            <button type="button" onclick="selectTime(this, '1 PM')">1 PM</button>
-            <button type="button" onclick="selectTime(this, '2 PM')">2 PM</button>
-            <button type="button" onclick="selectTime(this, '3 PM')">3 PM</button>
-            <button type="button" onclick="selectTime(this, '4 PM')">4 PM</button>
-            <button type="button" onclick="selectTime(this, '5 PM')">5 PM</button>
-            <button type="button" onclick="selectTime(this, '6 PM')">6 PM</button>
-        </div>
-
-
- 
-        <div class="button-group">
-          <button type="button" class="button-primary">Submit</button>
-
-          <div class="available">
-          <div class="dot1"></div> <span>Alloted</span> 
-          <div class="dot2"></div><span>Available</span>
-        </div>
-
-      </div>
-
-
-         </div>
-
-       </div>
+  					<div class="Apt_book_Hsc">
+  						<p>Clinic Name , Pune Clinic</p>
+  						<div class="Apt_book_time">
+  							<div class="div_spn">
+  								<span>10:30AM - 12:00PM</span>
+  							</div>
+  							<div class="div_day">
+  								<div class="day">MON</div>
+  								<div class="day">SAT</div>
+  							</div>
+  						</div>
+  					</div>
 
 
 
-              </div>
-            </div>
-        </div>
-    </div>
-   
-    <br> <br> 
+  					<div class="Apt_book_Hsc">
+  						<p>Home Clinic,Pune</p>
+  						<div class="Apt_book_time">
+  							<div class="div_spn">
+  								<span>05:00PM - 08:00PM</span>
+  							</div>
+  							<div class="div_day">
+  								<div class="day">MON-SAT</div>
+
+  							</div>
+  						</div>
+  					</div>
+
+  					<br> <br> <br>
+
+  					<!-- Book Schedule ............. -->
+  					<form action="">
+  						<div class="Book_Schedul">
+  							<h1>Book Appointment</h1>
+  							<div class="Book_div1">
+  								<!--  -->
+  								<label for="username">Name:</label> <input type="text"
+  									id="username" name="username" required> <label
+  									for="email">Email:</label> <input type="email" id="email"
+  									name="email" required> <label for="reason">Reason
+  									for Appointment:</label>
+  								<textarea id="reason" name="reason"
+  									placeholder="Describe your symptoms or reason for visit"
+  									required></textarea>
+
+  								<label for="email">Date:</label> <input type="date" id="datePicker"
+  									name="date" required>&nbsp; &nbsp; &nbsp; &nbsp; <input
+  									type="button" class="button-primary"
+  									value="Get Slots" onclick="fetchSlots()"> <br>
+
+  								<div id="scheduleContainer"></div>
 
 
-<br> <br> <br> <br> <br>
 
-  </form>
+  								<div class="button-group">
+  									<input type="button" class="button-primary" value="Submit">&nbsp;&nbsp;
+  									<div class="available">
+  										<div class="dot1"></div>
+  										<span>Alloted</span>
+  										<div class="dot2"></div>
+  										<span>Available</span>
+  									</div>
+  								</div>
 
-    <script>
-   function selectTime(button, time) {
-    const buttons = document.querySelectorAll('.time-buttons button');
-    buttons.forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
-    document.getElementById('timing').value = time;
-}
-    </script>
+
+  							</div>
+
+  						</div>
+  					</form>
+
+
+
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+
+  	<br>
+  	<br>
+
+  	<div class="back_button">
+  		<a href="ListDoctor_Cards.html">
+  			<p>&larr; Back</p>
+  		</a>
+  	</div>
+
+  	<br>
+  	<br>
+  	<br>
+  	<br>
+  	<br>
+
+
+  	<script type="text/javascript">
+  	function fetchSlots() {
+  	    const date = document.getElementById("datePicker").value;
+  	    console.log("Selected date:", date);
+  	    if (!date) {
+  	        alert("Please select a date.");
+  	        return;
+  	    }
+
+  	    $.ajax({
+  	        url: `/P/`+date,
+  	        method: "GET",
+  	        success: function (data) {
+  	            $("#scheduleContainer").empty();
+  	            console.log("Data received:", data);
+
+  	            if (Array.isArray(data) && data.length > 0) {
+  	                data.forEach(slot => {
+  	                    const slotDiv = $("<div></div>").addClass("time-button-container");
+
+  	                    const radioButton = $("<input>").attr({
+  	                        type: "radio",
+  	                        name: "slot",
+  	                        value: slot.slotTime,
+  	                        id: "slot-" + slot.slotTime,
+  	                    });
+
+  	                    const label = $("<label></label>").attr("for", "slot-" + slot.slotTime)
+  	                        .text(slot.slotTime);
+
+  	                    if (slot.status === "AVAILABLE") {
+  	                        slotDiv.addClass("available");
+  	                        slotDiv.append(radioButton).append(label);
+  	                    } else {
+  	                        slotDiv.addClass("allotted");
+  	                        label.addClass("disabled");
+  	                        slotDiv.append(label);
+  	                    }
+
+  	                    $("#scheduleContainer").append(slotDiv);
+  	                });
+  	            } else {
+  	                $("#scheduleContainer").append('<div class="error-message">No slots available for the selected date.</div>');
+  	            }
+  	        },
+  	        error: function (xhr, status, error) {
+  	            console.error("Error fetching data:", xhr.responseText);
+  	            $("#scheduleContainer").html(`<div style="color: red;">Error fetching data. Please try again.</div>`);
+  	        }
+  	    });
+  	}
+  	</script>
 </body>
 </html>

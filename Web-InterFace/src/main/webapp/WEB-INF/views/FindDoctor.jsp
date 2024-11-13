@@ -17,10 +17,10 @@
           <h3 class="logo-h3">PeoplesMed</h3>
         </div>
         <div class="nav-bar">
-          <a href="/home/Welcome.html">Home</a>
-          <a href="#">Find a Doctor</a>
-          <a href="#">Services</a>
-          <a href="#">Contact</a>
+          <a href="/home/Welcome">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="/P/findDoctor">Find a Doctor</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">Services</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
 
         <div class="logincontainer">
@@ -41,34 +41,31 @@
 
 
         <c:forEach var="doctor" items="${list}">
-		<div class="card_contener">
-			<div class="card">
-				<img src="/images/doc1.png" alt="">
-				<div class="details">
-					<h1>Dr. ${doctor.name}</h1>
-					${doctor.d_id}
-					<div class="details" style="border:1px solid red; align-items:left;">
-					<h3>Education : ${doctor.education}</h3>
-					<h3>Experience : ${doctor.experience}</h3>
-					</div>
-					<span>Specialization</span>
-					<ul class="ul">
-						<li>${doctor.specialization}</</li>
-						<li>${doctor.specialization}</</li>
-						<li>${doctor.specialization}</</li>
-					</ul>
-				</div>
-				<div class="button">
-					<a href="/p/d/${doctor.d_id}"}>
-						<button>Book</button>
-					</a>
-				</div>
+        <div class="carddiv">
+              <div class="card">
+                  <div class="left">
+                  <img src="../images/treat.jpg" alt=""> <br>
+                    <p>Dr. ${doctor.name}</p>
+                  </div>
+                  <div class="right">
+                    <div class="info_div">
+                      <h4>${doctor.name} Hospital</h4>
+                       <p>${doctor.specialization} | ${doctor.experience} experience</p>
+                    </div>
+                    <div class="info_div">
+                   <p><b>Address :</b> <span>Old Kapada galli Latur,Latur Lorem ipsum dolor sit amet.</span></p>
+                  <p><b>Degree :</b> <span>${doctor.education} </span></p>
+                    </div>
+                    <div class="info_div" id="buttondiv">
+                     <a href="/P/d/${doctor.d_id}"><button>Book Appointment</button></a>
+                          <!-- <a href="#" >Add a Review</a>
+                          <div class="review">
 
-			</div>
-
-
-
-		</div>
+                          </div> -->
+                    </div>
+                  </div>
+              </div>
+        </div>
 	</c:forEach>
 
             </div>

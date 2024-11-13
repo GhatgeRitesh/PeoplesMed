@@ -113,25 +113,6 @@ public class RegController {
         return new ResponseEntity<>(p,HttpStatus.OK);
     }
 
-    @PostMapping("/SetSchedule")
-    public ResponseEntity<?> saveSchedule(@RequestBody Schedule schedule){
-        log.info("DB Service Save Schedule Method accessed");
-        if(schedule == null){
-            log.info("Entity received empty ");
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
-        System.out.println(schedule.toString());
-        try {
-            scheduleService.SaveSchedule(schedule);
-            log.info("schedule Saved successfully");
-        }
-        catch (Exception e){
-            log.info( " Error while saving schedule :" + e);
-            return  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
     @PostMapping("/GetDoctor")
     public ResponseEntity<?> getDoc(@RequestParam String email){
         System.out.println("Method Accessed");
@@ -142,4 +123,16 @@ public class RegController {
         System.out.println("doctor is null");
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @PostMapping("/getSchedule")
+    public  ResponseEntity<List<Schedule>> getSchedules(@RequestParam Long doc_id,@RequestParam String date){
+        List<Schedule> schedules = scheduleService.getScheduleById(doc_id,date);
+        return  new ResponseEntity<>(schedules,HttpStatus.OK);
+    }
+    @PostMapping("/saveSchedule")
+    public ResponseEntity<?> saveSchedules(@ModelAttribute Schedule schedule){
+        scheduleService.SaveSchedule(schedule);
+        return  new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

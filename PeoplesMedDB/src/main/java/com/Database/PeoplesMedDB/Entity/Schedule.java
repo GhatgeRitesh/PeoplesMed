@@ -1,33 +1,34 @@
 package com.Database.PeoplesMedDB.Entity;
 
 import jakarta.persistence.*;
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "schedule")
+@Table(name = "DocSchedules")
+@Getter
+@Setter
 public class Schedule {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long scheduleId;
+    private Long id;
 
-    @Column(name = "doctor_id", nullable = false)
-    private Long doctorId;
+    @Column(name = "doctor_id")
+    private Long doctorId; // Renamed field
 
-    @Column(name = "patient_id", nullable = false)
+    @Column(name = "patient_id")
     private Long patientId;
 
-    @Column(name = "schedule_date", nullable = false)
-    private Date date;
+    @Column(name = "slot_date")
+    private String slotDate;
 
+    @Column(name = "slot_time")
+    private String slotTime;
 
-    @Override
-    public String toString() {
-        return "Schedule{" +
-                "scheduleId=" + scheduleId +
-                ", doctorId=" + doctorId +
-                ", patientId=" + patientId +
-                ", date=" + date +
-                '}';
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    public enum Status {
+        AVAILABLE, ALLOTTED
     }
 }
