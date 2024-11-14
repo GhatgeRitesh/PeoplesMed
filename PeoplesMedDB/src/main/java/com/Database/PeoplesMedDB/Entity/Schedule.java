@@ -27,9 +27,21 @@ public class Schedule {
     private String slotTime;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status currstatus;
 
     public enum Status {
         AVAILABLE, ALLOTTED
+    }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "id=" + id +
+                ", doctorId=" + doctorId +
+                ", patientId=" + patientId +
+                ", slotDate='" + slotDate + '\'' +
+                ", slotTime='" + slotTime + '\'' +
+                ", currstatus=" + currstatus +
+                '}';
     }
 }

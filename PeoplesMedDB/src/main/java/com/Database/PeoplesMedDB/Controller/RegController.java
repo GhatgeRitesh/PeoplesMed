@@ -124,21 +124,23 @@ public class RegController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/getSchedule/{doc_id}")
-    public  ResponseEntity<List<Schedule>> getSchedules(@PathVariable Long doc_id,@RequestParam String date){
-        try {
-            log.info("schedule retrival process started");
-            List<Schedule> schedules = scheduleService.getScheduleById(doc_id, date);
-            log.info("schedule retrieval process end");
-            return new ResponseEntity<>(schedules , HttpStatus.OK);
-        }catch(Exception e) {
-            log.info("Error while Fetching Schedule from DB :-> " + e);
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+    @GetMapping("/getSchedule/{doctorId}")
+    public ResponseEntity<List<Schedule>> getSchedules(@PathVariable Long doctorId, @RequestParam("date") String date){
+        try{
+            log.info("Fetching From Controller");
+            List<Schedule> schedules= scheduleService.getAllSchedules(doctorId,date).getBody();
+            log.info("Success from controller");
+            return new ResponseEntity<>(schedules,HttpStatus.OK);
+        }catch(Exception e){
+            log.info("Error Fetching Schedules From Controller");
+            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
         }
     }
     @PostMapping("/saveSchedule")
     public ResponseEntity<?> saveSchedules(@RequestBody Schedule schedule){
         try {
+            System.out.println(schedule.toString());
             scheduleService.SaveSchedule(schedule);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
