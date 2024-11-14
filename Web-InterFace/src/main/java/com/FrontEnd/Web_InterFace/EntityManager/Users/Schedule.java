@@ -11,8 +11,24 @@ import java.util.Date;
 @Component
 @Getter @Setter
 public class Schedule {
-    private Long schedId;
-    private Long doctor;
-    private Long  patient;
-    private Date date;
+     private Long doctorId;
+     private Long patientId;
+     private String slotDate;
+     private String slotTime;
+     private Status currstatus;
+
+     public enum Status{
+          AVAILABLE,ALLOTTED
+     }
+
+     @Override
+     public String toString() {
+          return "Schedule{" +
+                  "doctor_id=" + doctorId +
+                  ", patient_id=" + patientId +
+                  ", slotDate='" + slotDate + '\'' +
+                  ", slotTime='" + slotTime + '\'' +
+                  ", currstatus='" + currstatus + '\'' +
+                  '}';
+     }
 }

@@ -29,8 +29,8 @@ public interface UserClient {
     public ResponseEntity<Patient> getPatientProfile(String Email);
     @PostMapping("/GetDoctor")
     public ResponseEntity<Doctor> getDoctorProfile(String Email);
-    @PostMapping("/SetSchedule")
-    public ResponseEntity<?> setSchedule(Schedule schedule);
-    @GetMapping("/getSchedules/{doc_id}")
-    public ResponseEntity<Schedule> getSchedule(@PathVariable Long doc_id,@RequestParam("date") String date);
+    @PostMapping("/saveSchedule")
+    public ResponseEntity<?> saveSchedules(Schedule schedule);
+    @GetMapping("/getSchedule/{doctorId}")
+    public ResponseEntity<List<Schedule>> getSchedules(@PathVariable Long doctorId, @RequestParam("date") String date);
 }

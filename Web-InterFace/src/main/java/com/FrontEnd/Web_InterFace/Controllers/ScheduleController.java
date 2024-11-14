@@ -1,7 +1,9 @@
 package com.FrontEnd.Web_InterFace.Controllers;
 
+import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
+import com.FrontEnd.Web_InterFace.Service.DoctorService;
 import com.FrontEnd.Web_InterFace.Service.ScheduleService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,25 +20,38 @@ import java.util.Optional;
 public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
+    @Autowired
+    private Patient patient;
 
+    @Autowired
+    private DoctorService doctorService;
+    @Autowired
+    private UserClient userClient;
 
      @PostMapping("/P/saveSchedule")
      public ModelAndView saveSchedule(@ModelAttribute Schedule schedule, ModelAndView mv){
-
-
+         System.out.println(patient.getPatId());
+         System.out.println(schedule.toString());
+         userClient.saveSchedules(schedule);
+       log.info(schedule.toString());
 
         return mv;
      }
 
-
-    @GetMapping("/getSchedules/{doc_id}")
-    public ModelAndView getSchedule(ModelAndView mv,@PathVariable Long doc_id){
-         ResponseEntity<Schedule> schedules=scheduleService.getSchedules(doc_id,"5/5/2024");
-         System.out.println(schedules.getBody());
-         System.out.println(schedules.getStatusCode());
-         mv.setViewName("error");
-         mv.addObject("schedules",schedules);
-         return mv;
+     @GetMapping("/getSchedules/{doctorId}")
+     public ModelAndView getSchedules(ModelAndView mv, @PathVariable Long doctorId, @RequestParam("date") String date){
+         try {
+             log.info("Entered into Controller" + doctorId+ " "+ date );
+            List<Schedule> schedules= scheduleService.getSchedules(doctorId,date);
+             System.out.println(schedules.toString());
+            mv.addObject("schedules",schedules);
+            mv.setViewName("profile");
+            return mv;
+         }catch (Exception e){
+             mv.addObject("error", e);
+             mv.setViewName("profile");
+             return mv;
+         }
      }
 
 //    @PostMapping("/Schedule")

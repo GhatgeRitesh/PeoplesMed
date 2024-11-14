@@ -5,6 +5,7 @@ import com.FrontEnd.Web_InterFace.EntityManager.Users.CacheData;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
+import com.FrontEnd.Web_InterFace.Service.DoctorService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,8 @@ public class PatientDashBoard {
     @Autowired
     private Patient p;
 
-    private CacheData cacheData;
+    @Autowired
+    private DoctorService doctorService;
 
     private Users users;
 
@@ -61,8 +63,7 @@ public class PatientDashBoard {
     @GetMapping("/findDoctor")
     public ModelAndView PDashBoard(ModelAndView mv){
         log.info("docs list activated ");
-            List<Doctor> list = userClient.getAllDocs();
-            cacheData.setDocList(list);
+            List<Doctor> list = doctorService.getCachedDocs();
            // System.out.println("List :- " + list.toString());
             mv.addObject("list", list);
             mv.setViewName("patientDashBoard");
@@ -82,23 +83,23 @@ public class PatientDashBoard {
     public ModelAndView DocProfile(@PathVariable("d_id") Long D_id, ModelAndView mv){
         log.info("DocProfile Activated");
         Doctor doc=null;
-        for(Doctor d: cacheData.getDocList()){
+        for(Doctor d: doctorService.getCachedDocs()){
             if(Objects.equals(d.getD_id(), D_id)) {
                 System.out.println("Doctor found");
                 System.out.println(d);
                 doc = d;
-                break;
+                System.out.println(doc);
+                mv.addObject("doc", doc);
+                mv.setViewName("BookAppointment");
             }
-            else {
                 log.info("Doctor not found ");
                 mv.setViewName("BookAppointment");
                 mv.addObject("Error", "Doctor Not Found : Internal Error");
                 return mv;
-            }
         }
-        System.out.println(doc);
-        mv.addObject("doc",doc);
+        log.info("Doctor not found ");
         mv.setViewName("BookAppointment");
+        mv.addObject("Error", "Doctor Not Found : Internal Error");
         return mv;
     }
 }

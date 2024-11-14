@@ -15,5 +15,6 @@
 
  ${patient}
 
+ ${schedules}
 <body>
 </html>

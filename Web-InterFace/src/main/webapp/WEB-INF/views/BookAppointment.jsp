@@ -225,7 +225,7 @@
   					<br> <br> <br>
 
   					<!-- Book Schedule ............. -->
-  					<form action="">
+  					<form action="/P/saveSchedule" method="post">
   						<div class="Book_Schedul">
   							<h1>Book Appointment</h1>
   							<div class="Book_div1">
@@ -297,7 +297,7 @@
   	    }
 
   	    $.ajax({
-  	        url: `/P/`+date,
+  	        url: `/P/`+,
   	        method: "GET",
   	        success: function (data) {
   	            $("#scheduleContainer").empty();
