@@ -64,7 +64,7 @@
   </div>
   <div class="nav-bar">
     <a href="/home/Welcome">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/p/findDoctor">Find a Doctor</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/P/findDoctor">Find a Doctor</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="#">Services</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="#">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </div>
@@ -111,7 +111,7 @@
   				<br>
 
   				<div class="div_name">
-  					<label for="name">Dr.John Doe</label>
+  					<label for="name">${doc.name}</label>
   				</div>
 
   				<br>
@@ -125,7 +125,7 @@
   						</div>
   						<br>
   						<div class="sms">
-  							<a href="#">
+  							<a href="">
   								<button>
   									<h4>SMS Todgdfgsd</h4>
   								</button>
@@ -136,13 +136,13 @@
   					<div class="div_Container_Spec">
   						<div class="div_specialization">
   							<h1>Specialization</h1>
-  							<span>Cosmatic Surgery</span> <span>Reconstructive
-  								Microsurgery</span>
+  							<span>${doc.specialization}</span>
   						</div>
 
   						<div class="div_Primer">
   							<h1>Primary Consultation Location</h1>
-  							<span>Manipal Hospitals(Old Airport Road)</span>
+  							<span>${doc.hospitalName}</span>
+  							<span>${doc.city}</span>
   						</div>
 
   					</div>
@@ -192,7 +192,6 @@
   							</div>
   						</div>
   					</div>
-
 
   					<div class="Apt_book_Hsc">
   						<p>Clinic Name , Pune Clinic</p>
@@ -297,7 +296,7 @@
   	    }
 
   	    $.ajax({
-  	        url: `/P/`+,
+  	        url: '/getSchedules/${doctor.doctorId}?date=' +date,
   	        method: "GET",
   	        success: function (data) {
   	            $("#scheduleContainer").empty();

@@ -44,7 +44,7 @@
         <div class="carddiv">
               <div class="card">
                   <div class="left">
-                  <img src="../images/treat.jpg" alt=""> <br>
+                  <img src="/images/treat.jpg" alt=""> <br>
                     <p>Dr. ${doctor.name}</p>
                   </div>
                   <div class="right">

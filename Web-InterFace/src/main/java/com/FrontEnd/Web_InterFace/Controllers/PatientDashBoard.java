@@ -44,7 +44,7 @@ public class PatientDashBoard {
         try{
            ResponseEntity<Patient> p= userClient.getPatientProfile(users.getUsername());
             if(p!=null){
-                mv.setViewName("PProfile");
+                mv.setViewName("pDashboard");
                 mv.addObject("Profile",p);
             }
             else{
@@ -52,7 +52,7 @@ public class PatientDashBoard {
             }
         }catch(Exception e){
             log.info("Error While Feting User Data");
-            mv.setViewName("PProfile");
+            mv.setViewName("pDashboard");
             mv.addObject("Profile","Error while fetching User profile");
             return mv;
         }
