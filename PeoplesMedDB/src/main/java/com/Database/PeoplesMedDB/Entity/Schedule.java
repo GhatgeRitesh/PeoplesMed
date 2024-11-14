@@ -19,6 +19,7 @@ public class Schedule {
     @Column(name = "patient_id")
     private Long patientId;
 
+
     @Column(name = "slot_date")
     private String slotDate;
 

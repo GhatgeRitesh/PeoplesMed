@@ -124,10 +124,12 @@ public class RegController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/getSchedule")
-    public  ResponseEntity<List<Schedule>> getSchedules(@RequestParam Long doc_id,@RequestParam String date){
+    @GetMapping("/getSchedule/{doc_id}")
+    public  ResponseEntity<List<Schedule>> getSchedules(@PathVariable Long doc_id,@RequestParam String date){
         try {
+            log.info("schedule retrival process started");
             List<Schedule> schedules = scheduleService.getScheduleById(doc_id, date);
+            log.info("schedule retrieval process end");
             return new ResponseEntity<>(schedules , HttpStatus.OK);
         }catch(Exception e) {
             log.info("Error while Fetching Schedule from DB :-> " + e);
@@ -135,7 +137,7 @@ public class RegController {
         }
     }
     @PostMapping("/saveSchedule")
-    public ResponseEntity<?> saveSchedules(@ModelAttribute Schedule schedule){
+    public ResponseEntity<?> saveSchedules(@RequestBody Schedule schedule){
         try {
             scheduleService.SaveSchedule(schedule);
             return new ResponseEntity<>(HttpStatus.OK);
