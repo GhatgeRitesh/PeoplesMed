@@ -13,7 +13,7 @@ public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pId; // Primary Key
+    private Long p_id; // Primary Key
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -42,7 +42,7 @@ public class Patient {
     @Override
     public String toString() {
         return "Patient{" +
-                "pId=" + pId +
+                "pId=" + p_id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", contact='" + contact + '\'' +

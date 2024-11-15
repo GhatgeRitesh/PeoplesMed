@@ -76,7 +76,7 @@ public class RegistrationForms {
             mv.addObject("error", HttpStatus.EXPECTATION_FAILED);
             return mv;
         }
-        mv.setViewName("login");
+        mv.setViewName("PLogin");
        return mv;
     }
 }

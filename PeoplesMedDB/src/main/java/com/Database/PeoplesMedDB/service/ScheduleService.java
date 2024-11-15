@@ -31,4 +31,9 @@ public class ScheduleService {
            return new ResponseEntity<>(null , HttpStatus.EXPECTATION_FAILED);
        }
     }
+
+    public void updateSchedule(Long doctorId, String slotTime, String slotDate, String reason, String name, String email, Long patientId,Schedule.Status currstatus ){
+       int res= scheduleRepo.updateSchedule(doctorId,slotTime,slotDate,reason,name,email,patientId,currstatus);
+       if(res == 0) System.out.println("Data Not Present in table");
+    }
 }

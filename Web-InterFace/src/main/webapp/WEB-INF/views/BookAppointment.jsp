@@ -224,13 +224,13 @@
   					<br> <br> <br>
 
   					<!-- Book Schedule ............. -->
-  					<form action="/P/saveSchedule" method="post">
+  					<form action="/P/updateSchedule" method="post">
   						<div class="Book_Schedul">
   							<h1>Book Appointment</h1>
   							<div class="Book_div1">
   								<!--  -->
   								<label for="username">Name:</label> <input type="text"
-  									id="username" name="username" required> <label
+  									id="username" name="name" required> <label
   									for="email">Email:</label> <input type="email" id="email"
   									name="email" required> <label for="reason">Reason
   									for Appointment:</label>
@@ -239,7 +239,7 @@
   									required></textarea>
 
   								<label for="email">Date:</label> <input type="date" id="datePicker"
-  									name="date" required>&nbsp; &nbsp; &nbsp; &nbsp; <input
+  									name="slotDate" required>&nbsp; &nbsp; &nbsp; &nbsp; <input
   									type="button" class="button-primary"
   									value="Get Slots" onclick="fetchSlots()"> <br>
 
@@ -248,7 +248,7 @@
 
 
   								<div class="button-group">
-  									<input type="button" class="button-primary" value="Submit">&nbsp;&nbsp;
+  									<input type="submit" class="button-primary" value="Submit">&nbsp;&nbsp;
   									<div class="available">
   										<div class="dot1"></div>
   										<span>Alloted</span>
@@ -296,7 +296,7 @@
   	    }
 
   	    $.ajax({
-  	        url: '/getSchedules/${doctor.doctorId}?date=' +date,
+  	        url: '/getSchedules/${doc.d_id}?date=' +date,
   	        method: "GET",
   	        success: function (data) {
   	            $("#scheduleContainer").empty();
@@ -308,15 +308,15 @@
 
   	                    const radioButton = $("<input>").attr({
   	                        type: "radio",
-  	                        name: "slot",
+  	                        name: "slotTime",
   	                        value: slot.slotTime,
   	                        id: "slot-" + slot.slotTime,
   	                    });
 
   	                    const label = $("<label></label>").attr("for", "slot-" + slot.slotTime)
   	                        .text(slot.slotTime);
-
-  	                    if (slot.status === "AVAILABLE") {
+  	                        console.log(slot.status);
+  	                    if (slot.currstatus === "AVAILABLE") {
   	                        slotDiv.addClass("available");
   	                        slotDiv.append(radioButton).append(label);
   	                    } else {

@@ -11,7 +11,7 @@ import java.util.List;
 @Scope("prototype")
 @Getter @Setter
 public class Patient {
-    private Long patId;
+    private Long p_id;
     private String name;
     private String gender;
     private String age;
@@ -26,7 +26,7 @@ public class Patient {
     @Override
     public String toString() {
         return "Patient{" +
-                "patId=" + patId +
+                "p_id=" + p_id +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +

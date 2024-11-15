@@ -1,6 +1,6 @@
 package com.FrontEnd.Web_InterFace.Controllers;
 
-import com.FrontEnd.Web_InterFace.Configurations.Users;
+import com.FrontEnd.Web_InterFace.Configurations.currUser;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.CacheData;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
@@ -33,25 +33,29 @@ public class PatientDashBoard {
     @Autowired
     private DoctorService doctorService;
 
-    private Users users;
+    private final currUser curruser;
 
-    public PatientDashBoard(Users users){this.users=users; }
+    public PatientDashBoard(currUser curruser){this.curruser=curruser; }
 
 
     @GetMapping("/profile")
     public ModelAndView pProfile(ModelAndView mv){
         log.info("Patient Profile Method Access");
         try{
-           ResponseEntity<Patient> p= userClient.getPatientProfile(users.getUsername());
-            if(p!=null){
+            System.out.println(curruser.getMail());
+           ResponseEntity<Patient> patient= userClient.getPatientProfile(curruser.getMail());
+            System.out.println(patient.getBody());
+            System.out.println(patient.getStatusCode());
+            if(patient!=null){
+                p=patient.getBody();
                 mv.setViewName("pDashboard");
-                mv.addObject("Profile",p);
+                mv.addObject("Profile",patient);
             }
             else{
                 System.out.println("Retrived Profile is null");
             }
         }catch(Exception e){
-            log.info("Error While Feting User Data");
+            log.info("Error While Feting User Data:- "+ e);
             mv.setViewName("pDashboard");
             mv.addObject("Profile","Error while fetching User profile");
             return mv;
@@ -62,6 +66,7 @@ public class PatientDashBoard {
 
     @GetMapping("/findDoctor")
     public ModelAndView PDashBoard(ModelAndView mv){
+        log.info("This is Patient Id :- " + p.getP_id());
         log.info("docs list activated ");
             List<Doctor> list = doctorService.getCachedDocs();
            // System.out.println("List :- " + list.toString());

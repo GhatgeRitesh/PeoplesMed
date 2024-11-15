@@ -25,7 +25,7 @@
 </div>
 <div class="login">
   <a href="/login"><button>Login</button></a>
-  <a href="/Register/p"><button>SignUp</button></a>
+  <a href="/Register/P"><button>SignUp</button></a>
 </div>
 </div>
 <div class="container">

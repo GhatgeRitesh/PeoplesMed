@@ -149,4 +149,14 @@ public class RegController {
         }
     }
 
+    @PostMapping("/UpdateSchedule")
+    public ResponseEntity<?> updateSchedule(@RequestBody  Schedule sc){
+        try{
+            scheduleService.updateSchedule(sc.getDoctorId(),sc.getSlotTime(),sc.getSlotDate(),sc.getReason(),sc.getName(),sc.getEmail(),sc.getPatientId(),sc.getCurrstatus());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+             return new ResponseEntity<>(null , HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

@@ -16,7 +16,7 @@ public class ScheduleService {
     @Autowired
     private UserClient userClient;
 
-    @Cacheable
+    @Cacheable(value = "scheduleCache" ,key = "'allSchedules'")
     public List<Schedule> getSchedules(Long doctorId, String date){
         try{
             log.info("Entered into schedule Service");

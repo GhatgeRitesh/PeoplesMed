@@ -19,6 +19,14 @@ public class Schedule {
     @Column(name = "patient_id")
     private Long patientId;
 
+    @Column(name = "name")
+    private  String name;
+
+    @Column(name = "email")
+    private  String email;
+
+    @Column(name = "reason")
+    private  String reason;
 
     @Column(name = "slot_date")
     private String slotDate;
@@ -39,6 +47,9 @@ public class Schedule {
                 "id=" + id +
                 ", doctorId=" + doctorId +
                 ", patientId=" + patientId +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", reason='" + reason + '\'' +
                 ", slotDate='" + slotDate + '\'' +
                 ", slotTime='" + slotTime + '\'' +
                 ", currstatus=" + currstatus +

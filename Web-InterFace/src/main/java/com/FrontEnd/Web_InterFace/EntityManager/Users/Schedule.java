@@ -8,10 +8,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Scope("prototype")
 @Component
 @Getter @Setter
 public class Schedule {
      private Long doctorId;
+     private  String name;
+     private  String email;
+     private  String reason;
      private Long patientId;
      private String slotDate;
      private String slotTime;
@@ -24,11 +28,14 @@ public class Schedule {
      @Override
      public String toString() {
           return "Schedule{" +
-                  "doctor_id=" + doctorId +
-                  ", patient_id=" + patientId +
+                  "doctorId=" + doctorId +
+                  ", name='" + name + '\'' +
+                  ", email='" + email + '\'' +
+                  ", reason='" + reason + '\'' +
+                  ", patientId=" + patientId +
                   ", slotDate='" + slotDate + '\'' +
                   ", slotTime='" + slotTime + '\'' +
-                  ", currstatus='" + currstatus + '\'' +
+                  ", currstatus=" + currstatus +
                   '}';
      }
 }
