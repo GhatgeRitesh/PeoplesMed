@@ -2,7 +2,6 @@ package com.Database.PeoplesMedDB.Controller;
 
 import com.Database.PeoplesMedDB.Entity.Doctor;
 import com.Database.PeoplesMedDB.Entity.Patient;
-import com.Database.PeoplesMedDB.Entity.Schedule;
 import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
 import com.Database.PeoplesMedDB.service.DocService;
