@@ -7,20 +7,14 @@ import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
 import com.Database.PeoplesMedDB.service.DocService;
 import com.Database.PeoplesMedDB.service.PService;
-import com.Database.PeoplesMedDB.service.ScheduleService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sql.DataSource;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @Log
@@ -32,13 +26,11 @@ public class RegController {
     private PRepo pRepo;
     @Autowired
     private DocRepo docRepo;
-    @Autowired
-    private ScheduleService scheduleService;
     private final PService pService;
-    public RegController(DocService docService , PService pservice,ScheduleService scheduleService){
+    public RegController(DocService docService , PService pservice){
         this.docService=docService;
         this.pService=pservice;
-        this.scheduleService=scheduleService;
+
     }
     @PostMapping("/AddDoctor")
     public ResponseEntity<Doctor> AddDoc(@RequestBody Doctor doc){
@@ -125,38 +117,6 @@ public class RegController {
     }
 
 
-    @GetMapping("/getSchedule/{doctorId}")
-    public ResponseEntity<List<Schedule>> getSchedules(@PathVariable Long doctorId, @RequestParam("date") String date){
-        try{
-            log.info("Fetching From Controller");
-            List<Schedule> schedules= scheduleService.getAllSchedules(doctorId,date).getBody();
-            log.info("Success from controller");
-            return new ResponseEntity<>(schedules,HttpStatus.OK);
-        }catch(Exception e){
-            log.info("Error Fetching Schedules From Controller");
-            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
-        }
-    }
-    @PostMapping("/saveSchedule")
-    public ResponseEntity<?> saveSchedules(@RequestBody Schedule schedule){
-        try {
-            System.out.println(schedule.toString());
-            scheduleService.SaveSchedule(schedule);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            log.info("Error While Saving Schedule into DB :-> " + e);
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @PostMapping("/UpdateSchedule")
-    public ResponseEntity<?> updateSchedule(@RequestBody  Schedule sc){
-        try{
-            scheduleService.updateSchedule(sc.getDoctorId(),sc.getSlotTime(),sc.getSlotDate(),sc.getReason(),sc.getName(),sc.getEmail(),sc.getPatientId(),sc.getCurrstatus());
-            return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-             return new ResponseEntity<>(null , HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
 }

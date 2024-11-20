@@ -3,12 +3,11 @@ package com.FrontEnd.Web_InterFace.Controllers;
 import com.FrontEnd.Web_InterFace.EntityManager.Mail.GMailEntity;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
-import com.FrontEnd.Web_InterFace.FeignServices.FeaturesInterfaces;
+import com.FrontEnd.Web_InterFace.FeignServices.FeaturesService;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +24,7 @@ public class RegistrationForms {
     @Autowired
     private UserClient userClient;
     @Autowired
-    private FeaturesInterfaces features;
+    private FeaturesService features;
     @Autowired
     private GMailEntity gMailEntity;
     @PostMapping("/sub/D")

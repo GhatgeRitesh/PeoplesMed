@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @FeignClient("FEATURES")
-public interface FeaturesInterfaces {
+public interface FeaturesService {
     // in this class all the required methods from the other service are
     // interfaces are stored here and then the object is injected to required method
     // using the autowire and method from this classes are called
     // used into the computation
     @PostMapping("/F/SendMail")
     public boolean SendEmail(GMailEntity gMailEntity);
+
 
 }

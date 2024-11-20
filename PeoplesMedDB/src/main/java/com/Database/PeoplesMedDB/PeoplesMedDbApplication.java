@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableFeignClients
-@EnableJpaRepositories(basePackages = "com.Database.PeoplesMedDB.Repository")
+
 public class PeoplesMedDbApplication {
 
 	public static void main(String[] args) {
