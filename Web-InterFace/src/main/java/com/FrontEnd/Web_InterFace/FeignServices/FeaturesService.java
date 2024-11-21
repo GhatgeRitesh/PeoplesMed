@@ -14,7 +14,7 @@ public interface FeaturesService {
     // using the autowire and method from this classes are called
     // used into the computation
     @PostMapping("/F/SendMail")
-    public boolean SendEmail(GMailEntity gMailEntity);
+    boolean SendEmail(GMailEntity gMailEntity);
 
 
 }

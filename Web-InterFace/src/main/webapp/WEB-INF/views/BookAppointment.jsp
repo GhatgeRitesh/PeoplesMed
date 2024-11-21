@@ -118,7 +118,7 @@
   				<div class="div_card">
   					<div class="div_im_sms">
   						<div class="div_img">
-  							<!-- <img src="../images/dr1.jpg" alt=""> -->
+  							<!-- <img src="/images/dr1.jpg" alt=""> -->
   							<img
   								src="https://png.pngtree.com/png-vector/20240127/ourlarge/pngtree-doctor-png-png-image-png-free-png-ai-generative-png-image_11555707.png"
   								alt="">
@@ -224,17 +224,14 @@
   					<br> <br> <br>
 
   					<!-- Book Schedule ............. -->
-  					<form action="/P/updateSchedule" method="post">
+  					<form action="/P/updateSchedule/${doc.d_id}" method="post">
   						<div class="Book_Schedul">
   							<h1>Book Appointment</h1>
   							<div class="Book_div1">
   								<!--  -->
-  								<label for="username">Name:</label> <input type="text"
-  									id="username" name="name" required> <label
-  									for="email">Email:</label> <input type="email" id="email"
-  									name="email" required> <label for="reason">Reason
+  								 <label for="reason">Reason
   									for Appointment:</label>
-  								<textarea id="reason" name="reason"
+  								<textarea id="reason" name="description"
   									placeholder="Describe your symptoms or reason for visit"
   									required></textarea>
 

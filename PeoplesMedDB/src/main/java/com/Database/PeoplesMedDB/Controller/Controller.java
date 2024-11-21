@@ -2,10 +2,12 @@ package com.Database.PeoplesMedDB.Controller;
 
 import com.Database.PeoplesMedDB.Entity.Doctor;
 import com.Database.PeoplesMedDB.Entity.Patient;
+import com.Database.PeoplesMedDB.Entity.Schedule;
 import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
 import com.Database.PeoplesMedDB.service.DocService;
 import com.Database.PeoplesMedDB.service.PService;
+import com.Database.PeoplesMedDB.service.ScheduleService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,7 @@ import java.util.List;
 
 @RestController
 @Log
-public class RegController {
+public class Controller {
 
     @Autowired
     private final DocService docService;
@@ -26,9 +28,14 @@ public class RegController {
     @Autowired
     private DocRepo docRepo;
     private final PService pService;
-    public RegController(DocService docService , PService pservice){
+
+
+
+    private ScheduleService scheduleService;
+    public Controller(DocService docService , PService pservice, ScheduleService scheduleService){
         this.docService=docService;
         this.pService=pservice;
+        this.scheduleService=scheduleService;
 
     }
     @PostMapping("/AddDoctor")
@@ -115,7 +122,22 @@ public class RegController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @PostMapping("/saveSchedule")
+    public ResponseEntity<?> saveSchedule(@RequestBody Schedule schedule){
+        log.info("Saving Schdule Process started");
+        if(schedule == null) { log.info("Schedule Received Empty terminating Process."); return new ResponseEntity<>(HttpStatus.BAD_REQUEST); }
+        scheduleService.saveSchedule(schedule);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
+    @GetMapping("/getSchedules/{dId}")
+    public ResponseEntity<List<Schedule>> getSchedules(@PathVariable("dId") Long dId ,@RequestParam String date){
+        log.info("Fetching Schedules");
+        if(dId == null || date == null) { log.info("Invalid dId , Date found terminating process");return new ResponseEntity<>(HttpStatus.BAD_REQUEST);}
+        List<Schedule> result = scheduleService.getSchedule((long) 1 , "2024-11-20");
+        log.info("Fetched Schedules successfully");
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 
 }

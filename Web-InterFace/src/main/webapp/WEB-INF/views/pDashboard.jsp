@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="java.util.List, com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor" %>
+    pageEncoding="UTF-8"  import="java.util.List, com.FrontEnd.Web_InterFace.EntityManager.Users.Patient" %>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <!DOCTYPE html>
     <html lang="en">
@@ -46,7 +46,7 @@
             <div class="profile">
                 <img src="/images/logo.jpg" alt="">
                 <div class="name">
-                    <span> Name:- Donalt Trump</span><br>
+                    <span> ${user.name} </span><br>
                     <span >Admin</span>
                 </div>
 
@@ -56,6 +56,7 @@
 
 
     <!--  -->
+
 
 
 

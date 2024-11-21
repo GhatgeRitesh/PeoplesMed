@@ -1,7 +1,6 @@
 package com.FrontEnd.Web_InterFace.Controllers;
 
 import com.FrontEnd.Web_InterFace.Configurations.currUser;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.CacheData;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
@@ -9,7 +8,6 @@ import com.FrontEnd.Web_InterFace.Service.DoctorService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,13 +41,13 @@ public class PatientDashBoard {
         log.info("Patient Profile Method Access");
         try{
             System.out.println(curruser.getMail());
-           ResponseEntity<Patient> patient= userClient.getPatientProfile(curruser.getMail());
+            ResponseEntity<Patient> patient= userClient.getPatientProfile(curruser.getMail());
             System.out.println(patient.getBody());
             System.out.println(patient.getStatusCode());
             if(patient!=null){
                 p=patient.getBody();
                 mv.setViewName("pDashboard");
-                mv.addObject("Profile",patient);
+                mv.addObject("patient",patient);
             }
             else{
                 System.out.println("Retrived Profile is null");
@@ -91,9 +89,9 @@ public class PatientDashBoard {
         for(Doctor d: doctorService.getCachedDocs()){
             if(Objects.equals(d.getD_id(), D_id)) {
                 System.out.println("Doctor found");
-                System.out.println(d);
+           //     System.out.println(d);
                 doc = d;
-                System.out.println(doc);
+               // System.out.println(doc);
                 mv.addObject("doc", doc);
                 mv.setViewName("BookAppointment");
             }
