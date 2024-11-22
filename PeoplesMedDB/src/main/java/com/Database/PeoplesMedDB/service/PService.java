@@ -1,7 +1,9 @@
 package com.Database.PeoplesMedDB.service;
 
 import com.Database.PeoplesMedDB.Entity.Patient;
+import com.Database.PeoplesMedDB.Entity.Schedule;
 import com.Database.PeoplesMedDB.Repository.PRepo;
+import com.Database.PeoplesMedDB.Repository.ScheduleRepo;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,6 +19,13 @@ import java.util.List;
 public class PService {
     @Autowired
     private PRepo pRepo;
+
+    @Autowired
+    private ScheduleService scheduleService;
+
+    @Autowired
+    private ScheduleRepo scheduleRepo;
+
 
     public ResponseEntity<Patient> savePatient(@RequestBody Patient patient){
         if(patient == null ){
@@ -40,5 +50,12 @@ public class PService {
     public Patient getPatient(String Email){
          Patient patient = pRepo.findByEmail(Email);
          return patient;
+    }
+
+    public List<Schedule> getPSchedule(Long p_id){
+        System.out.println("pservice activated");
+        List<Schedule> res= scheduleRepo.findSchedulesByPatientId(p_id);
+        System.out.println("pservice completed");
+        return new ArrayList<>();
     }
 }

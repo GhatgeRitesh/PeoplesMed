@@ -140,4 +140,13 @@ public class Controller {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @PostMapping("/getPatientSchedule")
+    public List<Schedule> getPatientSchedules(@RequestBody Long p_id){
+        System.out.println("retriving patient schedules");
+        System.out.println(p_id);
+        List<Schedule> result = pService.getPSchedule(p_id);
+        System.out.println(result.toString());
+        return result;
+    }
+
 }

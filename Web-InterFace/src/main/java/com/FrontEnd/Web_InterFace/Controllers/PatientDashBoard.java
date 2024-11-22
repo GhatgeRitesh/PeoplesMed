@@ -3,8 +3,10 @@ package com.FrontEnd.Web_InterFace.Controllers;
 import com.FrontEnd.Web_InterFace.Configurations.currUser;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import com.FrontEnd.Web_InterFace.Service.DoctorService;
+import com.FrontEnd.Web_InterFace.Service.PatientService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,9 @@ public class PatientDashBoard {
 
     private final currUser curruser;
 
+    @Autowired
+    private PatientService patientService;
+
     public PatientDashBoard(currUser curruser){this.curruser=curruser; }
 
 
@@ -46,8 +51,11 @@ public class PatientDashBoard {
             System.out.println(patient.getStatusCode());
             if(patient!=null){
                 p=patient.getBody();
+                List<Schedule> result= patientService.getPatientSchedules(p.getP_id());
+                System.out.println(result.toString());
+                mv.addObject("sc",result);
                 mv.setViewName("pDashboard");
-                mv.addObject("patient",patient);
+                mv.addObject("patient",p);
             }
             else{
                 System.out.println("Retrived Profile is null");

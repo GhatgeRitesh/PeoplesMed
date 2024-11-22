@@ -14,4 +14,7 @@ public interface ScheduleRepo  extends JpaRepository<Schedule,Long> {
     @Query("SELECT s FROM Schedule s WHERE s.dId = :dId AND s.slotDate = :slotDate")
     List<Schedule> findSchedulesByDoctorIdAndDate(@Param("dId") Long doctorId, @Param("slotDate") String slotDate);
 
+    @Query("SELECT s FROM Schedule s WHERE s.patientid = :pId")
+    List<Schedule> findSchedulesByPatientId(@Param("pId") Long pId);
+
 }

@@ -1,6 +1,7 @@
 package com.FrontEnd.Web_InterFace.Service;
 
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -24,5 +25,11 @@ public class PatientService {
     public Patient getCurrUser(String mail){
         ResponseEntity<Patient> patient= userClient.getPatientProfile(mail);
         return patient.getBody();
+    }
+
+    @Cacheable(value = "PScheduleCache" , key = " 'pSchedule' ")
+    public List<Schedule> getPatientSchedules(Long p_id){
+        List<Schedule> result = userClient.getPatientSchedules(p_id);
+        return result;
     }
 }

@@ -41,4 +41,7 @@ public interface UserClient {
 
     @PostMapping("/saveSchedule")
     public ResponseEntity<?> saveSchedule(@RequestBody Schedule schedule);
+
+    @PostMapping("getPatientSchedule")
+    public List<Schedule> getPatientSchedules(Long p_id);
 }
