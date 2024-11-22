@@ -6,6 +6,7 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,5 +22,12 @@ public class ScheduleService {
 
     public List<Schedule> getSchedule(Long dId, String date) {
         return scheduleRepo.findSchedulesByDoctorIdAndDate(dId, date);
+    }
+
+    public List<Schedule> getPSchedule(Long p_id){
+        System.out.println("pservice activated");
+//        List<Schedule> res= scheduleRepo.findSchedulesByPatientId(p_id);
+        System.out.println("pservice completed");
+        return new ArrayList<>();
     }
 }

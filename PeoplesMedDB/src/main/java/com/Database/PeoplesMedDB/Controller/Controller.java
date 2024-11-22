@@ -27,10 +27,11 @@ public class Controller {
     private PRepo pRepo;
     @Autowired
     private DocRepo docRepo;
+    @Autowired
     private final PService pService;
 
 
-
+    @Autowired
     private ScheduleService scheduleService;
     public Controller(DocService docService , PService pservice, ScheduleService scheduleService){
         this.docService=docService;
@@ -144,7 +145,7 @@ public class Controller {
     public List<Schedule> getPatientSchedules(@RequestBody Long p_id){
         System.out.println("retriving patient schedules");
         System.out.println(p_id);
-        List<Schedule> result = pService.getPSchedule(p_id);
+        List<Schedule> result =scheduleService.getPSchedule(p_id);
         System.out.println(result.toString());
         return result;
     }

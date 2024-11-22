@@ -20,11 +20,7 @@ public class PService {
     @Autowired
     private PRepo pRepo;
 
-    @Autowired
-    private ScheduleService scheduleService;
 
-    @Autowired
-    private ScheduleRepo scheduleRepo;
 
 
     public ResponseEntity<Patient> savePatient(@RequestBody Patient patient){
@@ -52,10 +48,5 @@ public class PService {
          return patient;
     }
 
-    public List<Schedule> getPSchedule(Long p_id){
-        System.out.println("pservice activated");
-        List<Schedule> res= scheduleRepo.findSchedulesByPatientId(p_id);
-        System.out.println("pservice completed");
-        return new ArrayList<>();
-    }
+
 }
