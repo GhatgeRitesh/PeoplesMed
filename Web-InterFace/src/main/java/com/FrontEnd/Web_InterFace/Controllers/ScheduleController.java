@@ -36,6 +36,8 @@ public class ScheduleController{
     {
         log.info("Method Access success");
         List<Schedule> result =scheduleService.getSchedules(dId,date);
+        System.out.println(result.size());
+        System.out.println(result.toString());
         return result;
     }
 

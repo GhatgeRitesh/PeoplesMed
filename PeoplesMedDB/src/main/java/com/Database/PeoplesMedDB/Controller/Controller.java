@@ -137,7 +137,7 @@ public class Controller {
         log.info("Fetching Schedules");
         if(dId == null || date == null) { log.info("Invalid dId , Date found terminating process");return new ResponseEntity<>(HttpStatus.BAD_REQUEST);}
         List<Schedule> result = scheduleService.getSchedule((long) 1 , "2024-11-20");
-        log.info("Fetched Schedules successfully");
+        log.info("Fetched Schedules successfully" + result.toString());
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

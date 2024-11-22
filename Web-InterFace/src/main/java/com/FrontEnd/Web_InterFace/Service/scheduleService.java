@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,8 +17,9 @@ public class scheduleService {
     private UserClient userClient;
     public List<Schedule> getSchedules(Long dId , String Date){
        ResponseEntity<List<Schedule>> result = userClient.getSchedules(dId,Date);
-
-       if(result.getStatusCode().is2xxSuccessful()) return result.getBody();
+        System.out.println(result.getBody());
+        List<Schedule> res= result.getBody();
+       if(result.getStatusCode().is2xxSuccessful()) return res;
        else {
            System.out.println("The Error Status is :- " + result.getStatusCode());
            return null;

@@ -21,7 +21,9 @@ public class ScheduleService {
     }
 
     public List<Schedule> getSchedule(Long dId, String date) {
-        return scheduleRepo.findSchedulesByDoctorIdAndDate(dId, date);
+
+        System.out.println( scheduleRepo.findSchedulesByDoctorIdAndDate(dId, date).toString());
+        return new ArrayList<>();
     }
 
     public List<Schedule> getPSchedule(Long p_id){
