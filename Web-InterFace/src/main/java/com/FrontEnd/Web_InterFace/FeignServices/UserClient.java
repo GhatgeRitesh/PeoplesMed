@@ -37,7 +37,7 @@ public interface UserClient {
     public ResponseEntity<Doctor> getDoctorProfile(String Email);
 
     @GetMapping("/getSchedules/{dId}")
-    public ResponseEntity<List<Schedule>> getSchedules(@PathVariable("dId") Long dId ,@RequestParam String date);
+    public List<Schedule> getSchedules(@PathVariable("dId") Long dId ,@RequestParam String date);
 
     @PostMapping("/saveSchedule")
     public ResponseEntity<?> saveSchedule(@RequestBody Schedule schedule);

@@ -131,14 +131,16 @@ public class Controller {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+//
 
     @GetMapping("/getSchedules/{dId}")
-    public ResponseEntity<List<Schedule>> getSchedules(@PathVariable("dId") Long dId ,@RequestParam String date){
+    public List<Schedule> getSchedules( @PathVariable("dId") Long dId ,@RequestParam String date){
         log.info("Fetching Schedules");
-        if(dId == null || date == null) { log.info("Invalid dId , Date found terminating process");return new ResponseEntity<>(HttpStatus.BAD_REQUEST);}
-        List<Schedule> result = scheduleService.getSchedule((long) 1 , "2024-11-20");
+        if(dId == null || date == null) { log.info("Invalid dId , Date found terminating process"); return null;}
+        List<Schedule> result = scheduleService.getSchedule(dId,date);
+        log.info(result.toString());
         log.info("Fetched Schedules successfully");
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return result;
     }
 
     @PostMapping("/getPatientSchedule")

@@ -15,11 +15,11 @@ public class scheduleService {
     @Autowired
     private UserClient userClient;
     public List<Schedule> getSchedules(Long dId , String Date){
-       ResponseEntity<List<Schedule>> result = userClient.getSchedules(dId,Date);
+      List<Schedule>result = userClient.getSchedules(dId,Date);
 
-       if(result.getStatusCode().is2xxSuccessful()) return result.getBody();
+       if(result != null) return result;
        else {
-           System.out.println("The Error Status is :- " + result.getStatusCode());
+           System.out.println("The Error Status is ");
            return null;
        }
     }

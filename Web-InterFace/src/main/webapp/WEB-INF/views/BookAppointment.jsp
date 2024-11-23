@@ -313,7 +313,7 @@
   	                    const label = $("<label></label>").attr("for", "slot-" + slot.slotTime)
   	                        .text(slot.slotTime);
   	                        console.log(slot.status);
-  	                    if (slot.currstatus === "AVAILABLE") {
+  	                    if (slot.limit < 5) {
   	                        slotDiv.addClass("available");
   	                        slotDiv.append(radioButton).append(label);
   	                    } else {
