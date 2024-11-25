@@ -5,6 +5,7 @@ import com.Database.PeoplesMedDB.Entity.Patient;
 import com.Database.PeoplesMedDB.Entity.Schedule;
 import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
+import com.Database.PeoplesMedDB.Repository.ScheduleRepo;
 import com.Database.PeoplesMedDB.service.DocService;
 import com.Database.PeoplesMedDB.service.PService;
 import com.Database.PeoplesMedDB.service.ScheduleService;
@@ -29,6 +30,8 @@ public class Controller {
     private DocRepo docRepo;
     @Autowired
     private final PService pService;
+    @Autowired
+    private ScheduleRepo scheduleRepo;
 
 
     @Autowired
@@ -36,6 +39,7 @@ public class Controller {
     public Controller(DocService docService , PService pservice, ScheduleService scheduleService){
         this.docService=docService;
         this.pService=pservice;
+//        this.scheduleRepo = scheduleRepo;
         this.scheduleService=scheduleService;
 
     }
@@ -152,4 +156,11 @@ public class Controller {
         return result;
     }
 
+    @GetMapping("/updateSchedule")
+    public int updateSchedule(){
+//        System.out.println("in updateSchedule");
+//        List<Schedule> res = scheduleRepo.findSchedulesByDoctorIdAndDate((long)1,"2024-11-25");
+//        System.out.println(res.toString());
+        return scheduleRepo.updateSchedule((long) 1, (long) 1, "Test", "09:00AM", "2024-11-25");
+    }
 }

@@ -1,7 +1,9 @@
 package com.Database.PeoplesMedDB.Repository;
 
 import com.Database.PeoplesMedDB.Entity.Schedule;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -16,5 +18,15 @@ public interface ScheduleRepo  extends JpaRepository<Schedule,Long> {
 
 //    @Query("SELECT s FROM Schedule s WHERE s.patientid = :pId")
 //    List<Schedule> findSchedulesByPatientId(@Param("pId") Long pId);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Schedule s SET s.description = :desc, s.pId = :p_id, s.Limit = s.Limit+1 " +
+            "WHERE s.dId = :d_id AND s.slotTime = :time AND s.slotDate = :date")
+    int updateSchedule(@Param("d_id") Long d_id,
+                       @Param("p_id") Long p_id,
+                       @Param("desc") String desc,
+                       @Param("time") String time,
+                       @Param("date") String date);
 
 }
