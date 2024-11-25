@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="java.util.List, com.FrontEnd.Web_InterFace.EntityManager.Users.Patient , com.FrontEnd.Web_InterFace.EntityManager.Users.Patient" %>
+    pageEncoding="UTF-8"  import="java.util.List, com.FrontEnd.Web_InterFace.EntityManager.Users.Patient , com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule" %>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <!DOCTYPE html>
     <html lang="en">
@@ -157,7 +157,7 @@
 
 
     <!--  -->
-
+<p style="width:50%; position:relative; margin:auto; height:auto; font-size:1.2rem; color: blue;">User Information </p>
        <!-- Profile Table -->
           <div class="profile-container">
               <table>
@@ -202,22 +202,40 @@
               </table>
           </div>
 
-          <div class="schedule-container">
-              <c:forEach var="schedule" items="${sc}">
-                  <div class="schedule-card ${sc.limit > 5 ? 'red' : 'green'}">
-                      <div class="card-header">Schedule ID: ${sc.sId}</div>
-                      <p><span class="schedule-property">Doctor ID:</span> ${sc.dId}</p>
-                      <p><span class="schedule-property">Patient ID:</span> ${sc.pId}</p>
-                      <p><span class="schedule-property">Slot Date:</span> ${sc.slotDate}</p>
-                      <p><span class="schedule-property">Slot Time:</span> ${sc.slotTime}</p>
-                      <p><span class="schedule-property">Limit:</span> ${sc.limit}</p>
-                      <p><span class="schedule-property">Description:</span> ${sc.description}</p>
-                  </div>
-              </c:forEach>
-          </div>
 
-
-
+              <p style="width:50%; position:relative; margin:auto; height:auto; font-size:1.2rem; color: blue;">Appointments</p>
+<div class="container mt-4">
+    <div class="row">
+        <!-- Loop through a list of schedules -->
+        <c:forEach var="schedule" items="${schedules}">
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Schedule Details</h5>
+                        <p class="card-text"><strong>Schedule ID:</strong> ${schedule.sId}</p>
+                        <p class="card-text"><strong>Doctor ID:</strong> ${schedule.dId}</p>
+                        <p class="card-text"><strong>Patient ID:</strong> ${schedule.pId}</p>
+                        <p class="card-text"><strong>Slot Date:</strong> ${schedule.slotDate}</p>
+                        <p class="card-text"><strong>Slot Time:</strong> ${schedule.slotTime}</p>
+                        <p class="card-text"><strong>Limit:</strong> ${schedule.limit}</p>
+                        <p class="card-text"><strong>Description:</strong> ${schedule.description}</p>
+                        <div class="d-flex justify-content-between">
+                            <form action="/joinMeeting" method="post">
+                                <input type="hidden" name="sId" value="${schedule.sId}">
+                                <button type="submit" class="btn btn-primary">Join Meeting</button>
+                            </form>
+                            <form action="/cancelSchedule" method="post">
+                                <input type="hidden" name="sId" value="${schedule.sId}">
+                                <button type="submit" class="btn btn-danger">Cancel Schedule</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
     <!--  -->
 

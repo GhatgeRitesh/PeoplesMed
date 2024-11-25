@@ -53,7 +53,7 @@ public class PatientDashBoard {
                 p=patient.getBody();
                 List<Schedule> result= patientService.getPatientSchedules(p.getP_id());
                 System.out.println(result.toString());
-                mv.addObject("sc",result);
+                mv.addObject("schedules",result);
                 mv.setViewName("pDashboard");
                 mv.addObject("patient",p);
             }
