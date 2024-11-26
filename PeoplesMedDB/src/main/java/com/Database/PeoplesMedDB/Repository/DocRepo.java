@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface DocRepo extends JpaRepository<Doctor,Long> {
     // Custom Query Methods to find the users by email
     Doctor findByEmail(String email);
+
+
 }

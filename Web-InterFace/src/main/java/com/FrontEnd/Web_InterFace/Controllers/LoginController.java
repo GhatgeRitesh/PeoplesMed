@@ -79,10 +79,15 @@ public class LoginController {
         }
         else if(curruser.getRole().equals("[ROLE_DOCTOR]")){
             System.out.println(curruser.toString());
+            System.out.println("Fetching Doctor Profile");
             ResponseEntity<Doctor> doctor= userClient.getDoctorProfile(curruser.getMail());
-            if(doctor == null){
+            System.out.println("Fetched Successfully");
+            System.out.println(doctor.toString());
+            if(doctor != null){
                 d=doctor.getBody();
+                System.out.println("Fetching doctor schedules");
                 List<Schedule> dSchedules= doctorService.getDSchedule(d.getD_id());
+                System.out.println("Fetched successfully");
                 mv.addObject("doctor",d);
                 mv.addObject("schedule",dSchedules);
                 mv.setViewName("dDashboard");

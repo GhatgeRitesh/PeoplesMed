@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -117,7 +118,7 @@ public class Controller {
     }
 
     @PostMapping("/GetDoctor")
-    public ResponseEntity<?> getDoc(@RequestParam String email){
+    public ResponseEntity<?> getDoc(@RequestBody String email){
         System.out.println("Method Accessed");
         Doctor doctor = docService.getDoctor(email);
         if(doctor != null) {
@@ -154,6 +155,13 @@ public class Controller {
         List<Schedule> result =scheduleService.getPSchedule(p_id);
         System.out.println(result.toString());
         return result;
+    }
+
+    @PostMapping("/getDschedule")
+    public List<Schedule> getDSchedule(@RequestBody Long d_id){
+        System.out.println("Fetching Doctor Schedule");
+
+      return new ArrayList<>(null);
     }
 
     @GetMapping("/updateSchedule")
