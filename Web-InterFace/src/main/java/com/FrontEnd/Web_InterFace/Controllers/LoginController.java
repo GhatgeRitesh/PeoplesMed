@@ -87,6 +87,7 @@ public class LoginController {
                 d=doctor.getBody();
                 System.out.println("Fetching doctor schedules");
                 List<Schedule> dSchedules= doctorService.getDSchedule(d.getD_id());
+                System.out.println(dSchedules.toString());
                 System.out.println("Fetched successfully");
                 mv.addObject("doctor",d);
                 mv.addObject("schedule",dSchedules);

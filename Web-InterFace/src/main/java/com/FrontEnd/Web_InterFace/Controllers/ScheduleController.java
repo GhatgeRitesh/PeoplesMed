@@ -27,10 +27,18 @@ public class ScheduleController{
 
     @Autowired
     private currUser currUser;
+    @Autowired
+    private  UpdateScheduleDTO dto;
 
-    public ScheduleController(currUser currUser) {
+    public ScheduleController(com.FrontEnd.Web_InterFace.Service.scheduleService scheduleService, UserClient userClient, com.FrontEnd.Web_InterFace.Configurations.currUser currUser, UpdateScheduleDTO dto) {
+        this.scheduleService = scheduleService;
+        this.userClient = userClient;
         this.currUser = currUser;
+        this.dto = dto;
     }
+
+
+
 
     @GetMapping("/getSchedules/{dId}")
     public List<Schedule> geSchedules(@PathVariable("dId") Long dId ,@RequestParam String date)
@@ -40,31 +48,30 @@ public class ScheduleController{
         return result;
     }
 
-    @PostMapping("/P/updateSchedule/{d_id}")
-    public ModelAndView saveSchedule(@ModelAttribute Schedule schedule ,@PathVariable("d_id") Long d_id,ModelAndView mv){
-        log.info("Saving Schedule");
-        try{
-
-            ResponseEntity<Patient> p= userClient.getPatientProfile(currUser.getMail());
-            schedule.setDId(d_id);
-            schedule.setPId(Objects.requireNonNull(p.getBody()).getP_id());
-
-            userClient.saveSchedule(schedule);
-            log.info("schedule saved successfully");
-            mv.setViewName("profile");
-            return mv;
-        }catch(Exception e){
-            log.info("Error Occurred while saving  terminating process :-  " + e);
-            mv.addObject("errorcode",500);
-            mv.setViewName("error");
-            return mv;
-        }
-    }
+//    @PostMapping("/P/updateSchedule/{d_id}")
+//    public ModelAndView saveSchedule(@ModelAttribute Schedule schedule ,@PathVariable("d_id") Long d_id,ModelAndView mv){
+//        log.info("Saving Schedule");
+//        try{
+//
+//            ResponseEntity<Patient> p= userClient.getPatientProfile(currUser.getMail());
+//            schedule.setDId(d_id);
+//            schedule.setPId(Objects.requireNonNull(p.getBody()).getP_id());
+//
+//            userClient.saveSchedule(schedule);
+//            log.info("schedule saved successfully");
+//            mv.setViewName("profile");
+//            return mv;
+//        }catch(Exception e){
+//            log.info("Error Occurred while saving  terminating process :-  " + e);
+//            mv.addObject("errorcode",500);
+//            mv.setViewName("error");
+//            return mv;
+//        }
+//    }
     @PostMapping("/P/updateSchedule/{d_id}")
     public ModelAndView updateSchedule(@RequestBody Schedule schedule , @PathVariable("d_id") Long d_id,ModelAndView mv){
         System.out.println("updating schedule");
         ResponseEntity<Patient> p= userClient.getPatientProfile(currUser.getMail());
-        UpdateScheduleDTO dto = new UpdateScheduleDTO();
         dto.setDate(schedule.getSlotDate());
         dto.setDoctorid(d_id);
         dto.setSlottime(schedule.getSlotTime());
