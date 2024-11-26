@@ -30,6 +30,4 @@ public class ScheduleService {
         System.out.println("pservice completed");
         return new ArrayList<>();
     }
-
-
 }

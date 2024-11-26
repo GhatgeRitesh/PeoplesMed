@@ -171,4 +171,9 @@ public class Controller {
 //        System.out.println(res.toString());
         return scheduleRepo.updateSchedule((long) 1, (long) 1, "Test", "09:00AM", "2024-11-25");
     }
+
+    @GetMapping("/getDschdule")
+    public List<Schedule> getDSchedule(){
+        return scheduleRepo.getDSchedulebyId((long)1);
+    }
 }
