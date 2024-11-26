@@ -3,6 +3,7 @@ package com.Database.PeoplesMedDB.Controller;
 import com.Database.PeoplesMedDB.Entity.Doctor;
 import com.Database.PeoplesMedDB.Entity.Patient;
 import com.Database.PeoplesMedDB.Entity.Schedule;
+import com.Database.PeoplesMedDB.Entity.UpdateScheduleDTO;
 import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
 import com.Database.PeoplesMedDB.Repository.ScheduleRepo;
@@ -164,12 +165,13 @@ public class Controller {
       return new ArrayList<>(null);
     }
 
-    @GetMapping("/updateSchedule")
-    public int updateSchedule(){
-//        System.out.println("in updateSchedule");
-//        List<Schedule> res = scheduleRepo.findSchedulesByDoctorIdAndDate((long)1,"2024-11-25");
-//        System.out.println(res.toString());
-        return scheduleRepo.updateSchedule((long) 1, (long) 1, "Test", "09:00AM", "2024-11-25");
+    @PostMapping("/updateSchedule")
+    public int updateSchedule(@RequestBody UpdateScheduleDTO u){
+        System.out.println("updating schdedule");
+        int res= scheduleRepo.updateSchedule(u.getDoctorid(),u.getPatientid(), u.getDescription(), u.getSlottime(), u.getDate());
+        if(res == 1) System.out.println("udpated successfully");
+        else System.out.println("update failure");
+        return res;
     }
 
     @GetMapping("/getDschdule")

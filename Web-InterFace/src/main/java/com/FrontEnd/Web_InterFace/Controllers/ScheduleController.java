@@ -2,6 +2,7 @@ package com.FrontEnd.Web_InterFace.Controllers;
 
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.UpdateScheduleDTO;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import com.FrontEnd.Web_InterFace.Configurations.currUser;
 import lombok.extern.java.Log;
@@ -43,10 +44,11 @@ public class ScheduleController{
     public ModelAndView saveSchedule(@ModelAttribute Schedule schedule ,@PathVariable("d_id") Long d_id,ModelAndView mv){
         log.info("Saving Schedule");
         try{
+
             ResponseEntity<Patient> p= userClient.getPatientProfile(currUser.getMail());
             schedule.setDId(d_id);
             schedule.setPId(Objects.requireNonNull(p.getBody()).getP_id());
-            System.out.println(schedule.getDescription());
+
             userClient.saveSchedule(schedule);
             log.info("schedule saved successfully");
             mv.setViewName("profile");
@@ -57,6 +59,19 @@ public class ScheduleController{
             mv.setViewName("error");
             return mv;
         }
+    }
+    @PostMapping("/P/updateSchedule/{d_id}")
+    public ModelAndView updateSchedule(@RequestBody Schedule schedule , @PathVariable("d_id") Long d_id,ModelAndView mv){
+        System.out.println("updating schedule");
+        ResponseEntity<Patient> p= userClient.getPatientProfile(currUser.getMail());
+        UpdateScheduleDTO dto = new UpdateScheduleDTO();
+        dto.setDate(schedule.getSlotDate());
+        dto.setDoctorid(d_id);
+        dto.setSlottime(schedule.getSlotTime());
+        dto.setDescription(schedule.getDescription());
+        dto.setPatientid(Objects.requireNonNull(p.getBody()).getP_id());
+        int res= userClient.updateSchedule(dto);
+        return mv;
     }
 
 }

@@ -1,8 +1,9 @@
-package com.FrontEnd.Web_InterFace.EntityManager.Users;
+package com.Database.PeoplesMedDB.Entity;
+
 
 import lombok.Getter;
 import lombok.Setter;
-
+import org.springframework.context.annotation.Scope;
 
 @Getter @Setter
 public class UpdateScheduleDTO {
@@ -23,3 +24,4 @@ public class UpdateScheduleDTO {
                 '}';
     }
 }
+

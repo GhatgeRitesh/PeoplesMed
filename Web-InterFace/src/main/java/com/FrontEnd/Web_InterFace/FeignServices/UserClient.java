@@ -4,6 +4,7 @@ import com.FrontEnd.Web_InterFace.Configurations.Users;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.UpdateScheduleDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,4 +48,7 @@ public interface UserClient {
 
     @PostMapping("/getDSchedule")
     public List<Schedule> getDSchedules(@RequestBody Long d_id);
+
+    @PostMapping("/updateSchedule")
+    public int updateSchedule(@RequestBody UpdateScheduleDTO dto);
 }
