@@ -97,16 +97,12 @@ public class PatientDashBoard {
         for(Doctor d: doctorService.getCachedDocs()){
             if(Objects.equals(d.getD_id(), D_id)) {
                 System.out.println("Doctor found");
-           //     System.out.println(d);
+                System.out.println(d);
                 doc = d;
-               // System.out.println(doc);
+                // System.out.println(doc);
                 mv.addObject("doc", doc);
                 mv.setViewName("BookAppointment");
             }
-                log.info("Doctor not found ");
-                mv.setViewName("BookAppointment");
-                mv.addObject("Error", "Doctor Not Found : Internal Error");
-                return mv;
         }
         log.info("Doctor not found ");
         mv.setViewName("BookAppointment");

@@ -114,7 +114,7 @@ public class ScheduleController{
 //        }
 //    }
     @PostMapping("/P/updateSchedule/{d_id}")
-    public ModelAndView updateSchedule(@RequestBody Schedule schedule , @PathVariable("d_id") Long d_id,ModelAndView mv){
+    public ModelAndView updateSchedule(@ModelAttribute Schedule schedule , @PathVariable("d_id") Long d_id,ModelAndView mv){
         System.out.println("updating schedule");
         ResponseEntity<Patient> p= userClient.getPatientProfile(currUser.getMail());
         dto.setDate(schedule.getSlotDate());
@@ -123,6 +123,7 @@ public class ScheduleController{
         dto.setDescription(schedule.getDescription());
         dto.setPatientid(Objects.requireNonNull(p.getBody()).getP_id());
         int res= userClient.updateSchedule(dto);
+        mv.setViewName("/login/profile");
         return mv;
     }
 
