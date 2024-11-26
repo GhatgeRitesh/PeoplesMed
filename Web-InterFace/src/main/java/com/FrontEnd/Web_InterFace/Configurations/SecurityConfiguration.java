@@ -53,7 +53,7 @@ public class SecurityConfiguration {
                 .loginPage("/login") // Custom login page
                 .loginProcessingUrl("/loginform")
                 .permitAll()
-                .defaultSuccessUrl("/P/profile", true)
+                .defaultSuccessUrl("/login/profile", true)
                 .failureUrl("/login")
                 .usernameParameter("email")
                 .passwordParameter("password")

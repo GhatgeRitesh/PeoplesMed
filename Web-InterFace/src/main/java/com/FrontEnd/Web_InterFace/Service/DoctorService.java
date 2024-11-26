@@ -2,6 +2,7 @@ package com.FrontEnd.Web_InterFace.Service;
 
 
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -18,5 +19,10 @@ public class DoctorService {
     @Cacheable(value = "doctorsCache" , key = "'allDoctors'")
     public List<Doctor> getCachedDocs(){
         return userClient.getAllDocs();
+    }
+
+    @Cacheable(value = "doctorSchdules" , key = "'allSchedules'")
+    public List<Schedule> getDSchedule(Long d_id){
+        return userClient.getDSchedules(d_id);
     }
 }

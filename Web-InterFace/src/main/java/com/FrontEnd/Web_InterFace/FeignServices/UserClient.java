@@ -44,4 +44,7 @@ public interface UserClient {
 
     @PostMapping("getPatientSchedule")
     public List<Schedule> getPatientSchedules(Long p_id);
+
+    @PostMapping("/getDSchedule")
+    public List<Schedule> getDSchedules(@RequestBody Long d_id);
 }
