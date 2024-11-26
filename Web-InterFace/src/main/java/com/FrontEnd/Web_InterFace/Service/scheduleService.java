@@ -23,4 +23,8 @@ public class scheduleService {
            return null;
        }
     }
+
+    public  List<Schedule> getDSchedule(Long dId){
+        return userClient.getDSchedules(dId);
+    }
 }

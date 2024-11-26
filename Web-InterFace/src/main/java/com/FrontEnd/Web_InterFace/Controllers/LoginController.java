@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.FrontEnd.Web_InterFace.Configurations.currUser;
+import com.FrontEnd.Web_InterFace.Service.scheduleService;
 
 import java.util.List;
 
@@ -40,6 +41,9 @@ public class LoginController {
 
     @Autowired
     private Doctor d;
+
+    @Autowired
+    private scheduleService scheduleservice;
 
     public LoginController(currUser curruser){
         this.curruser=curruser;
@@ -86,7 +90,7 @@ public class LoginController {
             if(doctor != null){
                 d=doctor.getBody();
                 System.out.println("Fetching doctor schedules");
-                List<Schedule> dSchedules= doctorService.getDSchedule(d.getD_id());
+                List<Schedule> dSchedules= scheduleservice.getDSchedule(d.getD_id());
                 System.out.println(dSchedules.toString());
                 System.out.println("Fetched successfully");
                 mv.addObject("doctor",d);
