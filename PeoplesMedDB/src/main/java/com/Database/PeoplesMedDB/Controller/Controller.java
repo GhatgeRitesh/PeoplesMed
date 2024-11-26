@@ -158,12 +158,6 @@ public class Controller {
         return result;
     }
 
-    @PostMapping("/getDschedule")
-    public List<Schedule> getDSchedule(@RequestBody Long d_id){
-        System.out.println("Fetching Doctor Schedule");
-
-      return new ArrayList<>(null);
-    }
 
     @PostMapping("/updateSchedule")
     public int updateSchedule(@RequestBody UpdateScheduleDTO u){
@@ -174,8 +168,8 @@ public class Controller {
         return res;
     }
 
-    @GetMapping("/getDschdule")
-    public List<Schedule> getDSchedule(){
-        return scheduleRepo.getDSchedulebyId((long)1);
+    @PostMapping("/getDSchedule")
+    public List<Schedule> getDSchedules(@RequestBody Long d_id){
+        return scheduleRepo.getDSchedulebyId(d_id);
     }
 }
