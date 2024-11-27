@@ -94,7 +94,7 @@ public class LoginController {
                 System.out.println(dSchedules.toString());
                 System.out.println("Fetched successfully");
                 mv.addObject("doctor",d);
-                mv.addObject("schedule",dSchedules);
+                mv.addObject("schedules",dSchedules);
                 mv.setViewName("dDashboard");
                 log.info("Diverting to user DashBoard");
                 return mv;

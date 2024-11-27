@@ -8,6 +8,7 @@ import com.FrontEnd.Web_InterFace.Configurations.currUser;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.FrontEnd.Web_InterFace.Service.scheduleService;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,14 +28,13 @@ public class ScheduleController{
 
     @Autowired
     private currUser currUser;
-    @Autowired
-    private  UpdateScheduleDTO dto;
 
-    public ScheduleController(com.FrontEnd.Web_InterFace.Service.scheduleService scheduleService, UserClient userClient, com.FrontEnd.Web_InterFace.Configurations.currUser currUser, UpdateScheduleDTO dto) {
+
+    public ScheduleController(com.FrontEnd.Web_InterFace.Service.scheduleService scheduleService, UserClient userClient, com.FrontEnd.Web_InterFace.Configurations.currUser currUser) {
         this.scheduleService = scheduleService;
         this.userClient = userClient;
         this.currUser = currUser;
-        this.dto = dto;
+
     }
 
 
@@ -93,38 +93,5 @@ public class ScheduleController{
         return result;
     }
 
-//    @PostMapping("/P/updateSchedule/{d_id}")
-//    public ModelAndView saveSchedule(@ModelAttribute Schedule schedule ,@PathVariable("d_id") Long d_id,ModelAndView mv){
-//        log.info("Saving Schedule");
-//        try{
-//
-//            ResponseEntity<Patient> p= userClient.getPatientProfile(currUser.getMail());
-//            schedule.setDId(d_id);
-//            schedule.setPId(Objects.requireNonNull(p.getBody()).getP_id());
-//
-//            userClient.saveSchedule(schedule);
-//            log.info("schedule saved successfully");
-//            mv.setViewName("profile");
-//            return mv;
-//        }catch(Exception e){
-//            log.info("Error Occurred while saving  terminating process :-  " + e);
-//            mv.addObject("errorcode",500);
-//            mv.setViewName("error");
-//            return mv;
-//        }
-//    }
-    @PostMapping("/P/updateSchedule/{d_id}")
-    public ModelAndView updateSchedule(@ModelAttribute Schedule schedule , @PathVariable("d_id") Long d_id,ModelAndView mv){
-        System.out.println("updating schedule");
-        ResponseEntity<Patient> p= userClient.getPatientProfile(currUser.getMail());
-        dto.setDate(schedule.getSlotDate());
-        dto.setDoctorid(d_id);
-        dto.setSlottime(schedule.getSlotTime());
-        dto.setDescription(schedule.getDescription());
-        dto.setPatientid(Objects.requireNonNull(p.getBody()).getP_id());
-        int res= userClient.updateSchedule(dto);
-        mv.setViewName("/login/profile");
-        return mv;
-    }
 
 }

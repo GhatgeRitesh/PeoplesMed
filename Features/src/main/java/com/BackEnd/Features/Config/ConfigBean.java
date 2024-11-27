@@ -1,10 +1,10 @@
 package com.BackEnd.Features.Config;
 
 import com.BackEnd.Features.Models.Patient;
-import com.BackEnd.Features.Models.MeetingDetails;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
+import com.BackEnd.Features.MailService.MeetingDetails;
 
 @Configuration
 public class ConfigBean {

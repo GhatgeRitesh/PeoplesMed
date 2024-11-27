@@ -7,22 +7,36 @@ import org.springframework.stereotype.Component;
 
 @Getter @Setter
 public class Doctor {
+    private Long D_id;
     private String name;
     private String email;
+    private String contact;
+    private String registerNo;
+    private String city;
+    private String hospitalName;
+    private String password;
+    private String role;
+    private String education;
     private String specialization;
+    private String experience;
 
     public Doctor(){}
-    public Doctor(String name,String email,String specialization){
-        this.name=name;
-        this.email=email;
-        this.specialization=specialization;
-    }
+
     @Override
     public String toString() {
         return "Doctor{" +
-                "name='" + name + '\'' +
+                "D_id=" + D_id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", Specialization='" + specialization + '\'' +
+                ", contact='" + contact + '\'' +
+                ", registerNo='" + registerNo + '\'' +
+                ", city='" + city + '\'' +
+                ", hospitalName='" + hospitalName + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", education='" + education + '\'' +
+                ", specialization='" + specialization + '\'' +
+                ", experience='" + experience + '\'' +
                 '}';
     }
 }

@@ -29,7 +29,7 @@
             <div class="profile">
                 <img src="/images/logo.jpg" alt="Patient logo">
                 <div class="name">
-                    <span>${patient.name} </span><br>
+                    <span>${doctor.name} </span><br>
                     <span >Admin</span>
                 </div>
 
@@ -51,25 +51,33 @@
                 </div>
             </div>
         </div>
-        <!-- Schedule Cards Section -->
-       <div class="row mt-4">
-           <h4 class="text-center mb-3">Schedules</h4>
-           <c:forEach var="schedule" items="${schedules}">
-               <div class="col-md-4 mb-4">
-                   <div class="card schedule-card p-3">
-                       <h5>Schedule ID: ${schedule.id}</h5>
-                       <p><strong>Slot Date:</strong> ${schedule.slotDate}</p>
-                       <p><strong>Slot Time:</strong> ${schedule.slotTime}</p>
-                       <p><strong>Limit:</strong> ${schedule.limit} patients</p>
-                       <p><strong>Description:</strong> ${schedule.description}</p>
-                       <div class="d-grid gap-2">
-                           <button class="btn btn-primary">Join Meeting</button>
-                           <button class="btn btn-danger">Cancel Schedule</button>
-                       </div>
-                   </div>
-               </div>
-           </c:forEach>
-       </div>
+    </div>
+    <div class="row mt-4">
+        <h4 class="text-center mb-3">Schedules</h4>
+        <c:forEach var="schedule" items="${schedules}">
+            <c:if test="${schedule.PId != null && schedule.slotDate != null && schedule.description != null}">
+                <div class="col-md-4 mb-4">
+                    <div class="card schedule-card p-3">
+                        <h5>Schedule ID: ${schedule.SId}</h5>
+                        <p><strong>Doctor ID:</strong> ${schedule.DId}</p>
+                        <p><strong>Patient ID:</strong> ${schedule.PId}</p>
+                        <p><strong>Slot Date:</strong> ${schedule.slotDate}</p>
+                        <p><strong>Slot Time:</strong> ${schedule.slotTime}</p>
+                        <p><strong>Limit:</strong> ${schedule.limit} patients</p>
+                        <p><strong>Description:</strong>
+                            <c:out value="${schedule.description}" default="No description available" />
+                        </p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary">Join Meeting</button>
+                            <button class="btn btn-danger">Cancel Schedule</button>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
+        </c:forEach>
+    </div>
+
+
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>

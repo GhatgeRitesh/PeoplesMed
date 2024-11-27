@@ -1,16 +1,17 @@
-package com.BackEnd.Features.ZoomService;
+package com.FrontEnd.Web_InterFace.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.java.Log;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 
-
 @Service
-public class ZoomService{
-
+@Log
+public class ZoomService {
     @Value("${zoom.clientSecret}")
     private String clientSecret;
 

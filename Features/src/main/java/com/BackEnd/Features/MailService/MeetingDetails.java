@@ -1,10 +1,10 @@
-package com.BackEnd.Features.Models;
-
+package com.BackEnd.Features.MailService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Scope;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Scope("prototype")
 @Getter @Setter
 public class MeetingDetails {
     private String id;
@@ -14,6 +14,7 @@ public class MeetingDetails {
     private String join_url;
     private String uuid;
 
+    private String mail;
     @Override
     public String toString() {
         return "MeetingDetails{" +

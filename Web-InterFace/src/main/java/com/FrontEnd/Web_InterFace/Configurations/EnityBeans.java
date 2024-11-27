@@ -1,5 +1,6 @@
 package com.FrontEnd.Web_InterFace.Configurations;
 
+import com.FrontEnd.Web_InterFace.EntityManager.Users.MeetingDetails;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.UpdateScheduleDTO;
 import org.springframework.context.annotation.Bean;
@@ -18,5 +19,9 @@ public class EnityBeans {
     @Bean
     public  UpdateScheduleDTO updateScheduleDTO(){
         return new UpdateScheduleDTO();
+    }
+    @Bean
+    public MeetingDetails meetingDetails(){
+        return new MeetingDetails();
     }
 }

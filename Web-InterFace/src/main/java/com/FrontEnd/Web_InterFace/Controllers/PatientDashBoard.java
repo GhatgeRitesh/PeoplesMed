@@ -1,19 +1,17 @@
 package com.FrontEnd.Web_InterFace.Controllers;
 
 import com.FrontEnd.Web_InterFace.Configurations.currUser;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.*;
+import com.FrontEnd.Web_InterFace.FeignServices.FeaturesService;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import com.FrontEnd.Web_InterFace.Service.DoctorService;
 import com.FrontEnd.Web_InterFace.Service.PatientService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -33,20 +31,41 @@ public class PatientDashBoard {
     @Autowired
     private DoctorService doctorService;
 
-    private final currUser curruser;
+    @Autowired
+    private currUser currUser;
+
+    @Autowired
+    private MeetingDetails meetingDetails;
 
     @Autowired
     private PatientService patientService;
 
-    public PatientDashBoard(currUser curruser){this.curruser=curruser; }
+    @Autowired
+    private UpdateScheduleDTO dto;
+
+    public PatientDashBoard(UserClient userClient, Patient p, DoctorService doctorService, currUser currUser, PatientService patientService, UpdateScheduleDTO dto, FeaturesService featuresService) {
+        this.userClient = userClient;
+        this.p = p;
+        this.doctorService = doctorService;
+        this.currUser = currUser;
+        this.patientService = patientService;
+        this.dto = dto;
+        this.featuresService = featuresService;
+       this.meetingDetails= meetingDetails;
+    }
+
+    @Autowired
+    private FeaturesService featuresService;
+
+
 
 
     @GetMapping("/profile")
     public ModelAndView pProfile(ModelAndView mv){
         log.info("Patient Profile Method Access");
         try{
-            System.out.println(curruser.getMail());
-            ResponseEntity<Patient> patient= userClient.getPatientProfile(curruser.getMail());
+            System.out.println(currUser.getMail());
+            ResponseEntity<Patient> patient= userClient.getPatientProfile(currUser.getMail());
             System.out.println(patient.getBody());
             System.out.println(patient.getStatusCode());
             if(patient!=null){
@@ -109,6 +128,39 @@ public class PatientDashBoard {
         mv.addObject("Error", "Doctor Not Found : Internal Error");
         return mv;
     }
+
+    @PostMapping("/updateSchedule/{d_id}")
+    public String updateSchedule(@ModelAttribute Schedule schedule, @PathVariable("d_id") Long d_id, HttpSession session) {
+        // Step 1: Retrieve the current user's patient profile
+        ResponseEntity<Patient> response = userClient.getPatientProfile(currUser.getMail());
+        Patient patient = response.getBody();
+
+        if (patient == null) {
+            System.err.println("Failed to retrieve patient profile for user: " + currUser.getMail());
+            return "error"; // Handle error appropriately
+        }
+
+        // Step 4: Update the schedule
+        System.out.println("Updating schedule for doctor ID: " + d_id);
+
+
+        dto.setDate(schedule.getSlotDate());
+        dto.setDoctorid(d_id);
+        dto.setSlottime(schedule.getSlotTime());
+        dto.setDescription(schedule.getDescription());
+        dto.setPatientid(patient.getP_id());
+        int res= userClient.updateSchedule(dto);
+
+        return "redirect:/ZoomNotice";
+    }
+
+    @GetMapping("/shareMeetingDetails")
+    public String shareMeetign(){
+        System.out.println("Sharing Meeting details");
+        System.out.println(meetingDetails.toString());
+        return "redirect:/login/profile";
+    }
+
 }
 
 /*

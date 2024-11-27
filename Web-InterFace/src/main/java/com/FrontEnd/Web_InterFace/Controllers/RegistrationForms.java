@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/Reg")
@@ -28,26 +28,26 @@ public class RegistrationForms {
     @Autowired
     private GMailEntity gMailEntity;
     @PostMapping("/sub/D")
-    public ResponseEntity<Doctor> DocReg(@ModelAttribute Doctor doc){
+    public ModelAndView DocReg(@ModelAttribute Doctor doc, ModelAndView mv){
         log.info("The Doctor Form Received");
         System.out.println(doc.toString());
 
         try {
-            gMailEntity.setReceiver(doc.getEmail());
-            gMailEntity.setRole("Doc");
-            gMailEntity.setSubject("Register");
-            features.SendEmail(gMailEntity);
             doc.setRole("Doctor");
             ResponseEntity<?> response= userClient.AddDoc(doc);
             if(response.getStatusCode().is2xxSuccessful()){
-                features.SendEmail(gMailEntity);
                 log.info("User Registered Successfully");
+                boolean flag= features.RegisterDoctorMail(doc);
+                if(flag) log.info("User Registered Successfully");
+                else log.info("Mail Not Sent");
             }
         }catch(Exception e){
             log.info("Error while Saving Doctor :"+e);
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+            mv.setViewName("error");
+            return mv;
         }
-        return new ResponseEntity<>(doc, HttpStatus.CREATED);
+        mv.setViewName("PLogin");
+        return mv;
     }
 
     @PostMapping("/sub/P")
@@ -59,15 +59,16 @@ public class RegistrationForms {
             mv.addObject("error","Entity recieved empty Internale Server Error");
             return mv;
         }
-        gMailEntity.setRole("Pat");
-        gMailEntity.setSubject("Register");
-        gMailEntity.setReceiver(P.getEmail());
+
         try{
           P.setRole("Patient");
 
           ResponseEntity<?> res= userClient.savePatient(P);
           if(res.getStatusCode().is2xxSuccessful()){
-              features.SendEmail(gMailEntity);
+              log.info("User Registered Successfully");
+              boolean flag= features.RegisterPatMail(P);
+              if(flag) log.info("User Registered Successfully");
+              else log.info("Mail Not Sent");
           }
         }catch(Exception e){
             log.info("Error While Saving Patient :"+e);
