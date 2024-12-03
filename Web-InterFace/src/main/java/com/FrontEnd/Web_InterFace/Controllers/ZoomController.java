@@ -84,6 +84,7 @@
             meetingDetails= (MeetingDetails) createMeeting(session,currUser.getMail(), MeetingTopic).getBody();
             System.out.println(meetingDetails.toString());
             meetingDetails.setMail(currUser.getMail());
+
             // send the meeting links to the mail and save them into database
             boolean flag = featuresService.MeetingDetailsMail(meetingDetails);
             if(flag) log.info("Mail Not Sent");

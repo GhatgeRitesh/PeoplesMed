@@ -68,6 +68,7 @@ public class PatientDashBoard {
             ResponseEntity<Patient> patient= userClient.getPatientProfile(currUser.getMail());
             System.out.println(patient.getBody());
             System.out.println(patient.getStatusCode());
+            System.out.println("Meeting Details : -" + meetingDetails.toString());
             if(patient!=null){
                 p=patient.getBody();
                 List<Schedule> result= patientService.getPatientSchedules(p.getP_id());
