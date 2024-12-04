@@ -1,9 +1,6 @@
 package com.Database.PeoplesMedDB.Controller;
 
-import com.Database.PeoplesMedDB.Entity.Doctor;
-import com.Database.PeoplesMedDB.Entity.Patient;
-import com.Database.PeoplesMedDB.Entity.Schedule;
-import com.Database.PeoplesMedDB.Entity.UpdateScheduleDTO;
+import com.Database.PeoplesMedDB.Entity.*;
 import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
 import com.Database.PeoplesMedDB.Repository.ScheduleRepo;
@@ -171,5 +168,25 @@ public class Controller {
     @PostMapping("/getDSchedule")
     public List<Schedule> getDSchedules(@RequestBody Long d_id){
         return scheduleRepo.getDSchedulebyId(d_id);
+    }
+
+    @GetMapping("/saveASchedule")
+    public void saveASchedule(){
+        scheduleService.saveASchedule();
+    }
+
+    @GetMapping("/getASchedule")
+    public List<Appointments> getAchedule(){
+        return scheduleService.getASchedule();
+    }
+
+    @GetMapping("/getBSchedule")
+    public List<BookedSchedules> getBSchedule(){
+       return scheduleService.getBSchedule();
+    }
+
+    @GetMapping("/updateASchedule")
+    public int updateASchedule(){
+        return scheduleService.updateASchedule();
     }
 }

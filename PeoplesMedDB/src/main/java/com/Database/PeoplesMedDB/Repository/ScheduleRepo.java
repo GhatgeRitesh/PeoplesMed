@@ -32,4 +32,5 @@ public interface ScheduleRepo  extends JpaRepository<Schedule,Long> {
     @Query("SELECT s FROM Schedule s WHERE s.dId = :d_id")
     List<Schedule> getDSchedulebyId(@Param("d_id") Long d_id);
 
+
 }
