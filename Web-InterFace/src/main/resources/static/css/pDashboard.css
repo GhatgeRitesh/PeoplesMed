@@ -1,399 +1,280 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    width: 100%;
     font-family: Arial, sans-serif;
-    background-color: #f7f8fc;
-    color: #333;
   }
 
-  /*  */
-
-  .header1{
-    width: 100%;
-    height: 100px;
-    background-image: linear-gradient(#80deea,#b2ebf2 );
-    display: flex;
-    position: sticky;
-    top: 0px;
-    z-index: 1;
-  }
-  .logo{
-    width: 20%;
-    height: 100px;
-    /* background-color: aqua; */
-    display: flex;
-   align-items: center;
-  }
-  .logo-img{
-    width: 70;
-    height: 70px;
-    margin-left: 20px;
-    margin-top: 5px;
-
-  }
-  .logo-h3{
-    line-height: 100px;
-    font-size: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
-  .nav-bar{
-    width: 55%;
-    height: 100px;
-    /* background-color: brown; */
-    text-align: center;
-    justify-content: space-around;
-  }
-  .nav-bar a{
-    line-height: 100px;
-    text-decoration: none;
-    font-size: 20px;
-    color: rgb(50, 50, 50);
-  }
-
-
-
-
-
-
-
-
-   .logincontainer{
-    width: 25%;
-    height: 100px;
-    /* background-color: blanchedalmond;   */
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-
-  }
-
-  .option{
+  body {
+      width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    min-height: 100vh;
+    background-color: #dfe1e6;
+    /* background-color: #746f6f; */
   }
 
-
-  .login button{
-    margin-top: 30px;
-    height: 40px;
-    width: 100px;
-    border-radius: 20px;
-    font-size: 18px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    /* background-color: rgb(75, 75, 244); */
-    color: white;
-    border: none;
+  .main{
+      margin: 50px;
+      display: flex;
   }
 
-
-  /* a{
-  text-decoration: none;
-  color: white;
-  } */
-
-
-  .login button{
-      margin-top: 30px;
-      height: 40px;
-      width: 100px;
-      border-radius: 20px;
-      font-size: 18px;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      background-color: rgb(75, 75, 244);
-      color: white;
-      border: none;
-    }
-
-
-
-
-
-  .signin button {
-      margin-top: 30px;
-      height: 40px;
-      width: 100px;
-      border-radius: 20px;
-      font-size: 18px;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      background-color: rgb(75, 75, 244);
-      color: white;
-      border: none;
-    }
-
-
-
-  /*  */
-.outer{
-    width: 100%;
-    display: flex;
-    height: 100vh;
-}
-
+  /* Sidebar */
   .sidebar {
-    display: none;
-    width: 20%;
-    height: 100%;
-    background-color: #333;
-    color: white;
+    width: 250px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    padding-left: 40px;
-    /* position: relative; */
-    height: 100%;
+    border-radius: 13px;
+
 
   }
-  .sidebar h2 {
+
+  .sidebar .profile {
     text-align: center;
-    font-size: 1.5em;
-    padding-bottom: 20px;
-    border-bottom: 2px solid rgb(190, 177, 177);
+    margin-bottom: 20px;
   }
-  .sidebar a {
-    color: #ccc;
-    text-decoration: none;
-    display: block;
-    padding: 10px 0 19px;
-    font-size: 1.3em;
 
+  .profile img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-bottom: 10px;
   }
-  .sidebar a:hover {
-    background-color: #444;
-  }
-  .container {
-    width: 100%;
-    margin-left: auto;
-    /* padding: 20px; */
-  }
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-  .header h1 {
-    font-size: 1.5em;
+
+  .profile h3 {
+    font-size: 18px;
     color: #333;
   }
-  .table-container {
+
+  .profile p {
+    font-size: 14px;
+    color: #777;
+  }
+
+  .sidebar ul {
+    list-style: none;
     margin-top: 20px;
   }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+
+  .sidebar ul li {
+    margin-bottom: 15px;
   }
-  table, th, td {
-    border: 1px solid #ddd;
+
+  .sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
   }
-  th, td {
-    padding: 12px;
+
+  .sidebar ul li a:hover {
+    background: #f0f0f0;
+  }
+
+  .logout {
     text-align: center;
+    margin-top: 20px;
   }
-  th {
-    background-color: #f4f4f4;
-  }
-  .status {
-    padding: 5px 10px;
-    border-radius: 12px;
-    font-size: 0.9em;
-  }
-  .status.active {
-    background-color: #d4edda;
-    color: #155724;
-  }
-  .status.inactive {
-    background-color: #f8d7da;
-    color: #721c24;
-  }
-  .add-doctor-btn {
-    background-color: #4CAF50;
+
+  .logout button {
+    background-color: #007bff;
     color: white;
     padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .logout button:hover {
+    background-color: #0056b3;
+  }
+
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .stats .card {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border-radius: 5px;
+    animation: fadeIn 0.8s ease;
+  }
+
+  .stats .card h2 {
+    font-size: 28px;
+    color: #333;
+  }
+
+  .stats .card p {
+    font-size: 16px;
+    color: #777;
+  }
+
+  /* Latest Appointments Section */
+  .appointments {
+    width: 800px;
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .appointments h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .appointment-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    animation: slideUp 0.8s ease;
+  }
+
+  .appointment-card h4 {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+
+  .appointment-card p {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .appointments .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
     text-decoration: none;
     display: inline-block;
     margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .appointments .btn:hover {
+    background-color: #0056b3;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
 
 
 
 
-  .moveside{
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    /* margin-left: 10px; */
-    /* margin-right: 10px; */
-    background-color: #c5dfc6;
-  }
 
-  .profile{
-   display: flex;
-   gap: 10px;
-  }
- span{
-    font-size: 18px;
-    font-family:serif;
-    font-weight: 600;
- }
 
- .image{
+
+  .header1{
+  width: 100%;
+  height: 100px;
+  background-image: linear-gradient(#80deea,#b2ebf2 );
   display: flex;
-  justify-content: center;
+  position: sticky;
   align-items: center;
-  cursor: pointer;
- }
-
-  .profile img{
-    /* width: 30px; */
-    /* height: 5px; */
-    border-radius: 5px;
-  }
-
-
-
-  .moveside img{
-    width: 30px;
-  }
-
-
-  .header, .table-container{
-  /* transition: 0.5ms ease-in; */
-  transition: all 0.5s ease-out;
+  top: 0px;
+  z-index: 1;
 }
-
-
-
-
-
-.container_card {
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    width: 800px;
-    display: flex;
-    margin-left: 300px;
+.logo{
+  width: 20%;
+  height: 100px;
+  /* background-color: aqua; */
+  display: flex;
+ align-items: center;
 }
-
-.left-section {
-    background-color: #88aab4;
-    color: white;
-    padding: 20px;
-    width: 40%;
-    text-align: center;
-    margin: 20px;
-    height: 50%;
-}
-
-
-
-
-.left-section .profile-image img {
-    width: 250px;
-    height: 350px;
-    /* border-radius: 50%; */
-    border: 3px solid white;
-    margin-bottom: 20px;
-}
-
-
-
-.left-section h2 {
-    margin: 10px 0 5px;
-}
-
-.left-section h3 {
-    margin: 0;
-    font-weight: normal;
-}
-
-.left-section p {
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-
-.right-section {
-    padding: 20px;
-    width: 60%;
+.logo-img{
+  width: 70;
+  height: 70px;
+  margin-left: 20px;
+  margin-top: 5px;
 
 }
-
-
-.info-section p{
-    font-size: 19px;
+.logo-h3{
+  line-height: 100px;
+  font-size: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
-.detail-box p{
-    font-size: 19px;
+.nav-bar{
+  width: 55%;
+  height: 100px;
+  /* background-color: brown; */
+  text-align: center;
+  justify-content: space-around;
 }
-
-
-.info-section, .specialty-section, .details-section, .hospital-section, .contact-section {
-    margin-bottom: 20px;
-
-}
-
-h4 {
-    color: #1e1c1f;
-    margin-bottom: 10px;
-    font-size: 25px;
-    font-family: serif;
-}
-
-.specialty-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.specialty-tags span {
-    background-color: #00a6d6;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-     font-family: serif;
-}
-
-.details-section {
-    display: flex;
-}
-
-.detail-box {
-    width: 100%;
-}
-
-.contact-section p, .hospital-section p {
-    margin: 5px 0;
-    font-size: 17px;
-    font-family: serif;
-}
-
-.edit{
-    float: right;
-}
- a{
+.nav-bar a{
+  line-height: 100px;
   text-decoration: none;
+  font-size: 20px;
+  color: rgb(50, 50, 50);
 }
 
-.edit button{
-   padding: 4px 17px;
-   font-size: 16px;
-   font-family: Arial, Helvetica, sans-serif;
-   border-radius: 4px;
-   font-family: serif;
+
+hr{
+  margin-top: 40px;
+  width: 100%;
+  height: 4px;
+  background-color: #333;
 }
 
-p{
-    font-family: serif;
+
+.bookcards{
+  width: 100%;
+  /* background-color: #0056b3; */
+  /* position: relative; */
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+}
+
+.left_bookcards{
+ /* width: 20px; */
+}
+
+.right_bookcards{
+/* position: absolute;
+right: 2px; */
+/* float: right; */
 }

@@ -1,9 +1,7 @@
 package com.Database.PeoplesMedDB.service;
 
 import com.Database.PeoplesMedDB.Entity.Patient;
-import com.Database.PeoplesMedDB.Entity.Schedule;
 import com.Database.PeoplesMedDB.Repository.PRepo;
-import com.Database.PeoplesMedDB.Repository.ScheduleRepo;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

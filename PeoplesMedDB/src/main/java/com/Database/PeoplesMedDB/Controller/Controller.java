@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -134,7 +133,7 @@ public class Controller {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//
+
 
     @GetMapping("/getSchedules/{dId}")
     public List<Schedule> getSchedules( @PathVariable("dId") Long dId ,@RequestParam String date){
