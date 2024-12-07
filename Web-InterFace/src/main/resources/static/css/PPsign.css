@@ -199,3 +199,15 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+/* Password Validation Note */
+.note {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-top: 10px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}

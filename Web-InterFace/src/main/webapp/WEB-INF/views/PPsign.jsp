@@ -57,8 +57,10 @@
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
 
+                *Password should be string having at least 8 character containing 1 symbol 1 lowercase and 1 uppercase with 1 digit .
                 <label for="email">Password:</label>
                 <input type="text" id="password" name="password" required>
+                 <div class="error" id="password-error"></div>
                 
                 <label for="contact">Contact:</label>
                 <input type="tel" id="contact" name="contact" required>
@@ -85,7 +87,26 @@
         </div>
     </div>
 
+<script>
+    document.getElementById('password').addEventListener('input', function () {
+        validatePassword();
+    });
 
+    function validatePassword() {
+        var password = document.getElementById('password').value;
+        var errorElement = document.getElementById('password-error');
+
+        // Regular expression for password validation
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        // Test the password against the regex
+        if (!passwordRegex.test(password)) {
+            errorElement.textContent = 'Password does not meet the required format.';
+        } else {
+            errorElement.textContent = ''; // Clear error message if valid
+        }
+    }
+</script>
 
     
 </body>

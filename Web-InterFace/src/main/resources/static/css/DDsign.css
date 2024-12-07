@@ -155,6 +155,7 @@ form {
     border: 1px solid red;
     justify-content: center;
     align-items: center;
+    text-alignment:center;
     /* padding: 20px; */
 }
 
@@ -206,4 +207,16 @@ fieldset{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+/* Password Validation Note */
+.note {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-top: 10px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
 }

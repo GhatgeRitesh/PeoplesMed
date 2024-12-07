@@ -24,7 +24,9 @@
     			<a href="#">Services</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
     				href="#">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     		</div> -->
-
+              <div class="logout">
+                <button>Logout</button>
+              </div>
 
     	</div>
 
@@ -50,9 +52,7 @@
           <li><a href="#">Edit Profile</a></li>
         </ul>
         <hr>
-        <div class="logout">
-          <button>Logout</button>
-        </div>
+
 
       </div>
       <div class="main-content">

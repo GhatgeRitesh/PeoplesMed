@@ -80,4 +80,14 @@ public class HomeController {
         System.out.println("redirecting to the url");
         return "redirect:"+ response.getBody().getSessionUrl();
     }
+
+
+    @GetMapping("/paymentSuccess")
+    public String paymentSuccess(){
+        return "PaymentSuccessful";
+    }
+    @GetMapping("/paymentFailed")
+    public String paymentFailed(){
+        return "PaymentFailed";
+    }
 }
