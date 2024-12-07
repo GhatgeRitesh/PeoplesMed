@@ -3,7 +3,6 @@ package com.Database.PeoplesMedDB.Controller;
 import com.Database.PeoplesMedDB.Entity.*;
 import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
-import com.Database.PeoplesMedDB.Repository.ScheduleRepo;
 import com.Database.PeoplesMedDB.service.DocService;
 import com.Database.PeoplesMedDB.service.PService;
 import com.Database.PeoplesMedDB.service.ScheduleService;
@@ -28,8 +27,7 @@ public class Controller {
     private DocRepo docRepo;
     @Autowired
     private final PService pService;
-    @Autowired
-    private ScheduleRepo scheduleRepo;
+
 
 
     @Autowired
@@ -125,67 +123,25 @@ public class Controller {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PostMapping("/saveSchedule")
-    public ResponseEntity<?> saveSchedule(@RequestBody Schedule schedule){
-        log.info("Saving Schdule Process started");
-        if(schedule == null) { log.info("Schedule Received Empty terminating Process."); return new ResponseEntity<>(HttpStatus.BAD_REQUEST); }
-        scheduleService.saveSchedule(schedule);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-
-
-    @GetMapping("/getSchedules/{dId}")
-    public List<Schedule> getSchedules( @PathVariable("dId") Long dId ,@RequestParam String date){
-        log.info("Fetching Schedules");
-        if(dId == null || date == null) { log.info("Invalid dId , Date found terminating process"); return null;}
-        List<Schedule> result = scheduleService.getSchedule(dId,date);
-        log.info(result.toString());
-        log.info("Fetched Schedules successfully");
-        return result;
-    }
-
-    @PostMapping("/getPatientSchedule")
-    public List<Schedule> getPatientSchedules(@RequestBody Long p_id){
-        System.out.println("retriving patient schedules");
-        System.out.println(p_id);
-        List<Schedule> result =scheduleService.getPSchedule(p_id);
-        System.out.println(result.toString());
-        return result;
-    }
-
-
-    @PostMapping("/updateSchedule")
-    public int updateSchedule(@RequestBody UpdateScheduleDTO u){
-        System.out.println("updating schdedule");
-        int res= scheduleRepo.updateSchedule(u.getDoctorid(),u.getPatientid(), u.getDescription(), u.getSlottime(), u.getDate());
-        if(res == 1) System.out.println("udpated successfully");
-        else System.out.println("update failure");
-        return res;
-    }
-
-    @PostMapping("/getDSchedule")
-    public List<Schedule> getDSchedules(@RequestBody Long d_id){
-        return scheduleRepo.getDSchedulebyId(d_id);
-    }
-
     @GetMapping("/saveASchedule")
-    public void saveASchedule(){
-        scheduleService.saveASchedule();
+    public void saveASchedule(@RequestBody Appointments appointments){
+        scheduleService.saveASchedule(appointments);
     }
 
-    @GetMapping("/getASchedule")
-    public List<Appointments> getAschedule(){
-        return scheduleService.getASchedule();
+    @PostMapping("/getASchedule")
+    public List<Appointments> getAschedule(Long d_id,String Date ){
+        log.info("GetASchedule Activated");
+        return scheduleService.getASchedule(d_id,Date);
     }
 
-    @GetMapping("/getBSchedule")
+    @GetMapping("/getPSchedule")
     public List<BookedSchedules> getBSchedule(){
        return scheduleService.getBSchedule();
     }
 
     @GetMapping("/updateASchedule")
     public int updateASchedule(){
-        return scheduleService.updateASchedule();
+      //  return scheduleService.updateASchedule();
+        return 1;
     }
 }

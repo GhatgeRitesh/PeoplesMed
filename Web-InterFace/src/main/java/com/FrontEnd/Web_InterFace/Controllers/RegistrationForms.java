@@ -1,6 +1,7 @@
 package com.FrontEnd.Web_InterFace.Controllers;
 
 import com.FrontEnd.Web_InterFace.EntityManager.Mail.GMailEntity;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.Appointments;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import com.FrontEnd.Web_InterFace.FeignServices.FeaturesService;
@@ -9,12 +10,10 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 
 
 @RestController
@@ -78,5 +77,11 @@ public class RegistrationForms {
         }
         mv.setViewName("PLogin");
        return mv;
+    }
+
+    @GetMapping("/getASchedule")
+    public String check(){
+//        List<Appointments> appointments= userClient.getAschedule(1L,"2024-12-04");
+        return "";
     }
 }

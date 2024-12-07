@@ -1,10 +1,9 @@
 package com.FrontEnd.Web_InterFace.FeignServices;
 
 import com.FrontEnd.Web_InterFace.Configurations.Users;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.Appointments;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.UpdateScheduleDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,18 +36,8 @@ public interface UserClient {
     @PostMapping("/GetDoctor")
     public ResponseEntity<Doctor> getDoctorProfile(String Email);
 
-    @GetMapping("/getSchedules/{dId}")
-    public List<Schedule> getSchedules(@PathVariable("dId") Long dId ,@RequestParam String date);
+    @PostMapping("/getASchedule")
+    public List<Appointments> getAschedule(Long d_id);
 
-    @PostMapping("/saveSchedule")
-    public ResponseEntity<?> saveSchedule(@RequestBody Schedule schedule);
 
-    @PostMapping("getPatientSchedule")
-    public List<Schedule> getPatientSchedules(Long p_id);
-
-    @PostMapping("/getDSchedule")
-    public List<Schedule> getDSchedules(@RequestBody Long d_id);
-
-    @PostMapping("/updateSchedule")
-    public int updateSchedule(@RequestBody UpdateScheduleDTO dto);
 }

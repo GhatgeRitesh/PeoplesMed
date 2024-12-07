@@ -2,9 +2,10 @@ package com.FrontEnd.Web_InterFace.Configurations;
 
 import com.FrontEnd.Web_InterFace.EntityManager.PaymentEntity.PaymentInfo;
 import com.FrontEnd.Web_InterFace.EntityManager.PaymentEntity.StripeResponse;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.Appointments;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.BookedSchedules;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.MeetingDetails;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.UpdateScheduleDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,10 +19,7 @@ public class EnityBeans {
     public Patient patient(){
         return new Patient();
     }
-    @Bean
-    public  UpdateScheduleDTO updateScheduleDTO(){
-        return new UpdateScheduleDTO();
-    }
+
     @Bean
     public MeetingDetails meetingDetails(){
         return new MeetingDetails();
@@ -36,4 +34,10 @@ public class EnityBeans {
     public StripeResponse stripeResponse(){
         return new StripeResponse();
     }
+
+    @Bean
+    public Appointments appointments(){return new Appointments();}
+
+    @Bean
+    public BookedSchedules bookedSchedules(){return new BookedSchedules();}
 }

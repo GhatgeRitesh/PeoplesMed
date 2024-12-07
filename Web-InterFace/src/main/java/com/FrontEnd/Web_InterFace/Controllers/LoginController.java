@@ -2,7 +2,6 @@ package com.FrontEnd.Web_InterFace.Controllers;
 
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.Schedule;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import com.FrontEnd.Web_InterFace.Service.DoctorService;
 import com.FrontEnd.Web_InterFace.Service.PatientService;
@@ -68,8 +67,7 @@ public class LoginController {
             ResponseEntity<Patient> patient = userClient.getPatientProfile(curruser.getMail());
             if (patient != null) {
                 p = patient.getBody();
-                List<Schedule> result = patientService.getPatientSchedules(p.getP_id());
-                mv.addObject("schedules", result);
+
                 mv.setViewName("pDashboard");
                 mv.addObject("patient", p);
                 log.info("Diverting to user DashBoard");
@@ -90,11 +88,10 @@ public class LoginController {
             if(doctor != null){
                 d=doctor.getBody();
                 System.out.println("Fetching doctor schedules");
-                List<Schedule> dSchedules= scheduleservice.getDSchedule(d.getD_id());
-                System.out.println(dSchedules.toString());
+
                 System.out.println("Fetched successfully");
                 mv.addObject("doctor",d);
-                mv.addObject("schedules",dSchedules);
+
                 mv.setViewName("dDashboard");
                 log.info("Diverting to user DashBoard");
                 return mv;

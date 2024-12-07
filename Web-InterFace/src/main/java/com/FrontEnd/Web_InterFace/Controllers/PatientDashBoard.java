@@ -40,16 +40,12 @@ public class PatientDashBoard {
     @Autowired
     private PatientService patientService;
 
-    @Autowired
-    private UpdateScheduleDTO dto;
-
-    public PatientDashBoard(UserClient userClient, Patient p, DoctorService doctorService, currUser currUser, PatientService patientService, UpdateScheduleDTO dto, FeaturesService featuresService) {
+    public PatientDashBoard(UserClient userClient, Patient p, DoctorService doctorService, currUser currUser, PatientService patientService, FeaturesService featuresService) {
         this.userClient = userClient;
         this.p = p;
         this.doctorService = doctorService;
         this.currUser = currUser;
         this.patientService = patientService;
-        this.dto = dto;
         this.featuresService = featuresService;
        this.meetingDetails= meetingDetails;
     }
@@ -59,35 +55,6 @@ public class PatientDashBoard {
 
 
 
-
-    @GetMapping("/profile")
-    public ModelAndView pProfile(ModelAndView mv){
-        log.info("Patient Profile Method Access");
-        try{
-            System.out.println(currUser.getMail());
-            ResponseEntity<Patient> patient= userClient.getPatientProfile(currUser.getMail());
-            System.out.println(patient.getBody());
-            System.out.println(patient.getStatusCode());
-            System.out.println("Meeting Details : -" + meetingDetails.toString());
-            if(patient!=null){
-                p=patient.getBody();
-                List<Schedule> result= patientService.getPatientSchedules(p.getP_id());
-                System.out.println(result.toString());
-                mv.addObject("schedules",result);
-                mv.setViewName("pDashboard");
-                mv.addObject("patient",p);
-            }
-            else{
-                System.out.println("Retrived Profile is null");
-            }
-        }catch(Exception e){
-            log.info("Error While Feting User Data:- "+ e);
-            mv.setViewName("pDashboard");
-            mv.addObject("Profile","Error while fetching User profile");
-            return mv;
-        }
-        return mv;
-    }
 
 
     @GetMapping("/findDoctor")
@@ -130,31 +97,8 @@ public class PatientDashBoard {
         return mv;
     }
 
-    @PostMapping("/updateSchedule/{d_id}")
-    public String updateSchedule(@ModelAttribute Schedule schedule, @PathVariable("d_id") Long d_id, HttpSession session) {
-        // Step 1: Retrieve the current user's patient profile
-        ResponseEntity<Patient> response = userClient.getPatientProfile(currUser.getMail());
-        Patient patient = response.getBody();
 
-        if (patient == null) {
-            System.err.println("Failed to retrieve patient profile for user: " + currUser.getMail());
-            return "error"; // Handle error appropriately
-        }
-
-        // Step 4: Update the schedule
-        System.out.println("Updating schedule for doctor ID: " + d_id);
-
-
-        dto.setDate(schedule.getSlotDate());
-        dto.setDoctorid(d_id);
-        dto.setSlottime(schedule.getSlotTime());
-        dto.setDescription(schedule.getDescription());
-        dto.setPatientid(patient.getP_id());
-        int res= userClient.updateSchedule(dto);
-
-        return "redirect:/ZoomNotice";
-    }
-
+ //redirect url for zoom notice return "redirect:/ZoomNotice";
     @GetMapping("/shareMeetingDetails")
     public String shareMeetign(){
         System.out.println("Sharing Meeting details");

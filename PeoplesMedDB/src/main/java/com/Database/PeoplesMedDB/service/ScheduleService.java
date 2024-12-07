@@ -2,15 +2,12 @@ package com.Database.PeoplesMedDB.service;
 
 import com.Database.PeoplesMedDB.Entity.Appointments;
 import com.Database.PeoplesMedDB.Entity.BookedSchedules;
-import com.Database.PeoplesMedDB.Entity.Schedule;
 import com.Database.PeoplesMedDB.Repository.AppointmetsRepo;
 import com.Database.PeoplesMedDB.Repository.BookedSchedulesRepo;
-import com.Database.PeoplesMedDB.Repository.ScheduleRepo;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,46 +15,68 @@ import java.util.List;
 public class ScheduleService {
 
     @Autowired
-    private ScheduleRepo scheduleRepo;
-
-    @Autowired
     private AppointmetsRepo appointmetsRepo;
 
     @Autowired
     private BookedSchedulesRepo bookedSchedulesRepo;
 
-    public void saveSchedule(Schedule schedule){
-        scheduleRepo.save(schedule);
+    public void saveASchedule(Appointments appointments){
+       appointmetsRepo.save(appointments);
+//
     }
 
-    public List<Schedule> getSchedule(Long dId, String date) {
-        return scheduleRepo.findSchedulesByDoctorIdAndDate(dId, date);
-    }
-
-    public List<Schedule> getPSchedule(Long p_id){
-        System.out.println("pservice activated");
-//        List<Schedule> res= scheduleRepo.findSchedulesByPatientId(p_id);
-        System.out.println("pservice completed");
-        return new ArrayList<>();
-    }
-
-    public void saveASchedule(){
-//        Appointments appointments1 = new Appointments();
-//        appointments1.setDId(2L);
-//        appointments1.setSlotDate("2024-12-04");
-//        appointments1.setSlotTime("10:00AM");
-//        appointments1.setLimit(0);
-//        appointmetsRepo.save(appointments1);
-
-    }
-
-    public int updateASchedule(){
-//        appointmetsRepo.updateSchedule(1L,"09:00AM","2024-12-04");
+    public int updateASchedule(Long d_id, String time , String Date){
+        appointmetsRepo.updateSchedule(d_id, time, Date);
         return 0;
     }
 
-    public List<Appointments>  getASchedule(){
-        List<Appointments> res = appointmetsRepo.getASchedule(1L,"2024-12-04");
+    public List<Appointments>  getASchedule(Long d_id , String Date){
+        List<Appointments> res = appointmetsRepo.getASchedule(d_id, Date);
+        if(res == null){
+            Appointments appointments1 = new Appointments();
+            appointments1.setDId(d_id);
+            appointments1.setSlotDate(Date);
+            appointments1.setSlotTime("09:00AM");
+            appointments1.setLimit(0);
+            appointmetsRepo.save(appointments1);
+
+            Appointments appointments2 = new Appointments();
+            appointments2.setDId(d_id);
+            appointments2.setSlotDate(Date);
+            appointments2.setSlotTime("10:00AM");
+            appointments2.setLimit(0);
+            appointmetsRepo.save(appointments2);
+
+            Appointments appointments3 = new Appointments();
+            appointments3.setDId(d_id);
+            appointments3.setSlotDate(Date);
+            appointments3.setSlotTime("11:00AM");
+            appointments3.setLimit(0);
+            appointmetsRepo.save(appointments3);
+
+            Appointments appointments4 = new Appointments();
+            appointments4.setDId(d_id);
+            appointments4.setSlotDate(Date);
+            appointments4.setSlotTime("01:00AM");
+            appointments4.setLimit(0);
+            appointmetsRepo.save(appointments4);
+
+            Appointments appointments5 = new Appointments();
+            appointments5.setDId(d_id);
+            appointments5.setSlotDate(Date);
+            appointments5.setSlotTime("02:00AM");
+            appointments5.setLimit(0);
+            appointmetsRepo.save(appointments5);
+
+            Appointments appointments6 = new Appointments();
+            appointments6.setDId(d_id);
+            appointments6.setSlotDate(Date);
+            appointments6.setSlotTime("03:00AM");
+            appointments6.setLimit(0);
+            appointmetsRepo.save(appointments6);
+
+            return appointmetsRepo.getASchedule(d_id, Date);
+        }
         System.out.println(res.toString());
         return res;
     }
