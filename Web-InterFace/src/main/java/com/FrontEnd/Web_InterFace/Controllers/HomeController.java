@@ -2,11 +2,15 @@ package com.FrontEnd.Web_InterFace.Controllers;
 
 import com.FrontEnd.Web_InterFace.Configurations.Users;
 import com.FrontEnd.Web_InterFace.Configurations.currUser;
+import com.FrontEnd.Web_InterFace.EntityManager.PaymentEntity.PaymentInfo;
+import com.FrontEnd.Web_InterFace.EntityManager.PaymentEntity.StripeResponse;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
+import com.FrontEnd.Web_InterFace.FeignServices.PaymentService;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +26,9 @@ public class HomeController {
 
     @Autowired
     private UserClient userClient;
+
+    @Autowired
+    private PaymentService paymentService;
     public HomeController(Users users,UserClient userClient){this.curruser=curruser;this.userClient=userClient;}
 
     @GetMapping("/Welcome")
@@ -57,5 +64,20 @@ public class HomeController {
         }
         mv.setViewName("profile");
         return mv;
+    }
+
+    @GetMapping("/checkPayment")
+    public String checkPayment(){
+        System.out.println("Checking the payment health");
+        PaymentInfo info =new PaymentInfo();
+        info.setAmount((long)10000);
+        info.setName("consultancy fee");
+        info.setCurrency("USD");
+        info.setQuantity((long) 1);
+        ResponseEntity<StripeResponse> response=  paymentService.getCheckoutLink(info);
+        System.out.println("response received successfully");
+        System.out.println(response.getBody());
+        System.out.println("redirecting to the url");
+        return "redirect:"+ response.getBody().getSessionUrl();
     }
 }

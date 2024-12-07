@@ -9,7 +9,7 @@
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
         <link rel="stylesheet" href="/css/welcome.css">
-        <title>Vault Home</title>
+        <title>PeoplesMed</title>
     </head>
 <body>
 <div class="header">

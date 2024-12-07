@@ -175,7 +175,7 @@ public class Controller {
     }
 
     @GetMapping("/getASchedule")
-    public List<Appointments> getAchedule(){
+    public List<Appointments> getAschedule(){
         return scheduleService.getASchedule();
     }
 
