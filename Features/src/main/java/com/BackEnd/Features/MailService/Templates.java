@@ -302,7 +302,7 @@ public class Templates {
      }
 
 
-     public String MeetingDetailsMail(MeetingDetails meetingDetails){
+     public String MeetingDetailsPatientMail(MeetingDetails meetingDetails){
         return "<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
@@ -398,9 +398,10 @@ public class Templates {
                 "\n" +
                 "        <!-- Body -->\n" +
                 "        <div class=\"email-body\">\n" +
-                "            <h2>Dear Participant,</h2>\n" +
-                "            <p>Below are the details of your scheduled meeting:</p>\n" +
-                "            <table>\n" +
+                "            <h2>Dear User ,</h2>\n" +
+                "            <p>Below are the details of your scheduled meeting: With </p>\n" + meetingDetails.getDname() +
+                "            <p>Below are the details of your scheduled meeting: with Doctor</p><h1>\n" + meetingDetails.getDname() +
+                "            </h1><table>\n" +
                 "                <tr>\n" +
                 "                    <th>Meeting ID</th>\n" +
                 "                    <td>"+meetingDetails.getId()+"</td>\n" +
@@ -438,4 +439,140 @@ public class Templates {
                 "</body>\n" +
                 "</html>\n";
      }
+    public String MeetingDetailsDoctorMail(MeetingDetails meetingDetails){
+        return "<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                "    <title>Meeting Details</title>\n" +
+                "    <style>\n" +
+                "        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');\n" +
+                "\n" +
+                "        body {\n" +
+                "            font-family: 'Roboto', Arial, sans-serif;\n" +
+                "            margin: 0;\n" +
+                "            padding: 0;\n" +
+                "            background-color: #f9f9f9;\n" +
+                "        }\n" +
+                "        .email-container {\n" +
+                "            max-width: 600px;\n" +
+                "            margin: 20px auto;\n" +
+                "            background: #ffffff;\n" +
+                "            border-radius: 8px;\n" +
+                "            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n" +
+                "            border: 1px solid #e1e1e1;\n" +
+                "            overflow: hidden;\n" +
+                "        }\n" +
+                "        .email-header {\n" +
+                "            background-color: #003366;\n" +
+                "            color: #ffffff;\n" +
+                "            text-align: center;\n" +
+                "            padding: 20px;\n" +
+                "        }\n" +
+                "        .email-header h1 {\n" +
+                "            margin: 0;\n" +
+                "            font-size: 24px;\n" +
+                "        }\n" +
+                "        .email-body {\n" +
+                "            padding: 20px;\n" +
+                "            color: #333333;\n" +
+                "            line-height: 1.6;\n" +
+                "        }\n" +
+                "        .email-body h2 {\n" +
+                "            margin-top: 0;\n" +
+                "            color: #003366;\n" +
+                "            font-size: 20px;\n" +
+                "        }\n" +
+                "        .email-body p {\n" +
+                "            margin: 10px 0;\n" +
+                "            font-size: 16px;\n" +
+                "        }\n" +
+                "        .email-body table {\n" +
+                "            width: 100%;\n" +
+                "            border-collapse: collapse;\n" +
+                "            margin: 20px 0;\n" +
+                "        }\n" +
+                "        .email-body table th,\n" +
+                "        .email-body table td {\n" +
+                "            text-align: left;\n" +
+                "            padding: 12px;\n" +
+                "            border: 1px solid #e1e1e1;\n" +
+                "            font-size: 16px;\n" +
+                "        }\n" +
+                "        .email-body table th {\n" +
+                "            background-color: #f4f4f4;\n" +
+                "            color: #333333;\n" +
+                "        }\n" +
+                "        .email-body .join-button {\n" +
+                "            display: inline-block;\n" +
+                "            margin: 20px 0;\n" +
+                "            padding: 10px 20px;\n" +
+                "            background-color: #28a745;\n" +
+                "            color: #ffffff;\n" +
+                "            text-decoration: none;\n" +
+                "            border-radius: 5px;\n" +
+                "            font-size: 16px;\n" +
+                "        }\n" +
+                "        .email-body .join-button:hover {\n" +
+                "            background-color: #218838;\n" +
+                "        }\n" +
+                "        .email-footer {\n" +
+                "            background-color: #f4f4f4;\n" +
+                "            text-align: center;\n" +
+                "            padding: 15px 20px;\n" +
+                "            font-size: 14px;\n" +
+                "            color: #666666;\n" +
+                "        }\n" +
+                "    </style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "    <div class=\"email-container\">\n" +
+                "        <!-- Header -->\n" +
+                "        <div class=\"email-header\">\n" +
+                "            <h1>Meeting Details</h1>\n" +
+                "        </div>\n" +
+                "\n" +
+                "        <!-- Body -->\n" +
+                "        <div class=\"email-body\">\n" +
+                "            <h2>Dear Doctor,</h2>\n" +
+                "            <p>Below are the details of your scheduled meeting: with Patient</p><h1>\n" + meetingDetails.getPname() +
+                "            <table></h1>\n" +
+                "                <tr>\n" +
+                "                    <th>Meeting ID</th>\n" +
+                "                    <td>"+meetingDetails.getId()+"</td>\n" +
+                "                </tr>\n" +
+                "                <tr>\n" +
+                "                    <th>Topic</th>\n" +
+                "                    <td>"+meetingDetails.getTopic()+"</td>\n" +
+                "                </tr>\n" +
+                "                <tr>\n" +
+                "                    <th>Start Time</th>\n" +
+                "                    <td>"+meetingDetails.getStart_time()+"</td>\n" +
+                "                </tr>\n" +
+                "                <tr>\n" +
+                "                    <th>Duration</th>\n" +
+                "                    <td>"+meetingDetails.getDuration()+"minutes</td>\n" +
+                "                </tr>\n" +
+                "                <tr>\n" +
+                "                    <th>UUID</th>\n" +
+                "                    <td>"+meetingDetails.getUuid()+"</td>\n" +
+                "                </tr>\n" +
+                "            </table>\n" +
+                "            <p>Click the button below to join the meeting:</p>\n" +
+                "            <a href=\""+meetingDetails.getJoin_url()+"\" class=\"join-button\">Join Meeting</a>\n" +
+                "        </div>\n" +
+                "\n" +
+                "        <!-- Footer -->\n" +
+                "        <div class=\"email-footer\">\n" +
+                "            <p>\n" +
+                "                If you have any questions or face issues joining the meeting, feel free to contact us at \n" +
+                "                <a href=\"mailto:support@yourdomain.com\">support@yourdomain.com</a>.\n" +
+                "            </p>\n" +
+                "            <p>© 2024 PeoplesMed. All rights reserved.</p>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "</body>\n" +
+                "</html>\n";
+    }
 }

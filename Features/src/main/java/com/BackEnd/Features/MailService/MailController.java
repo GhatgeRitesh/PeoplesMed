@@ -42,11 +42,18 @@ public class MailController {
 
     @PostMapping("/MeetingDetailsMail")
     public Boolean MeetingDetailsMail(@RequestBody MeetingDetails meetingDetails){
-        String subject="Appointment successfully Received and here are your Meeting Details";
+        System.out.println("recieved mail details :" + meetingDetails.toString());
+        String subject="Appointment successfully Booked and here are your Meeting Details";
         try{
-            mailSenderService.sendEmail(meetingDetails.getMail(), subject, templates.MeetingDetailsMail(meetingDetails));
+            System.out.println("Sending appointment confirmation mails");
+            mailSenderService.sendEmail(meetingDetails.getPmail(), subject, templates.MeetingDetailsPatientMail(meetingDetails));
+            System.out.println("appointment confirmation sent to patient");
+            mailSenderService.sendEmail(meetingDetails.getDmail(),subject,templates.MeetingDetailsDoctorMail(meetingDetails));
+            System.out.println("appointment confirmation sent to patient");
+            System.out.println("appointment mail sent successfully");
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("terminating process for appointment mails due to exception as : \n");
+            System.out.println(e.toString());
             return false;
         }
         return true;

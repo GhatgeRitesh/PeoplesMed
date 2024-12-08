@@ -4,7 +4,7 @@ import com.FrontEnd.Web_InterFace.EntityManager.PaymentEntity.PaymentInfo;
 import com.FrontEnd.Web_InterFace.EntityManager.PaymentEntity.StripeResponse;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Appointments;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.BookedSchedules;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.MeetingDetails;
+import com.FrontEnd.Web_InterFace.EntityManager.Mail.MeetingDetails;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,4 +40,7 @@ public class EnityBeans {
 
     @Bean
     public BookedSchedules bookedSchedules(){return new BookedSchedules();}
+
+    @Bean
+    public currDoctor currDoctor(){return new currDoctor();}
 }

@@ -67,7 +67,7 @@ public class LoginController {
             ResponseEntity<Patient> patient = userClient.getPatientProfile(curruser.getMail());
             if (patient != null) {
                 p = patient.getBody();
-
+                curruser.setName(p.getName());
                 mv.setViewName("pDashboard");
                 mv.addObject("patient", p);
                 log.info("Diverting to user DashBoard");

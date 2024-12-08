@@ -58,7 +58,7 @@ public class StripeService {
                 return stripeResponse;
         }catch (StripeException e){
             System.out.println("Payment Failed :" +e);
-            stripeResponse.setSessionUrl("/error");
+            stripeResponse.setSessionUrl("/paymentFailed");
             stripeResponse.setStatus("failed");
             stripeResponse.setSessionId(session.getId());
             stripeResponse.setMessage("failed");

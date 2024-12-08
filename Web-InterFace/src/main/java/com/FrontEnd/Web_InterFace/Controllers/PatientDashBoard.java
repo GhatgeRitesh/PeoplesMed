@@ -1,15 +1,15 @@
 package com.FrontEnd.Web_InterFace.Controllers;
 
 import com.FrontEnd.Web_InterFace.Configurations.currUser;
+import com.FrontEnd.Web_InterFace.EntityManager.Mail.MeetingDetails;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.*;
 import com.FrontEnd.Web_InterFace.FeignServices.FeaturesService;
 import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import com.FrontEnd.Web_InterFace.Service.DoctorService;
 import com.FrontEnd.Web_InterFace.Service.PatientService;
-import jakarta.servlet.http.HttpSession;
+import com.FrontEnd.Web_InterFace.Configurations.currDoctor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,21 +40,11 @@ public class PatientDashBoard {
     @Autowired
     private PatientService patientService;
 
-    public PatientDashBoard(UserClient userClient, Patient p, DoctorService doctorService, currUser currUser, PatientService patientService, FeaturesService featuresService) {
-        this.userClient = userClient;
-        this.p = p;
-        this.doctorService = doctorService;
-        this.currUser = currUser;
-        this.patientService = patientService;
-        this.featuresService = featuresService;
-       this.meetingDetails= meetingDetails;
-    }
-
     @Autowired
     private FeaturesService featuresService;
 
-
-
+    @Autowired
+    private currDoctor currDoctor;
 
 
     @GetMapping("/findDoctor")
@@ -89,6 +79,9 @@ public class PatientDashBoard {
                 // System.out.println(doc);
                 mv.addObject("doc", doc);
                 mv.setViewName("BookAppointment");
+                currDoctor.setDoctorEmail(d.getEmail());
+                currDoctor.setDoctorName(d.getName());
+                currDoctor.setDoctorId(d.getD_id());
             }
         }
         log.info("Doctor not found ");
@@ -101,8 +94,6 @@ public class PatientDashBoard {
  //redirect url for zoom notice return "redirect:/ZoomNotice";
     @GetMapping("/shareMeetingDetails")
     public String shareMeetign(){
-        System.out.println("Sharing Meeting details");
-        System.out.println(meetingDetails.toString());
         return "redirect:/login/profile";
     }
 

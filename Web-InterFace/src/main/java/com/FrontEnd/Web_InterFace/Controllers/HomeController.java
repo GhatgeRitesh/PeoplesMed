@@ -70,7 +70,7 @@ public class HomeController {
     public String checkPayment(){
         System.out.println("Checking the payment health");
         PaymentInfo info =new PaymentInfo();
-        info.setAmount((long)10000);
+        info.setAmount((long)10);
         info.setName("consultancy fee");
         info.setCurrency("USD");
         info.setQuantity((long) 1);
@@ -84,6 +84,15 @@ public class HomeController {
 
     @GetMapping("/paymentSuccess")
     public String paymentSuccess(){
+//
+//        Test Card Number	Scenario
+//        4000 0000 0000 0002	Card declined (generic).
+//        4000 0000 0000 9995	Insufficient funds.
+//        4000 0000 0000 9987	Lost card.
+//        4000 0000 0000 9979	Stolen card.
+//        4000 0000 0000 0069	Card expired.
+//        4000 0000 0000 0119	CVC check fails.
+//        4000 0000 0000 5126	Fraudulent card.
         return "PaymentSuccessful";
     }
     @GetMapping("/paymentFailed")

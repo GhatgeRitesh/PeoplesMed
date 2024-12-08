@@ -1,6 +1,7 @@
     package com.FrontEnd.Web_InterFace.Controllers;
 
-    import com.FrontEnd.Web_InterFace.EntityManager.Users.MeetingDetails;
+    import com.FrontEnd.Web_InterFace.Configurations.currDoctor;
+    import com.FrontEnd.Web_InterFace.EntityManager.Mail.MeetingDetails;
     import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
     import com.FrontEnd.Web_InterFace.FeignServices.FeaturesService;
     import com.FrontEnd.Web_InterFace.Service.ZoomService;
@@ -55,6 +56,9 @@
         @Autowired
         private ZoomService zoomService;
 
+        @Autowired
+        private currDoctor currDoctor;
+
         @GetMapping("/ZoomNotice")
         public ModelAndView notice(ModelAndView mv){
             log.info("Notice Page Activated");
@@ -76,19 +80,21 @@
             System.out.println(currUser.getMail());
             // set the User Mail and Meeting Topic
             String Mail ="riteshghatge12345@gmail.com";
-            String MeetingTopic = "Consultation";
+            String MeetingTopic = "Virtual Consultation";
 
             System.out.println("Auth redirect Hit ✅");
             String token = zoomService.getAccessToken(code);
             session.setAttribute("accessToken", token);
             meetingDetails= (MeetingDetails) createMeeting(session,currUser.getMail(), MeetingTopic).getBody();
-            System.out.println(meetingDetails.toString());
-            meetingDetails.setMail(currUser.getMail());
+            meetingDetails.setPmail(currUser.getMail());
+            meetingDetails.setDname(currDoctor.getDoctorName());
+            meetingDetails.setPname(currUser.getName());
+            meetingDetails.setDmail(currDoctor.getDoctorEmail());
+            log.info(meetingDetails.toString());
 
             // send the meeting links to the mail and save them into database
-            boolean flag = featuresService.MeetingDetailsMail(meetingDetails);
-            if(flag) log.info("Mail Not Sent");
-            else log.info("Mail Sent Successfully");
+            featuresService.MeetingDetailsMail(meetingDetails);
+
             return "redirect:/P/shareMeetingDetails";
         }
 

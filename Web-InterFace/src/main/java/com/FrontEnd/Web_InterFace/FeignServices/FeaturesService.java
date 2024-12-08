@@ -1,17 +1,12 @@
 package com.FrontEnd.Web_InterFace.FeignServices;
 
 
-import com.FrontEnd.Web_InterFace.EntityManager.Mail.GMailEntity;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
-import com.FrontEnd.Web_InterFace.EntityManager.Users.MeetingDetails;
+import com.FrontEnd.Web_InterFace.EntityManager.Mail.MeetingDetails;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 
 @FeignClient("FEATURES")

@@ -1,4 +1,5 @@
-package com.BackEnd.Features.MailService;
+package com.FrontEnd.Web_InterFace.EntityManager.Mail;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
@@ -6,8 +7,9 @@ import lombok.Setter;
 import org.springframework.context.annotation.Scope;
 
 @Scope("prototype")
-@Getter @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
+@Getter @Setter
 public class MeetingDetails {
     private String id;
     private String topic;
