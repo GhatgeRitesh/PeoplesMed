@@ -187,7 +187,7 @@
         </div>
         <h1>Payment Succeeded!</h1>
         <p>Thank you ! <br> your Payment has been Successful.</p>
-        <a href="/login/profile" class="button">Your Dashboard</a>
+        <a href="/ZoomNotice" class="button">Your Dashboard</a>
     </div>
 </body>
 </html>
