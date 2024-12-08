@@ -2,6 +2,7 @@
 
     import com.FrontEnd.Web_InterFace.Configurations.currDoctor;
     import com.FrontEnd.Web_InterFace.EntityManager.Mail.MeetingDetails;
+    import com.FrontEnd.Web_InterFace.EntityManager.Users.BookedSchedules;
     import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
     import com.FrontEnd.Web_InterFace.FeignServices.FeaturesService;
     import com.FrontEnd.Web_InterFace.Service.ZoomService;
@@ -59,6 +60,9 @@
         @Autowired
         private currDoctor currDoctor;
 
+        @Autowired
+        private BookedSchedules bookedSchedules;
+
         @GetMapping("/ZoomNotice")
         public ModelAndView notice(ModelAndView mv){
             log.info("Notice Page Activated");
@@ -81,6 +85,8 @@
             // set the User Mail and Meeting Topic
             String Mail ="riteshghatge12345@gmail.com";
             String MeetingTopic = "Virtual Consultation";
+
+            log.info("Booked Schedule Test ->" +bookedSchedules.toString()  );
 
             System.out.println("Auth redirect Hit ✅");
             String token = zoomService.getAccessToken(code);
