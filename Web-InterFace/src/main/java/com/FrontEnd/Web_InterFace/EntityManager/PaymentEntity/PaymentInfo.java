@@ -1,13 +1,13 @@
 package com.FrontEnd.Web_InterFace.EntityManager.PaymentEntity;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.context.annotation.Scope;
 
 @Scope("prototype")
 @Data
-@Getter @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PaymentInfo {
     private Long amount;
     private Long quantity;

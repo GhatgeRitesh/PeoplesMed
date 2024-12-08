@@ -213,7 +213,7 @@
   					<br> <br> <br>
 
   					<!-- Book Schedule ............. -->
-  					<form action="/P/updateSchedule/${doc.d_id}" method="post">
+  					<form action="/P/BookSchedule/${doc.d_id}" method="post">
   						<div class="Book_Schedul">
   							<h1>Book Appointment</h1>
   							<div class="Book_div1">

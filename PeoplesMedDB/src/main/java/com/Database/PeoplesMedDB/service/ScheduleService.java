@@ -34,7 +34,8 @@ public class ScheduleService {
 
         log.info("Service - fetch - started");
         List<Appointments> res = appointmetsRepo.getASchedule(d_id, Date);
-        if(res == null){
+        if(res.isEmpty()){
+            log.info("service - fetch - complete - current - null - saving - new");
             Appointments appointments1 = new Appointments();
             appointments1.setDId(d_id);
             appointments1.setSlotDate(Date);
