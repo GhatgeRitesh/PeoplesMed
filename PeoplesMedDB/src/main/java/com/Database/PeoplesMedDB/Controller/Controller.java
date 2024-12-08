@@ -30,7 +30,6 @@ public class Controller {
 
 
 
-    @Autowired
     private ScheduleService scheduleService;
     public Controller(DocService docService , PService pservice, ScheduleService scheduleService){
         this.docService=docService;

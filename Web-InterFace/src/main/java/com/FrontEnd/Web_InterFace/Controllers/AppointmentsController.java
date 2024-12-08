@@ -24,6 +24,6 @@ public class AppointmentsController {
         log.info("Web - fetching - appointments ");
         List<Appointments> result = userClient.getAschedule(d_id,date);
         log.info("web - fetching - appointments - completed");
-        return new ArrayList<>();
+        return result;
     }
 }
