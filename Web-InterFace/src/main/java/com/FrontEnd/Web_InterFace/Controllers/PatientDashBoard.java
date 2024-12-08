@@ -82,6 +82,7 @@ public class PatientDashBoard {
                 currDoctor.setDoctorEmail(d.getEmail());
                 currDoctor.setDoctorName(d.getName());
                 currDoctor.setDoctorId(d.getD_id());
+                return mv;
             }
         }
         log.info("Doctor not found ");

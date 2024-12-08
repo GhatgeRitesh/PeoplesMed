@@ -37,7 +37,7 @@ public interface UserClient {
     public ResponseEntity<Doctor> getDoctorProfile(String Email);
 
     @PostMapping("/getASchedule")
-    public List<Appointments> getAschedule(Long d_id);
+    public List<Appointments> getAschedule(@RequestParam Long d_id,@RequestParam String Date);
 
 
 }

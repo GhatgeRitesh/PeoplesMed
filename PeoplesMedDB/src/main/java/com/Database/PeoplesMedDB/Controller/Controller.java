@@ -129,7 +129,8 @@ public class Controller {
     }
 
     @PostMapping("/getASchedule")
-    public List<Appointments> getAschedule(Long d_id,String Date ){
+    public List<Appointments> getAschedule(@RequestParam Long d_id,@RequestParam String Date ){
+        // Appointments
         log.info("GetASchedule Activated");
         return scheduleService.getASchedule(d_id,Date);
     }

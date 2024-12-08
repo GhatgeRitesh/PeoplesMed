@@ -31,6 +31,8 @@ public class ScheduleService {
     }
 
     public List<Appointments>  getASchedule(Long d_id , String Date){
+
+        log.info("Service - fetch - started");
         List<Appointments> res = appointmetsRepo.getASchedule(d_id, Date);
         if(res == null){
             Appointments appointments1 = new Appointments();
@@ -75,9 +77,10 @@ public class ScheduleService {
             appointments6.setLimit(0);
             appointmetsRepo.save(appointments6);
 
+            log.info("service Fetch completed and appointment saved");
             return appointmetsRepo.getASchedule(d_id, Date);
         }
-        System.out.println(res.toString());
+        log.info("Service Fetch completed existing appointments" + res.toString());
         return res;
     }
 
