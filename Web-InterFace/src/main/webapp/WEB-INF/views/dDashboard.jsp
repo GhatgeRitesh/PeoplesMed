@@ -19,7 +19,7 @@
         </div>
         <div class="buttons">
             <a href="/home/Welcome"><button>Home</button></a>
-            <a href="/logout"><button>Logout</button></a>
+            <a href="/logout" class="logoutfont"><button>Logout</button></a>
         </div>
     </div>
 

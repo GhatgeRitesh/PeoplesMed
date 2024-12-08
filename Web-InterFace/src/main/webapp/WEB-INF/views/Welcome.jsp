@@ -12,6 +12,18 @@
         <title>PeoplesMed</title>
     </head>
 <body>
+
+
+
+
+<div class="welcome-screen">
+    <div class="welcome-message">
+      <img src="/images/titled design.png" alt="">
+       <!-- <p>Welcome to PeoplesMed ✨</p>  -->
+    </div>
+</div>
+
+
 <div class="header">
 <div class="logo">
   <img src="/images/logo.png" alt="Logo" class="logo-img">
@@ -222,5 +234,7 @@
       </div>
     </div>
   </div>
+
+
 </body>
 </html>

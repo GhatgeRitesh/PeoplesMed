@@ -72,15 +72,7 @@
 
   <div class="logincontainer">
 
-      <div class="back_button">
-         <a href="/p/findDoctor">
-          <p>  &larr; Back</p> </a>
-      </div>
-    
-    
-      <div class="signin">
-        <button id="toggleButton1"> <a href="PPsign.html" style="text-decoration: none; color: white;">SignUp</a></button>
-      </div>
+
       
     </div>
 </div>
@@ -261,7 +253,7 @@
 
   	<div class="back_button">
   		<a href="ListDoctor_Cards.html">
-  			<p>&larr; Back</p>
+  			<p>Go Back</p>
   		</a>
   	</div>
 

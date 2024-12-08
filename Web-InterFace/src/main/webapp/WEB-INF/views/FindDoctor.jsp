@@ -13,7 +13,7 @@
 <body>
     <div class="header">
         <div class="logo">
-          <img src="/images/logo.png" alt="Logo" class="logo-img">
+          <img src="/images/logo.png" alt="Logo" cljnass="logo-img">
           <h3 class="logo-h3">PeoplesMed</h3>
         </div>
         <div class="nav-bar">
@@ -25,14 +25,9 @@
 
         <div class="logincontainer">
 
-            <div class="login">
-               <button id="toggleButton"> <a href="#" style="text-decoration: none; color: white;"> Login </a></button>
-            </div>
 
 
-            <div class="signin">
-              <button id="toggleButton1"> <a href="PPsign.html" style="text-decoration: none; color: white;">SignUp</a></button>
-            </div>
+
 
           </div>
     </div>
@@ -60,6 +55,10 @@
                      <a href="/P/d/${doctor.d_id}"><button>Book Appointment</button></a>
                           <!-- <a href="#" >Add a Review</a>
                           <div class="review">
+
+
+
+
 
                           </div> -->
                     </div>
