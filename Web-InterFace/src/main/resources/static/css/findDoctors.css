@@ -12,6 +12,13 @@ body{
      animation:slideUp 0.8s ease;
 }
 
+
+body::-webkit-scrollbar{
+width:0px;
+background:transparent;
+}
+
+
 /*  */
 
 .header{

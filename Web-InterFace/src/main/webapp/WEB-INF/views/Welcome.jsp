@@ -9,7 +9,8 @@
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
         <link rel="stylesheet" href="/css/welcome.css">
-        <title>PeoplesMed</title>
+       <link rel="icon" href="/images/favcon1.jpg" class="favcon">
+       <title>𝙋𝙚𝙤𝙥𝙡𝙚𝙨𝙈𝙚𝙙</title>
     </head>
 <body>
 

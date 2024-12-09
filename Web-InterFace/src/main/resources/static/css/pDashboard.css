@@ -26,6 +26,8 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 13px;
+
+
   }
 
   .sidebar .profile {
@@ -75,15 +77,8 @@
   }
 
   .logout {
-    margin:auto;
-    margin-right:5%;
     text-align: center;
-    margin-top: 32px;
-
-  }
-
-  .logoutfont{
-     font-size:16px;
+    margin-top: 20px;
   }
 
   .logout button {

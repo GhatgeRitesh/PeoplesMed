@@ -10,6 +10,12 @@ body{
     height: 100vh;
 }
 
+body::-webkit-scrollbar{
+width:0px;
+background:transparent;
+}
+
+
 /*  */
 
 .header{
@@ -426,6 +432,7 @@ textarea {
 .button-primary {
     background-color: #28a745;
     color: white;
+    cursor:pointer;
 }
 .button-danger {
     background-color: #dc3545;
@@ -487,16 +494,13 @@ border-radius: 10px;
 
 
 
-    .back_button {
+
+.back_button {
         position: relative;
-         /*display: flex;*/
+         display: flex;
          float: right;
-         /*margin:auto;*/
-         /*margin-top:90px;*/
-         margin-right:180px;
-         margin:auto;
-         margin-top:120%;
-         margin-right:180px;
+         margin-right: 165px;
+
     }
 
     .back_button p{

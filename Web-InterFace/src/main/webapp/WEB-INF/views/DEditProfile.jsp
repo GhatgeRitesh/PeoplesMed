@@ -6,7 +6,8 @@
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Doctor's Dashboard</title>
+     <link rel="icon" href="/images/favcon1.jpg" class="favcon">
+     <title>𝙋𝙚𝙤𝙥𝙡𝙚𝙨𝙈𝙚𝙙</title>
       <link rel="stylesheet" href="/css/Edit_Profile.css">
     </head>
     <body>
