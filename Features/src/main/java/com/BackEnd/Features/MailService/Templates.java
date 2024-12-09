@@ -399,7 +399,6 @@ public class Templates {
                 "        <!-- Body -->\n" +
                 "        <div class=\"email-body\">\n" +
                 "            <h2>Dear User ,</h2>\n" +
-                "            <p>Below are the details of your scheduled meeting: With </p>\n" + meetingDetails.getDname() +
                 "            <p>Below are the details of your scheduled meeting: with Doctor</p><h1>\n" + meetingDetails.getDname() +
                 "            </h1><table>\n" +
                 "                <tr>\n" +

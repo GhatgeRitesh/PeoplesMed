@@ -66,4 +66,16 @@ public class BookingAppointmentController {
     public String paymentFailed(){
         return "PaymentFailed";
     }
+
+    @GetMapping("/bookingConfirm")
+    public String confirm(){
+        log.info("Redirecting to Confirmation Page");
+        return "BookingConfirm";
+    }
+
+    @GetMapping("/linkGenerated")
+    public String linkGenerated(){
+        log.info("zoom Authorize page revisited by user redirecting to LinkGenerated Page");
+        return "LinkGenerated";
+    }
 }

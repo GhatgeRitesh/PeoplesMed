@@ -178,6 +178,7 @@
         <span></span><span></span><span></span><span></span>
     </div>
 
+
     <div class="success-card">
         <div class="icon">
             <!-- Checkmark SVG Icon -->
@@ -187,7 +188,7 @@
         </div>
         <h1>Payment Succeeded!</h1>
         <p>Thank you ! <br> your Payment has been Successful.</p>
-        <a href="/ZoomNotice" class="button">Your Dashboard</a>
+        <a href="/P/ZoomNotice" class="button">Continue Booking Appointment</a>
     </div>
 </body>
 </html>
