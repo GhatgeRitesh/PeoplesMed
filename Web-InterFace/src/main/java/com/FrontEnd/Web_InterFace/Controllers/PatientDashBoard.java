@@ -8,6 +8,7 @@ import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
 import com.FrontEnd.Web_InterFace.Service.DoctorService;
 import com.FrontEnd.Web_InterFace.Service.PatientService;
 import com.FrontEnd.Web_InterFace.Configurations.currDoctor;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,7 +69,8 @@ public class PatientDashBoard {
     }
 
     @GetMapping("/d/{d_id}")
-    public ModelAndView DocProfile(@PathVariable("d_id") Long D_id, ModelAndView mv){
+    public ModelAndView DocProfile(@PathVariable("d_id") Long D_id, ModelAndView mv, HttpSession session){
+        session.setAttribute("VisitedZoomAPI", null);
         log.info("DocProfile Activated");
         Doctor doc=null;
         for(Doctor d: doctorService.getCachedDocs()){

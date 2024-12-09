@@ -24,6 +24,7 @@
     import java.io.IOException;
 
 
+
     @Controller
     @Log
     public class ZoomController {
@@ -63,15 +64,21 @@
         @Autowired
         private BookedSchedules bookedSchedules;
 
-        @GetMapping("/ZoomNotice")
+        @GetMapping("/P/ZoomNotice")
         public ModelAndView notice(ModelAndView mv){
             log.info("Notice Page Activated");
             mv.setViewName("Notice");
             return mv;
         }
 
-        @GetMapping("/zoom/authorize")
-        public String authorize() {
+        @GetMapping("/P/zoom/authorize")
+        public String authorize(HttpSession session) {
+
+            //checking the Visited patient or not
+            if(session.getAttribute("VisitedZoomAPI") !=null){return "redirect:/P/linkGenerated";}
+
+            session.setAttribute("VisitedZoomAPI", "visited");
+
             System.out.println("Entered into zoom authorize");
             String url = "https://zoom.us/oauth/authorize?response_type=code&client_id=" + clientId + "&redirect_uri=" + redirectUri;
             return "redirect:" + url;
@@ -81,12 +88,12 @@
         public String oauthRedirect(@RequestParam("code") String code, Model model, HttpSession session) throws IOException {
             // here instead of taking the form input i need to implicitly declare the id and Message and call the create meeting method retrieve the entity and fetch them with mail
 
-            System.out.println(currUser.getMail());
+            System.out.println(session.getAttribute("VisitedZoomAPI"));
             // set the User Mail and Meeting Topic
             String Mail ="riteshghatge12345@gmail.com";
             String MeetingTopic = "Virtual Consultation";
 
-            log.info("Booked Schedule Test ->" +bookedSchedules.toString()  );
+            log.info("Booked Schedule Test ->" +bookedSchedules.toString());
 
             System.out.println("Auth redirect Hit ✅");
             String token = zoomService.getAccessToken(code);
@@ -98,10 +105,14 @@
             meetingDetails.setDmail(currDoctor.getDoctorEmail());
             log.info(meetingDetails.toString());
 
+            // Saving Schedule
+            // curr schedule not null
+            //
+
             // send the meeting links to the mail and save them into database
             featuresService.MeetingDetailsMail(meetingDetails);
 
-            return "redirect:/P/shareMeetingDetails";
+            return "redirect:/P/linkGenerated";
         }
 
 
