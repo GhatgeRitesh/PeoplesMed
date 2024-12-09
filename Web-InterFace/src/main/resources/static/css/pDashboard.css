@@ -14,12 +14,6 @@
     /* background-color: #746f6f; */
   }
 
-  body::-webkit-scrollbar{
-  width:0px;
-  background:transparent;
-  }
-
-
   .main{
       margin: 50px;
       display: flex;
@@ -32,6 +26,8 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 13px;
+
+
   }
 
   .sidebar .profile {
@@ -43,19 +39,17 @@
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
   }
 
   .profile h3 {
     font-size: 18px;
     color: #333;
-    margin-bottom:1px;
   }
 
   .profile p {
     font-size: 14px;
     color: #777;
-    margin-bottom:1px;
   }
 
   .sidebar ul {
@@ -83,18 +77,11 @@
   }
 
   .logout {
-    margin:auto;
-    margin-right:5%;
     text-align: center;
-    margin-top: 32px;
-  }
-
-  .logoutfont{
-     font-size:16px;
+    margin-top: 20px;
   }
 
   .logout button {
-
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -102,7 +89,6 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
   }
 
   .logout button:hover {
