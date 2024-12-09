@@ -1,7 +1,7 @@
 package com.FrontEnd.Web_InterFace.Service;
 
 import com.FrontEnd.Web_InterFace.Configurations.Users;
-import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
+import com.FrontEnd.Web_InterFace.FeignServices.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class CustomeUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserClient userClient;
+    private DatabaseService databaseService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -21,7 +21,7 @@ public class CustomeUserDetailsService implements UserDetailsService {
         Users user;
         try {
             // Here we only fetch user details (username and hashed password)
-            user = userClient.verifyUser(new Users(username, "dummyPassword")); // Replace with valid request object structure
+            user = databaseService.verifyUser(new Users(username, "dummyPassword")); // Replace with valid request object structure
             if (user == null || user.getUsername() == null) {
                 throw new UsernameNotFoundException("User not found with username: " + username);
             }

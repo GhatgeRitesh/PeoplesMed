@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.annotation.Scope;
 
+
 @Scope("prototype")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

@@ -1,6 +1,6 @@
 package com.FrontEnd.Web_InterFace.Configurations;
 
-import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
+import com.FrontEnd.Web_InterFace.FeignServices.DatabaseService;
 import com.FrontEnd.Web_InterFace.Service.CustomeUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,14 +10,11 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -32,7 +29,7 @@ public class SecurityConfiguration {
     @Autowired
     private CustomeUserDetailsService customeUserDetailsService;
     @Autowired
-    private UserClient userClient;
+    private DatabaseService databaseService;
     @Autowired
     private currUser currUser;
 
@@ -76,7 +73,7 @@ public class SecurityConfiguration {
 
                 System.out.println("Authenticating user: " + username);
 
-                Users user = userClient.verifyUser(new Users(username, rawPassword)); // Feign client validation
+                Users user = databaseService.verifyUser(new Users(username, rawPassword)); // Feign client validation
 
                 if (user == null || user.getUsername() == null) {
                     throw new BadCredentialsException("Invalid username or password");

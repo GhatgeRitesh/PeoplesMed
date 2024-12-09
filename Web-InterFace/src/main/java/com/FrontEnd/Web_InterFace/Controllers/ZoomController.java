@@ -4,9 +4,12 @@
     import com.FrontEnd.Web_InterFace.EntityManager.Mail.MeetingDetails;
     import com.FrontEnd.Web_InterFace.EntityManager.Users.BookedSchedules;
     import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
-    import com.FrontEnd.Web_InterFace.FeignServices.FeaturesService;
+    import com.FrontEnd.Web_InterFace.FeignServices.DatabaseService;
+    import com.FrontEnd.Web_InterFace.FeignServices.MailService;
+    import com.FrontEnd.Web_InterFace.Service.PatientService;
     import com.FrontEnd.Web_InterFace.Service.ZoomService;
     import com.fasterxml.jackson.databind.ObjectMapper;
+    import feign.FeignException;
     import jakarta.servlet.http.HttpSession;
     import lombok.extern.java.Log;
     import okhttp3.*;
@@ -29,7 +32,7 @@
     @Log
     public class ZoomController {
         @Autowired
-        private Patient patient;
+        private PatientService patientService;
 
         @Autowired
         private MeetingDetails meetingDetails;
@@ -38,7 +41,7 @@
         private currUser currUser;
 
         @Autowired
-        private FeaturesService featuresService;
+        private MailService mailService;
 
         @Value("${zoom.api.url}")
         private String apiUrl;
@@ -63,6 +66,9 @@
 
         @Autowired
         private BookedSchedules bookedSchedules;
+
+        @Autowired
+        private DatabaseService databaseService;
 
         @GetMapping("/P/ZoomNotice")
         public ModelAndView notice(ModelAndView mv){
@@ -91,10 +97,13 @@
             System.out.println(session.getAttribute("VisitedZoomAPI"));
             // set the User Mail and Meeting Topic
             String Mail ="riteshghatge12345@gmail.com";
-            String MeetingTopic = "Virtual Consultation";
 
-            log.info("Booked Schedule Test ->" +bookedSchedules.toString());
 
+            bookedSchedules = (BookedSchedules) session.getAttribute("schedule");
+            Patient p= patientService.getCurrUser(currUser.getMail());
+
+            String MeetingTopic= "Consultation meeting of Doctor: Dr."+ currDoctor.getDoctorName() + " and  Patient :" +currUser.getName() +" for Concern of Patient as : " + bookedSchedules.getDescription();
+            System.out.println("schedule is saved in session " + bookedSchedules.toString());
             System.out.println("Auth redirect Hit ✅");
             String token = zoomService.getAccessToken(code);
             session.setAttribute("accessToken", token);
@@ -104,13 +113,30 @@
             meetingDetails.setPname(currUser.getName());
             meetingDetails.setDmail(currDoctor.getDoctorEmail());
             log.info(meetingDetails.toString());
-
-            // Saving Schedule
             // curr schedule not null
-            //
+            bookedSchedules.setPId(p.getP_id());
+            bookedSchedules.setDId(currDoctor.getDoctorId());
+            bookedSchedules.setLink(meetingDetails.getJoin_url());
+            bookedSchedules.setStatus("Pending");
 
+            meetingDetails.setStart_time(bookedSchedules.getSlotTime()+" on date:"+ bookedSchedules.getSlotDate());
+
+            //saving the schedule
+            try {
+                log.info("saving bookedSchedule");
+                databaseService.saveSchedule(bookedSchedules);
+                databaseService.updateASchedule(bookedSchedules);
+                log.info("saved");
+            }
+            catch(FeignException.FeignClientException e){
+                log.info("Exception occured while saving schedule :" + e);
+            }
             // send the meeting links to the mail and save them into database
-            featuresService.MeetingDetailsMail(meetingDetails);
+            log.info("sending mails");
+            mailService.MeetingDetailsMail(meetingDetails);
+            log.info("mails sent successful");
+//            System.out.println("after update the meeting details are:" + meetingDetails.toString() );
+//            System.out.println("after update the schedules details are:" + bookedSchedules.toString());
 
             return "redirect:/P/linkGenerated";
         }

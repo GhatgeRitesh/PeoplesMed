@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @FeignClient("FEATURES")
-public interface FeaturesService {
+public interface MailService {
     // in this class all the required methods from the other service are
     // interfaces are stored here and then the object is injected to required method
     // using the autowire and method from this classes are called

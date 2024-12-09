@@ -1,8 +1,9 @@
 package com.FrontEnd.Web_InterFace.Controllers;
 
+import com.FrontEnd.Web_InterFace.EntityManager.Users.BookedSchedules;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
-import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
+import com.FrontEnd.Web_InterFace.FeignServices.DatabaseService;
 import com.FrontEnd.Web_InterFace.Service.DoctorService;
 import com.FrontEnd.Web_InterFace.Service.PatientService;
 import lombok.extern.java.Log;
@@ -27,7 +28,7 @@ public class LoginController {
     private currUser curruser;
 
     @Autowired
-    private UserClient userClient;
+    private DatabaseService databaseService;
 
     @Autowired
     private PatientService patientService;
@@ -64,12 +65,23 @@ public class LoginController {
     public ModelAndView pProfile(ModelAndView mv) {
         log.info("Fetching User Data");
         if (curruser.getRole().equals("[ROLE_PATIENT]")) {
-            ResponseEntity<Patient> patient = userClient.getPatientProfile(curruser.getMail());
+            ResponseEntity<Patient> patient = databaseService.getPatientProfile(curruser.getMail());
             if (patient != null) {
                 p = patient.getBody();
                 curruser.setName(p.getName());
+                System.out.println(p.getP_id() + "This is patient Id");
+                try {
+                    log.info("Fetching Patient Schedules");
+                    List<BookedSchedules> schedules = databaseService.getBSchedulePatient(p.getP_id());
+                    System.out.println(schedules.toString());
+                    mv.addObject("schedules",schedules);
+                    log.info("Fetched Patient Schedules");
+                }catch (Exception e){
+                    log.info("Exception Occured while Fetching Schedules");
+                }
                 mv.setViewName("pDashboard");
                 mv.addObject("patient", p);
+
                 log.info("Diverting to user DashBoard");
                 return mv;
             } else {
@@ -82,14 +94,24 @@ public class LoginController {
         else if(curruser.getRole().equals("[ROLE_DOCTOR]")){
             System.out.println(curruser.toString());
             System.out.println("Fetching Doctor Profile");
-            ResponseEntity<Doctor> doctor= userClient.getDoctorProfile(curruser.getMail());
+            ResponseEntity<Doctor> doctor= databaseService.getDoctorProfile(curruser.getMail());
             System.out.println("Fetched Successfully");
             System.out.println(doctor.toString());
             if(doctor != null){
                 d=doctor.getBody();
-                System.out.println("Fetching doctor schedules");
+                System.out.println(d.getD_id() + "This is Doctor Id");
 
-                System.out.println("Fetched successfully");
+                try {
+                    log.info("Fetching Patient Schedules");
+                    List<BookedSchedules> schedules = databaseService.getBScheduleDoctor(d.getD_id());
+                    System.out.println(schedules.toString());
+                    log.info("Fetched Patient Schedules");
+                    mv.addObject("schedules",schedules);
+                }catch (Exception e){
+                     log.info("Exception occured fetching schedules");
+                }
+
+
                 mv.addObject("doctor",d);
 
                 mv.setViewName("dDashboard");

@@ -85,8 +85,13 @@ public class ScheduleService {
         return res;
     }
 
-    public List<BookedSchedules> getBSchedule(){
-        List<BookedSchedules> res = bookedSchedulesRepo.getBSchedule(2L);
+    public List<BookedSchedules> getBSchedulePatient(Long users_id){
+        List<BookedSchedules> res = bookedSchedulesRepo.getBSchedulePatient(users_id);
+        System.out.println(res.toString());
+        return res;
+    }
+    public List<BookedSchedules> getBScheduleDoctor(Long users_id){
+        List<BookedSchedules> res = bookedSchedulesRepo.getBScheduleDoctor(users_id);
         System.out.println(res.toString());
         return res;
     }

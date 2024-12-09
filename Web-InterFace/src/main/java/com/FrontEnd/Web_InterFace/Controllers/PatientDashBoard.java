@@ -3,8 +3,8 @@ package com.FrontEnd.Web_InterFace.Controllers;
 import com.FrontEnd.Web_InterFace.Configurations.currUser;
 import com.FrontEnd.Web_InterFace.EntityManager.Mail.MeetingDetails;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.*;
-import com.FrontEnd.Web_InterFace.FeignServices.FeaturesService;
-import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
+import com.FrontEnd.Web_InterFace.FeignServices.MailService;
+import com.FrontEnd.Web_InterFace.FeignServices.DatabaseService;
 import com.FrontEnd.Web_InterFace.Service.DoctorService;
 import com.FrontEnd.Web_InterFace.Service.PatientService;
 import com.FrontEnd.Web_InterFace.Configurations.currDoctor;
@@ -25,7 +25,7 @@ import java.util.Objects;
 @Log4j2
 public class PatientDashBoard {
     @Autowired
-    private UserClient userClient;
+    private DatabaseService databaseService;
     @Autowired
     private Patient p;
 
@@ -42,7 +42,7 @@ public class PatientDashBoard {
     private PatientService patientService;
 
     @Autowired
-    private FeaturesService featuresService;
+    private MailService mailService;
 
     @Autowired
     private currDoctor currDoctor;

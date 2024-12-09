@@ -2,6 +2,7 @@ package com.FrontEnd.Web_InterFace.FeignServices;
 
 import com.FrontEnd.Web_InterFace.Configurations.Users;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Appointments;
+import com.FrontEnd.Web_InterFace.EntityManager.Users.BookedSchedules;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient("PEOPLESMEDDB")
-public interface UserClient {
+public interface DatabaseService {
     @PostMapping("/ValidateUser")
     public Users verifyUser(@RequestBody Users user);
 
@@ -39,5 +40,15 @@ public interface UserClient {
     @PostMapping("/getASchedule")
     public List<Appointments> getAschedule(@RequestParam Long d_id,@RequestParam String Date);
 
+    @PostMapping("/saveBookedSchedule")
+    public void saveSchedule(@RequestBody BookedSchedules bookedSchedules);
 
+    @PostMapping("/updateASchedule")
+    public int updateASchedule(@RequestBody BookedSchedules bookedSchedules);
+
+    @PostMapping("/getBSchedulePatient")
+    public List<BookedSchedules> getBSchedulePatient(Long p_Id);
+
+    @PostMapping("/getBScheduleDoctor")
+    public List<BookedSchedules> getBScheduleDoctor(Long d_Id);
 }

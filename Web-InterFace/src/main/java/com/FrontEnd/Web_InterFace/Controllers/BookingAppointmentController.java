@@ -5,6 +5,7 @@ import com.FrontEnd.Web_InterFace.EntityManager.PaymentEntity.StripeResponse;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.BookedSchedules;
 import com.FrontEnd.Web_InterFace.FeignServices.PaymentService;
 import com.FrontEnd.Web_InterFace.Configurations.currDoctor;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,13 +31,11 @@ public class BookingAppointmentController {
 
 
     @PostMapping("/BookSchedule/{d_id}")
-    public String PaymentCheckOut(@ModelAttribute BookedSchedules schedules, @PathVariable Long d_id ){
-        // 1 . save the BookSchedule Object
-        // 2 . ask the payment to be completed
-        // 3 . then save the  schedule from the success method
+    public String PaymentCheckOut(@ModelAttribute BookedSchedules schedules, @PathVariable Long d_id , HttpSession session){
 
         log.info("Booking Appointment Started Redirecting to payments Service");
         bookedSchedules = schedules;
+        session.setAttribute("schedule", bookedSchedules);
         PaymentInfo payinfo= paymentInfo.builder().name(currDoctor.getDoctorName()).amount(10000L).quantity(1L).currency("inr").build();
         ResponseEntity<StripeResponse> response=  paymentService.getCheckoutLink(payinfo);
 

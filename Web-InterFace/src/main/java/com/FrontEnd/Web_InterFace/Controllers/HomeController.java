@@ -7,7 +7,7 @@ import com.FrontEnd.Web_InterFace.EntityManager.PaymentEntity.StripeResponse;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Doctor;
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
 import com.FrontEnd.Web_InterFace.FeignServices.PaymentService;
-import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
+import com.FrontEnd.Web_InterFace.FeignServices.DatabaseService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +25,11 @@ public class HomeController {
     private currUser curruser;
 
     @Autowired
-    private UserClient userClient;
+    private DatabaseService databaseService;
 
     @Autowired
     private PaymentService paymentService;
-    public HomeController(Users users,UserClient userClient){this.curruser=curruser;this.userClient=userClient;}
+    public HomeController(Users users, DatabaseService databaseService){this.curruser=curruser;this.databaseService = databaseService;}
 
     @GetMapping("/Welcome")
     public ModelAndView home(ModelAndView mv){
@@ -45,13 +45,13 @@ public class HomeController {
             System.out.println(role);
             if(role.equals("[ROLE_PATIENT]")){
                 log.info("Patient Entity Retriving");
-                Patient patient= userClient.getPatientProfile(curruser.getMail()).getBody();
+                Patient patient= databaseService.getPatientProfile(curruser.getMail()).getBody();
                 log.info("Retrival Process Completed"+patient.toString() );
                 mv.addObject("patient",patient);
             }
             if(role.equals("[ROLE_DOCTOR]")){
                 log.info("Patient Entity Retriving");
-                Doctor doctor= userClient.getDoctorProfile(curruser.getMail()).getBody();
+                Doctor doctor= databaseService.getDoctorProfile(curruser.getMail()).getBody();
                 if(doctor == null){log.info("Users role detected as Doctor retrival process retrived null entity");}
                 log.info(doctor.toString());
                 mv.addObject("doctor",doctor);

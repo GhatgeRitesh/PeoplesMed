@@ -1,6 +1,7 @@
 package com.Database.PeoplesMedDB.Controller;
 
 import com.Database.PeoplesMedDB.Entity.*;
+import com.Database.PeoplesMedDB.Repository.BookedSchedulesRepo;
 import com.Database.PeoplesMedDB.Repository.DocRepo;
 import com.Database.PeoplesMedDB.Repository.PRepo;
 import com.Database.PeoplesMedDB.service.DocService;
@@ -27,6 +28,9 @@ public class Controller {
     private DocRepo docRepo;
     @Autowired
     private final PService pService;
+
+    @Autowired
+    private BookedSchedulesRepo bookedSchedulesRepo;
 
 
 
@@ -104,6 +108,7 @@ public class Controller {
     public ResponseEntity<?> fetchUser(@RequestBody String EMail){
         log.info("The User Details Fetching");
         Patient p= pRepo.findByEmail(EMail);
+        log.info("Completed Fetching user details");
         if (p == null){
             log.info("The patient Recieved Null terminating Process");
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
@@ -134,14 +139,34 @@ public class Controller {
         return scheduleService.getASchedule(d_id,Date);
     }
 
-    @GetMapping("/getPSchedule")
-    public List<BookedSchedules> getBSchedule(){
-       return scheduleService.getBSchedule();
+    @PostMapping("/getBSchedulePatient")
+    public List<BookedSchedules> getBSchedulePatient(Long p_Id){
+        log.info("Fetching Patient Schedules");
+       return scheduleService.getBSchedulePatient(p_Id);
+    }
+    @PostMapping("/getBScheduleDoctor")
+    public List<BookedSchedules> getBScheduleDoctor(Long d_Id){
+        log.info("Fetching Doctor Schedules");
+        return scheduleService.getBScheduleDoctor(d_Id);
     }
 
-    @GetMapping("/updateASchedule")
-    public int updateASchedule(){
-      //  return scheduleService.updateASchedule();
-        return 1;
+    @PostMapping("/updateASchedule")
+    public int updateASchedule(@RequestBody BookedSchedules bookedSchedules){
+        Long d_id= bookedSchedules.getDId();
+        String time= bookedSchedules.getSlotTime();
+        String  date= bookedSchedules.getSlotDate();
+        return scheduleService.updateASchedule(d_id,time,date);
+    }
+
+    @PostMapping("/saveBookedSchedule")
+    public void saveSchedule(@RequestBody BookedSchedules bookedSchedules){
+        System.out.println("bookedSchedule");
+        log.info("Saving BookedSchedules");
+        try{
+            bookedSchedulesRepo.save(bookedSchedules);
+            log.info("Schedule have been booked");
+        }catch (Exception e){
+            log.info("Exception occured while saving schedule");
+        }
     }
 }

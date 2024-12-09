@@ -1,7 +1,7 @@
 package com.FrontEnd.Web_InterFace.Service;
 
 import com.FrontEnd.Web_InterFace.EntityManager.Users.Patient;
-import com.FrontEnd.Web_InterFace.FeignServices.UserClient;
+import com.FrontEnd.Web_InterFace.FeignServices.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +13,16 @@ import java.util.List;
 public class PatientService {
 
     @Autowired
-    private UserClient userClient;
+    private DatabaseService databaseService;
 
     @Cacheable(value = "patientCache" , key = "'allPatients'")
     public List<Patient> getAllPatient(){
-        return userClient.getAllPatients();
+        return databaseService.getAllPatients();
     }
 
     @Cacheable(value = "userCache" , key = " 'patientCache' ")
     public Patient getCurrUser(String mail){
-        ResponseEntity<Patient> patient= userClient.getPatientProfile(mail);
+        ResponseEntity<Patient> patient= databaseService.getPatientProfile(mail);
         return patient.getBody();
     }
 
