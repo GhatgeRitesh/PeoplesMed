@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.FrontEnd</groupId>
-	<artifactId>Web-InterFace</artifactId>
+	<artifactId>CustomerService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Web-InterFace</name>
+	<name>Customer Service</name>
 	<description>FrontEnd for PeoplesMEd</description>
 
 	<properties>
