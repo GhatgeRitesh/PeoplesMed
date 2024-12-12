@@ -49,7 +49,8 @@
                        <p>${doctor.specialization} | ${doctor.experience} experience</p>
                     </div>
                     <div class="info_div">
-                   <p><b>Address :</b> <span>Old Kapada galli Latur,Latur Lorem ipsum dolor sit amet.</span></p>
+                   <p><b>Hospital Name :</b> <span>${doctor.hospitalName}</span></p>
+                   <p><b>City :</b> <span>${doctor.city}</span></p>
                   <p><b>Degree :</b> <span>${doctor.education} </span></p>
                     </div>
                     <div class="info_div" id="buttondiv">

@@ -11,6 +11,10 @@
         <option value="$PROJECT_DIR$/PeoplesMedDB/pom.xml" />
         <option value="$PROJECT_DIR$/ApiGateway/pom.xml" />
         <option value="$PROJECT_DIR$/CustomerService/pom.xml" />
+        <option value="$PROJECT_DIR$/DatabaseService/pom.xml" />
+        <option value="$PROJECT_DIR$/NotificationService/pom.xml" />
+        <option value="$PROJECT_DIR$/PaymentService/pom.xml" />
+        <option value="$PROJECT_DIR$/RegisteryService/pom.xml" />
       </list>
     </option>
   </component>

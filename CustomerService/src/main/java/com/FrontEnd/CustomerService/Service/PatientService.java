@@ -15,14 +15,15 @@ public class PatientService {
     @Autowired
     private DatabaseService databaseService;
 
-    @Cacheable(value = "patientCache" , key = "'allPatients'")
+
     public List<Patient> getAllPatient(){
         return databaseService.getAllPatients();
     }
 
-    @Cacheable(value = "userCache" , key = " 'patientCache' ")
+
     public Patient getCurrUser(String mail){
         ResponseEntity<Patient> patient= databaseService.getPatientProfile(mail);
+
         return patient.getBody();
     }
 

@@ -79,7 +79,7 @@
         <div class="appointments">
           <!-- <h3>Latest Appointments</h3> -->
           <div class="appointment-card">
-            <h4>Dr. John Doe</h4>
+            <h4>${schedule.docName}</h4>
             <p>Appointment Date: ${schedule.slotDate}
             <p>Time:  ${schedule.slotTime}</p>
             <p>
@@ -90,7 +90,27 @@
                         </span>
             </p>
 
-
+           <a href="${schedule.link}" target="_blank" style="text-decoration: none;">
+             <button style="
+               background-color: #4CAF50;
+               color: white;
+               border: none;
+               padding: 10px 20px;
+               text-align: center;
+               text-decoration: none;
+               display: inline-block;
+               font-size: 16px;
+               margin: 4px 2px;
+               cursor: pointer;
+               border-radius: 5px;
+               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+               transition: background-color 0.3s ease, transform 0.2s ease;
+             "
+             onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='scale(1.05)';"
+             onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='scale(1)';">
+               Join Meeting
+             </button>
+           </a>
 
           </div>
           <!-- <a href="#" class="btn">Book Appointment</a> -->
