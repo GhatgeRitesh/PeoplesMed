@@ -69,22 +69,53 @@
               <tr>
                 <th>#</th>
                 <th>First Name</th>
-                <th>Last Name</th>
-                <th>Disease</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Satus</th>
+                <th>Link</th>
               </tr>
             </thead>
             <tbody>
-              <c:forEach var="schedule" items="${schedules}">
-              <td>${schedule.patName}</td>
-                                <td>${schedule.slotDate}</td>
-                                <td>${schedule.slotTime}</td>
-                                <td><span style="${schedule.status == 'Completed' ? 'color: green; font-weight: bold;' :
-                                                                         schedule.status == 'Pending' ? 'color: orange; font-weight: bold;' :
-                                                                         'color: black; font-weight: normal;'}">
-                                                                ${schedule.status}
-                                                            </span></td>
-              </c:forEach>
+                <c:forEach var="schedule" items="${schedules}" varStatus="status">
+                    <tr>
+                        <td>${status.index + 1}</td> <!-- Serial number -->
+                        <td>${schedule.patName}</td>
+                        <td>${schedule.slotDate}</td>
+                        <td>${schedule.slotTime}</td>
+                        <td>
+                            <span style="${schedule.status == 'Completed' ? 'color: green; font-weight: bold;' :
+                                          schedule.status == 'Pending' ? 'color: orange; font-weight: bold;' :
+                                          'color: black; font-weight: normal;'}">
+                                ${schedule.status}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="${schedule.link}" target="_blank" style="text-decoration: none;">
+                                <button style="
+                                    background-color: #4CAF50;
+                                    color: white;
+                                    border: none;
+                                    padding: 10px 20px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    font-size: 16px;
+                                    margin: 4px 2px;
+                                    cursor: pointer;
+                                    border-radius: 5px;
+                                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+                                    transition: background-color 0.3s ease, transform 0.2s ease;
+                                "
+                                onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='scale(1.05)';"
+                                onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='scale(1)';">
+                                    Join Meeting
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
             </tbody>
+
           </table>
         </section>
       </main>
