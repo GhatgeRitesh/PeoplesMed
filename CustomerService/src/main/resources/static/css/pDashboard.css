@@ -278,3 +278,13 @@ hr{
 right: 2px; */
 /* float: right; */
 }
+.status-completed {
+    color: green;
+}
+.status-pending {
+    color: orange;
+}
+.status-default {
+    color: red;
+}
+

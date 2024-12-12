@@ -118,6 +118,8 @@
             bookedSchedules.setDId(currDoctor.getDoctorId());
             bookedSchedules.setLink(meetingDetails.getJoin_url());
             bookedSchedules.setStatus("Pending");
+            bookedSchedules.setDocName(currDoctor.getDoctorName());
+            bookedSchedules.setPatName(currUser.getName());
 
             meetingDetails.setStart_time(bookedSchedules.getSlotTime()+" on date:"+ bookedSchedules.getSlotDate());
 

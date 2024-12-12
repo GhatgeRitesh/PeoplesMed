@@ -75,40 +75,27 @@
            <br>
              <h2>Latest Appointments</h2>
              <hr>
-
+        <c:forEach var="schedule" items="${schedules}">
         <div class="appointments">
           <!-- <h3>Latest Appointments</h3> -->
           <div class="appointment-card">
             <h4>Dr. John Doe</h4>
-            <p>Appointment Date: 2022-04-15</p>
-            <p>Time: 07:00:00</p>
-            <p>Status : Completed</p>
+            <p>Appointment Date: ${schedule.slotDate}
+            <p>Time:  ${schedule.slotTime}</p>
+            <p>
+                Status: <span style="${schedule.status == 'Completed' ? 'color: green; font-weight: bold;' :
+                                     schedule.status == 'Pending' ? 'color: orange; font-weight: bold;' :
+                                     'color: black; font-weight: normal;'}">
+                            ${schedule.status}
+                        </span>
+            </p>
+
+
+
           </div>
           <!-- <a href="#" class="btn">Book Appointment</a> -->
         </div>
-
-        <div class="appointments">
-
-            <!-- <h3>Latest Appointments</h3> -->
-            <div class="appointment-card">
-              <h4>Dr. John Doe</h4>
-              <p>Appointment Date: 2022-04-15</p>
-              <p>Time: 07:00:00</p>
-              <p>Status : Pending</p>
-            </div>
-            <!-- <a href="#" class="btn">Book Appointment</a> -->
-          </div>
-
-          <div class="appointments">
-            <!-- <h3>Latest Appointments</h3> -->
-            <div class="appointment-card">
-              <h4>Dr. John Doe</h4>
-              <p>Appointment Date: 2022-04-15</p>
-              <p>Time: 07:00:00</p>
-              <p>Status : Not Attended</p>
-            </div>
-            <!-- <a href="#" class="btn">Book Appointment</a> -->
-          </div>
+        </c:forEach>
 
         </div>
 

@@ -102,10 +102,10 @@ public class LoginController {
                 System.out.println(d.getD_id() + "This is Doctor Id");
 
                 try {
-                    log.info("Fetching Patient Schedules");
+                    log.info("Fetching Doctor Schedules");
                     List<BookedSchedules> schedules = databaseService.getBScheduleDoctor(d.getD_id());
                     System.out.println(schedules.toString());
-                    log.info("Fetched Patient Schedules");
+                    log.info("Fetched Doctor Schedules");
                     mv.addObject("schedules",schedules);
                 }catch (Exception e){
                      log.info("Exception occured fetching schedules");

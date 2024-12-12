@@ -140,13 +140,15 @@ public class Controller {
     }
 
     @PostMapping("/getBSchedulePatient")
-    public List<BookedSchedules> getBSchedulePatient(Long p_Id){
+    public List<BookedSchedules> getBSchedulePatient(@RequestBody Long p_Id){
         log.info("Fetching Patient Schedules");
+        System.out.println("id : "+ p_Id);
        return scheduleService.getBSchedulePatient(p_Id);
     }
     @PostMapping("/getBScheduleDoctor")
-    public List<BookedSchedules> getBScheduleDoctor(Long d_Id){
+    public List<BookedSchedules> getBScheduleDoctor(@RequestBody Long d_Id){
         log.info("Fetching Doctor Schedules");
+        System.out.println("id : "+ d_Id);
         return scheduleService.getBScheduleDoctor(d_Id);
     }
 

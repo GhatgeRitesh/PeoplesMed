@@ -18,4 +18,6 @@ public class BookedSchedules {
     private String description;
     private String status;
     private String link;
+    private String docName;
+    private String patName;
 }

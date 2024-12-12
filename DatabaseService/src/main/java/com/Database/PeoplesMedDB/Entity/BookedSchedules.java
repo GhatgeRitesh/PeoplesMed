@@ -33,6 +33,13 @@ public class BookedSchedules {
 
     @Column(name = "link")
     private String link;
+
+    @Column(name = "doctorName")
+    private String docName;
+
+    @Column(name = "patientName")
+    private String patName;
+
     @Override
     public String toString() {
         return "BookedSchedules{" +
@@ -44,6 +51,8 @@ public class BookedSchedules {
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", link='" + link + '\'' +
+                ", docName='" + docName + '\'' +
+                ", patName='" + patName + '\'' +
                 '}';
     }
 }

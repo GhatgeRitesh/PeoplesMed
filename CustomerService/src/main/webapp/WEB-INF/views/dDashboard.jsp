@@ -74,69 +74,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Virginia</td>
-                <td>Rose</td>
-                <td><span class="badge critical">Critical</span></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Julie</td>
-                <td>Gaspard</td>
-                <td><span class="badge stable">Stable</span></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Jacqueline</td>
-                <td>Woods</td>
-                <td><span class="badge recovering">Recovering</span></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Margaret</td>
-                <td>Griffin</td>
-                <td><span class="badge stable">Stable</span></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Joseph</td>
-                <td>Hanes</td>
-                <td><span class="badge critical">Critical</span></td>
-              </tr>
+              <c:forEach var="schedule" items="${schedules}">
+              <td>${schedule.patName}</td>
+                                <td>${schedule.slotDate}</td>
+                                <td>${schedule.slotTime}</td>
+                                <td><span style="${schedule.status == 'Completed' ? 'color: green; font-weight: bold;' :
+                                                                         schedule.status == 'Pending' ? 'color: orange; font-weight: bold;' :
+                                                                         'color: black; font-weight: normal;'}">
+                                                                ${schedule.status}
+                                                            </span></td>
+              </c:forEach>
             </tbody>
           </table>
         </section>
       </main>
     </div>
   </div>
-
-
-
-  <div class="row mt-4">
-              <h4 class="text-center mb-3">Schedules</h4>
-              <c:forEach var="schedule" items="${schedules}">
-                  <c:if test="${schedule.PId != null && schedule.slotDate != null && schedule.description != null}">
-                      <div class="col-md-4 mb-4">
-                          <div class="card schedule-card p-3">
-                              <h5>Schedule ID: ${schedule.SId}</h5>
-                              <p><strong>Doctor ID:</strong> ${schedule.DId}</p>
-                              <p><strong>Patient ID:</strong> ${schedule.PId}</p>
-                              <p><strong>Slot Date:</strong> ${schedule.slotDate}</p>
-                              <p><strong>Slot Time:</strong> ${schedule.slotTime}</p>
-                              <p><strong>Limit:</strong> ${schedule.limit} patients</p>
-                              <p><strong>Description:</strong>
-                                  <c:out value="${schedule.description}" default="No description available" />
-                              </p>
-                              <div class="d-grid gap-2">
-                                  <button class="btn btn-primary">Join Meeting</button>
-                                  <button class="btn btn-danger">Cancel Schedule</button>
-                              </div>
-                          </div>
-                      </div>
-                  </c:if>
-              </c:forEach>
-          </div>
 
   <script src="scripts.js"></script>
 </body>
