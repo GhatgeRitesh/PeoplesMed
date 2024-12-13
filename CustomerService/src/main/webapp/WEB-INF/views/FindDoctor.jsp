@@ -41,18 +41,21 @@
               <div class="card">
                   <div class="left">
                   <img src="/images/treat.jpg" alt=""> <br>
-                    <p>Dr. ${doctor.name}</p>
+                    <p>${doctor.name}</p>
                   </div>
                   <div class="right">
                     <div class="info_div">
                       <h4>${doctor.name} Hospital</h4>
                        <p>${doctor.specialization} | ${doctor.experience} experience</p>
                     </div>
+                    <hr>
+
                     <div class="info_div">
                    <p><b>Hospital Name :</b> <span>${doctor.hospitalName}</span></p>
                    <p><b>City :</b> <span>${doctor.city}</span></p>
                   <p><b>Degree :</b> <span>${doctor.education} </span></p>
                     </div>
+                    <hr>
                     <div class="info_div" id="buttondiv">
                      <a href="/P/d/${doctor.d_id}"><button>Book Appointment</button></a>
                           <!-- <a href="#" >Add a Review</a>

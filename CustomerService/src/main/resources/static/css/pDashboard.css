@@ -6,13 +6,18 @@
   }
 
   body {
-      width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: #dfe1e6;
     /* background-color: #746f6f; */
   }
+
+body::-webkit-scrollbar{
+width:0px;
+background:transparent;
+}
 
   .main{
       margin: 50px;
@@ -172,7 +177,12 @@
     display: inline-block;
     margin-top: 10px;
     transition: background-color 0.3s ease;
+
   }
+
+   .appointment-card button{
+     right:0px:
+   }
 
   .appointments .btn:hover {
     background-color: #0056b3;
@@ -288,3 +298,40 @@ right: 2px; */
     color: red;
 }
 
+
+
+
+
+ .header1 a{
+      display: inline-block;
+    /*  margin-top: 10px;*/
+       margin-left:68%;
+  }
+
+
+  .header1 button{
+      background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+   font-size: 18px;
+  }
+
+.header1 button:hover{
+transition: background-color 0.3s ease-in-out;
+ cursor: pointer;
+}
+
+
+
+.appointment-card{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.info p{
+text-size:12px;
+}

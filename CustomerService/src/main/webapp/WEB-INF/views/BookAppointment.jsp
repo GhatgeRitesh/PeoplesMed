@@ -253,7 +253,7 @@
   	<br>
 
   	<div class="back_button">
-  		<a href="ListDoctor_Cards.html">
+  		<a href="/P/findDoctor">
   			<p>Go Back</p>
   		</a>
   	</div>

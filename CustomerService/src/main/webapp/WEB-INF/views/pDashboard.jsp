@@ -18,6 +18,7 @@
     			<h3 class="logo-h3">PeoplesMed</h3>
     		</div>
 
+                    <a href="/logout"><button>Logout</button></a>
 
     	</div>
 
@@ -27,10 +28,9 @@
 
 
        <div class="main">
-
       <div class="sidebar">
         <div class="profile">
-          <img src="https://cdn.pixabay.com/photo/2024/09/03/15/21/ai-generated-9019520_640.png" alt="User Profile">
+          <img src="/images/user.jpg" alt="User Profile">
           <h3>${patient.name}</h3>
           <p>${patient.email}</p>
           <p>${patient.contact}</p>
@@ -43,9 +43,7 @@
           <li><a href="#">Edit Profile</a></li>
         </ul>
         <hr>
-        <div class="logout">
-        <a href="/logout"><button>Logout</button></a>
-        </div>
+
 
       </div>
       <div class="main-content">
@@ -79,6 +77,7 @@
         <div class="appointments">
           <!-- <h3>Latest Appointments</h3> -->
           <div class="appointment-card">
+          <div class="info">
             <h4>${schedule.docName}</h4>
             <p>Appointment Date: ${schedule.slotDate}
             <p>Time:  ${schedule.slotTime}</p>
@@ -89,7 +88,9 @@
                             ${schedule.status}
                         </span>
             </p>
+          </div>
 
+         <div class="infobtn">
            <a href="${schedule.link}" target="_blank" style="text-decoration: none;">
              <button style="
                background-color: #4CAF50;
@@ -111,6 +112,8 @@
                Join Meeting
              </button>
            </a>
+
+           </div>
 
           </div>
           <!-- <a href="#" class="btn">Book Appointment</a> -->

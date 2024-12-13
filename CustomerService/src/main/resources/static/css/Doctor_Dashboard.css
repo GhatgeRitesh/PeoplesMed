@@ -8,8 +8,12 @@ body {
     position: relative;
   }
   
-  
-  
+
+  body::-webkit-scrollbar{
+  width:0px;
+  background:transparent;
+  }
+
   
   
   
@@ -18,6 +22,7 @@ body {
     height: 100px;
     background-image: linear-gradient(#80deea,#b2ebf2 );
     display: flex;
+  /*  justify-content:space-around;*/
     position: sticky;
     align-items: center;
     top: 0px;
@@ -56,10 +61,31 @@ body {
     color: rgb(50, 50, 50);
   }
   
-  
-  
-  
-  
+
+  .header1 a{
+      display: inline-block;
+    /*  margin-top: 10px;*/
+      margin-left:68%;
+
+  }
+
+
+  .header1 button{
+      background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+   font-size: 18px;
+  }
+
+.header1 button:hover{
+transition: background-color 0.3s ease-in-out;
+ cursor: pointer;
+}
+
+
   
   
   
