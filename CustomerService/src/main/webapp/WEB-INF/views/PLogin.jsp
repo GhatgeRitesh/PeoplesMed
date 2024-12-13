@@ -49,7 +49,10 @@
        </div>
        <div class="form-group">
            <label for="password">Password</label>
+           <div class="hide">
            <input type="password" id="password" placeholder="Password" name="password" required>
+           <span class="toggle-eye" onclick="togglePassword()">👁</span>
+           </div>
            <div class="error" id="password-error"></div>
        </div>
        <button type="submit">Login</button>
@@ -75,6 +78,28 @@
             errorElement.textContent = ''; // Clear error message if valid
         }
     }
+
+
+
+
+    /*      */
+
+  function togglePassword() {
+       const passwordField = document.getElementById('password');
+       const eyeIcon = document.querySelector('.toggle-eye');
+
+       if(passwordField.type === 'password') {
+         passwordField.type = 'text';
+         eyeIcon.textContent = '🙈'; // Change icon to "hide"
+       } else {
+         passwordField.type = 'password';
+         eyeIcon.textContent = '👁'; // Change icon to "show"
+       }
+     }
+
+
+
+
 </script>
 </body>
 </html>

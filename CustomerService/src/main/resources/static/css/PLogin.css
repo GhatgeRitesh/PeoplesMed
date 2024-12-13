@@ -153,6 +153,8 @@ color: white;
 
 
 /* Login Form */
+
+
 .form_box {
     width: 100%;
     max-width: 500px;
@@ -163,6 +165,7 @@ color: white;
     border-radius: 10px;
     padding: 30px;
     animation:slideUp 0.8s ease;
+   position: relative;
 }
 
 .form h1 {
@@ -175,6 +178,24 @@ color: white;
 .form-group {
     margin-bottom: 20px;
 }
+
+
+
+
+ .form-group  .toggle-eye {
+      position: absolute;
+      top: 64%;
+      right: 80px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 21px;
+    }
+
+
+
+
+
+
 
 label {
     font-size: 20px;
@@ -192,7 +213,7 @@ input[type="text"], input[type="password"] {
     color: #333;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus   .toggle-eye:focus {
     outline: none;
     border-color: #3498db;
 }
@@ -225,6 +246,9 @@ button[type="submit"]:hover {
     font-size: 14px;
     margin-top: 5px;
 }
+
+
+
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
