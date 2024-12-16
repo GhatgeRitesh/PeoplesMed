@@ -45,7 +45,7 @@
                   </div>
                   <div class="right">
                     <div class="info_div">
-                      <h4>${doctor.name} Hospital</h4>
+                      <h4>${doctor.name}</h4>
                        <p>${doctor.specialization} | ${doctor.experience} experience</p>
                     </div>
                     <hr>

@@ -102,7 +102,7 @@
             bookedSchedules = (BookedSchedules) session.getAttribute("schedule");
             Patient p= patientService.getCurrUser(currUser.getMail());
 
-            String MeetingTopic= "Consultation meeting of Doctor: Dr."+ currDoctor.getDoctorName() + " and  Patient :" +currUser.getName() +" for Concern of Patient as : " + bookedSchedules.getDescription();
+            String MeetingTopic= "Consultation meeting of Doctor: "+ currDoctor.getDoctorName() + " and  Patient :" +currUser.getName() +" for Concern of Patient as : " + bookedSchedules.getDescription();
             System.out.println("schedule is saved in session " + bookedSchedules.toString());
             System.out.println("Auth redirect Hit ✅");
             String token = zoomService.getAccessToken(code);
