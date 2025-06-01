@@ -31,9 +31,11 @@ public class HomeController {
     private PaymentService paymentService;
     public HomeController(Users users, DatabaseService databaseService){this.curruser=curruser;this.databaseService = databaseService;}
 
+    public HomeController(){}
     @GetMapping("/Welcome")
     public ModelAndView home(ModelAndView mv){
         mv.setViewName("Welcome");
+        mv.addObject("message", "Welcome to Home Page!");
         return mv;
     }
 

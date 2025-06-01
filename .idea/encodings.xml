@@ -4,8 +4,10 @@
     <file url="file://$PROJECT_DIR$/ApiGateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CustomerService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/DatabaseService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Emergency-Servcice/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Eureka-Server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Features/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/HospitalService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/NotificationService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/PaymentService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/PeoplesMedDB/src/main/java" charset="UTF-8" />
