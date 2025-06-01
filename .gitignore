@@ -4,7 +4,7 @@ target/
 !**/src/test/**/target/
 
 ## ignore secrets
-**/application.properties
+application.properties
 
 
 ### IntelliJ IDEA ###
