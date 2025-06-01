@@ -14,7 +14,7 @@
 <body>
     <div class="header">
         <div class="logo">
-          <img src="/images/logo.png" alt="Logo" cljnass="logo-img">
+          <img src="/images/logo.png" alt="Logo" class="logo-img">
           <h3 class="logo-h3">PeoplesMed</h3>
         </div>
         <div class="nav-bar">
@@ -26,6 +26,9 @@
 
         <div class="logincontainer">
 
+            <div class="login">
+               <button id="toggleButton"> <a href="#" style="text-decoration: none; color: white;"> Login </a></button>
+            </div>
 
 
 
