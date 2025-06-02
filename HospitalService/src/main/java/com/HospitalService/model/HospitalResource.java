@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter @Setter
 @Table(name = "HospitalResource")
@@ -11,14 +13,22 @@ public class HospitalResource{
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "resource_id")
         private Long id;
 
-        private Integer bedCount;
-        private Integer ambulanceCount;
-        private Boolean otAvailable;
-        private Boolean staffPresent;
+        @Column(name = "icu_available")
+        private Boolean icuAvailable;
 
-        @OneToOne
-        @JoinColumn(name = "hospital_id")
+        @Column(name = "ot_available")
+        private Boolean otAvailable;
+
+        @Column(nullable = false)
+        private String status; // Can be "Open" or "Close"
+
+        @Column(name = "staff_count")
+        private Integer staffCount;
+
+        @ManyToOne
+        @JoinColumn(name = "hospital_id", referencedColumnName = "h_id")
         private Hospital hospital;
 }

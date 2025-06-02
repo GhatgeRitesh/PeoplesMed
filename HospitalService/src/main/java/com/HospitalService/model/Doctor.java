@@ -12,17 +12,19 @@ import java.util.List;
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "d_id")
     private Long id;
 
+    @Column(nullable = false)
     private String name;
-    private String contact;
+
     private String speciality;
-    private Boolean available;
+
+    private String contact;
+
+    private String degree;
 
     @ManyToOne
-    @JoinColumn(name = "hospital_id")
+    @JoinColumn(name = "hospital_id", referencedColumnName = "h_id")
     private Hospital hospital;
-
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    private List<Schedule> schedules;
 }
