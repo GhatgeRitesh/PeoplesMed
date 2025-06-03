@@ -1,6 +1,8 @@
 package com.HospitalService.controller;
 
+import com.HospitalService.model.Doctor;
 import com.HospitalService.model.Hospital;
+import com.HospitalService.service.DoctorService;
 import com.HospitalService.service.HospitalService;
 import com.HospitalService.service.PasswordEncryptionService;
 import lombok.extern.java.Log;
@@ -21,6 +23,9 @@ public class UI_Controller {
 
     @Autowired
     private PasswordEncryptionService passwordEncryptionService;
+
+    @Autowired
+    private DoctorService doctorService;
 
 
     //Hospital Registration Form Controller
@@ -47,6 +52,26 @@ public class UI_Controller {
             log.info("Exception Occurred while Registration of Data");
             log.info("Exception:-" + e.getMessage());
             mv.addObject("error","Internal Server Error");
+            mv.setViewName("Error");
+            return mv;
+        }
+    }
+
+    @PostMapping("/AddDoctor")
+    public ModelAndView addDoctor(@ModelAttribute Doctor doctor, ModelAndView mv){
+        try{
+            if(doctor == null){throw new RuntimeException("Form received empty");}
+            log.info("adding doctor");
+            if(doctorService.save(doctor)){
+                mv.setViewName("DashBoard");
+                return mv;
+            }
+            else{
+                throw new RuntimeException("Error from service");
+            }
+        }catch (Exception e){
+            log.info("Exception while adding doctor: "+ e.getMessage());
+            mv.addObject("Error",e.getMessage());
             mv.setViewName("Error");
             return mv;
         }

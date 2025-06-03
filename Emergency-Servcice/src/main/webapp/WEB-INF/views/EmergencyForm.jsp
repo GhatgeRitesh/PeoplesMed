@@ -26,12 +26,12 @@
         <label>Condition Type:</label>
         <label>
           <input type="radio" name="condition" value="serious"
-                 <c:if test="${patient != null and patient.role == 'serious'}">checked</c:if> />
+                 <c:if test="${patient != null and patient.role == 'serious'}"></c:if>
           Serious
         </label>
         <label>
           <input type="radio" name="condition" value="mild"
-                 <c:if test="${patient != null and patient.role == 'mild'}">checked</c:if> />
+                 <c:if test="${patient != null and patient.role == 'mild'}"></c:if>
           Mild
         </label>
       </div>
@@ -75,11 +75,11 @@
         <label>Ambulance Need?</label>
         <label>
           <input type="radio" name="ambulanceNeed" value="true"
-                 <c:if test="${patient != null and patient.role == 'emergency' or patient.role == 'serious'}">checked</c:if> /> Yes
+                 <c:if test="${patient != null and patient.role == 'emergency' or patient.role == 'serious'}"></c:if> Yes
         </label>
         <label>
           <input type="radio" name="ambulanceNeed" value="false"
-                 <c:if test="${patient == null or patient.role != 'emergency'}">checked</c:if> /> No
+                 <c:if test="${patient == null or patient.role != 'emergency'}"></c:if> No
         </label>
       </div>
 
@@ -88,67 +88,5 @@
 
 
   </div>
-
-  <script>
-
-document.getElementById("emergencyForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const formData = {
-    condition: document.querySelector('input[name="condition"]:checked').value,
-    city: document.getElementById("city").value,
-    address: document.getElementById("address").value,
-    contact: document.getElementById("contact").value,
-    emergencyType: document.getElementById("emergency").value,
-    ambulanceNeed: document.querySelector('input[name="ambulance"]:checked').value,
-  };
-
-  alert("Form Submitted!\n" + JSON.stringify(formData, null, 2));
-});
-
-
-
-// Populate Emergency Types from backend
-async function loadEmergencyTypes() {
-  try {
-    const response = await fetch("http://localhost:8080/api/emergency-types"); // Update with your backend URL
-    const types = await response.json();
-
-    const dropdown = document.getElementById("emergency");
-    dropdown.innerHTML = ""; // Clear existing
-
-    types.forEach(type => {
-      const option = document.createElement("option");
-      option.value = type.toLowerCase();
-      option.textContent = type;
-      dropdown.appendChild(option);
-    });
-  } catch (error) {
-    console.error("Failed to load emergency types:", error);
-    alert("Could not load emergency types from server.");
-  }
-}
-
-// Handle form submission
-document.getElementById("emergencyForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const formData = {
-    condition: document.querySelector('input[name="condition"]:checked').value,
-    city: document.getElementById("city").value,
-    address: document.getElementById("address").value,
-    contact: document.getElementById("contact").value,
-    emergencyType: document.getElementById("emergency").value,
-    ambulanceNeed: document.querySelector('input[name="ambulance"]:checked').value,
-  };
-
-  alert("Form Submitted!\n" + JSON.stringify(formData, null, 2));
-});
-
-// Call this on page load
-window.onload = loadEmergencyTypes;
-
-
-  </script>
 </body>
 </html>

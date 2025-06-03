@@ -13,6 +13,6 @@
        <title>PeoplesMed-Emergency-Service</title>
     </head>
     <body>
-    ${Hospital.toString()}
+
     </body>
  </html>

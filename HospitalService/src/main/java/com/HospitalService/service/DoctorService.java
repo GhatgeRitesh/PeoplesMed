@@ -29,4 +29,14 @@ public class DoctorService {
             return null;
         }
     }
+
+    public boolean save(Doctor doctor){
+        try{
+            doctorRepo.save(doctor);
+            return true;
+        }catch (Exception e){
+            log.info("Error while saving doctor"+ e.getMessage());
+            return false;
+        }
+    }
 }

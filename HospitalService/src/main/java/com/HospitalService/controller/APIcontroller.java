@@ -1,6 +1,6 @@
 package com.HospitalService.controller;
 
-import com.HospitalService.model.Doctor;
+import com.HospitalService.model.*;
 import com.HospitalService.service.DoctorService;
 import com.HospitalService.service.HospitalResourceService;
 import com.HospitalService.service.HospitalService;
@@ -10,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/hos")
+@RequestMapping("/Hospital")
 @Log
 public class APIcontroller {
     @Autowired
@@ -22,22 +24,32 @@ public class APIcontroller {
     private HospitalResourceService hospitalResourceService;
 
 
-    @GetMapping("/getDocs")
-    public ResponseEntity<Doctor> getDocs(){
-        log.info("Listing Doctors");
-        log.info(doctorService.listDocs().toString());
-        return new ResponseEntity<>(HttpStatus.OK);
+    @PostMapping("getCityHospitals")
+    public ResponseEntity<List<HospitalStatusDTO>> getHospitals(@RequestBody Emergency_Requests emergencyRequests){
+        try{
+            if(emergencyRequests == null){log.info("Request received empty"); throw new RuntimeException("Internal Server Error");}
+            log.info("Requesting hospital Service");
+            List<HospitalStatusDTO> list=hospitalService.getCityHospitals(emergencyRequests.getCity());
+            if (list == null){throw new RuntimeException("Empty Result retrived");}
+            return new ResponseEntity<>(list,HttpStatus.OK);
+        }catch (Exception e){
+            log.info("Exception occurred : "+ e.getMessage());
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
+
     }
 
-    @PostMapping("/cityHops")
-    public ResponseEntity<?> getcityHops(String city){
-        log.info("Retrieving Hospital Details for city: "+ city);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @PostMapping("/setStatus")
+    public ResponseEntity<?> setHospitalStatus(@ModelAttribute HospitalStatus hospitalStatus){
+        try{
+            if(hospitalService.setStatus(hospitalStatus))
+                return new ResponseEntity<>(HttpStatus.OK);
+            else
+                throw new RuntimeException("Error while saving status");
+        }catch (Exception e){
+            log.info("Exception occurred: "+ e.getMessage());
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
     }
-//    @PostMapping("/get-patient/Hospitals")
-//    public ResponseEntity<?> getCityHospitals(@RequestBody User user){
-//        //
-//       // List<Hospital> hospitalList=hospitalService.getCityHospital(user.city);
-//
-//    }
+
 }

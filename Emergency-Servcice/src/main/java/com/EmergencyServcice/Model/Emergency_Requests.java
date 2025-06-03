@@ -24,6 +24,7 @@ public class Emergency_Requests {
 
     private Integer age;
 
+    private String city;
 
     private Boolean ambulanceNeed;
 

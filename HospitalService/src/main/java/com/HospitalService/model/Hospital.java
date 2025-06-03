@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.annotation.Nullable;
-import java.util.List;
+
 
 @Entity
 @Getter @Setter
@@ -20,11 +19,13 @@ public class Hospital {
    private String name;
 
    private String address;
+   @Column(nullable = false)
    private String city;
    private String type;
    private String speciality;
    @Column(name="password" , nullable = false)
    private String password;
+   private String contact;
 
    @Column(name = "icu_available")
    private Boolean icuAvailable;

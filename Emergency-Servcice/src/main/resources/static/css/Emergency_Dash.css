@@ -1,0 +1,190 @@
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f0f4f8; }
+
+    /* Navbar */
+    nav {
+      background-color: #0c4a6e;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo { font-size: 24px; font-weight: bold; }
+    .menu { display: flex; gap: 20px; }
+    .menu a {
+      color: white; text-decoration: none;
+      font-size: 16px; transition: color 0.3s ease;
+    }
+
+    .menu a:hover { color: #ffd700; }
+    .menu-toggle { display: none; font-size: 28px; cursor: pointer; }
+
+    .emergency-section {
+      background-color: #ffecec;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .emergency-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .emergency-header img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .emergency-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: red;
+    }
+
+    .emergency-small {
+      font-size: 12px;
+      color: #333;
+      margin-left: 50px;
+    }
+
+    .back-btn {
+      font-size: 1.2rem;
+      font-weight: 500;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background-color: #ccc;
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .hospital-card {
+      width: 70%;
+      background-color: white;
+      margin: 20px 0px 20px 100px ;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .hospital-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hospital-type {
+      padding: 5px 12px;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+
+    .gov { background-color: green; }
+    .private { background-color: goldenrod; }
+    .hybrid { background-color: gray; }
+
+    .status {
+      font-weight: bold;
+      padding: 6px 10px;
+      border-radius: 6px;
+      color: white;
+    }
+
+    .open { background-color: green; }
+    .close { background-color: red; }
+
+    .hospital-info { margin: 15px 0; }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .box {
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+    }
+
+    .speciality { background-color: gold; color: #000; font-weight: bold; }
+    .ambulance { background-color: white; }
+    .contact-green { background-color: #e6ffe6; }
+    .contact-yellow { background-color: #fffacc; }
+
+    .request-btn {
+      margin-top: 15px;
+      background-color: green;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .accepted {
+      margin-top: 10px;
+      display: none;
+      background: #d3f9d8;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .menu { flex-direction: column; display: none; width: 100%; }
+      .menu.active { display: flex; }
+      .menu-toggle { display: block; }
+    }
+    
+    .status.open {
+  background-color: green;
+  color: white;
+}
+
+.status.close {
+  background-color: red;
+  color: white;
+}
+
+  
+
+
+.box.green {
+  background-color: #d4edda; /* light green */
+  color: #155724;
+  font-weight: bold;
+}
+
+.box.red {
+  background-color: #f8d7da; /* light red */
+  color: #721c24;
+  font-weight: bold;
+}
+
+
+
+.hospital-type.gov {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+
+.hospital-type.private {
+  background-color: goldenrod;
+  color: white;
+  font-weight: bold;
+}

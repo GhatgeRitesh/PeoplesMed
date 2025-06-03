@@ -26,6 +26,8 @@ public class Emergency_Requests {
     private String contact;
 
     private Integer age;
+    @Column(nullable = false)
+    private String city;
 
     @Column(name = "ambulance_need")
     private Boolean ambulanceNeed;
