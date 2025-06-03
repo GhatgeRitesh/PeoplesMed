@@ -22,14 +22,15 @@ public class UI_Controller {
     @Autowired
     private WebService webService;
 
-<<<<<<< Updated upstream
+
     @GetMapping("/curr-city-hospitals")
-    public ModelAndView emergencyPage(ModelAndView mv){
+    public ModelAndView emergencyPage(ModelAndView mv) {
         log.info("Fetching patient details");
-        Patient p =webService.getDetails().getBody();
-        log.info("Getting Hospitals from city: "+p.getCity());
+        Patient p = webService.getDetails().getBody();
+        log.info("Getting Hospitals from city: " + p.getCity());
         return mv;
-=======
+
+    }
     @GetMapping("/form")
     public ModelAndView getform(ModelAndView mv){
         log.info("Emergency form requested");
@@ -46,7 +47,7 @@ public class UI_Controller {
             mv.addObject("Error","Internal Server Error");
             return mv;
         }
->>>>>>> Stashed changes
+
     }
 
     @PostMapping("/submitEmergency")
