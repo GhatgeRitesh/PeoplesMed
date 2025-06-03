@@ -23,7 +23,7 @@ public class UI_Controller {
         log.info("Fetching patient details");
         Patient p =webService.getDetails().getBody();
         log.info("Getting Hospitals from city: "+p.getCity());
-
+        return mv;
     }
 
     @GetMapping("/hospitalList")

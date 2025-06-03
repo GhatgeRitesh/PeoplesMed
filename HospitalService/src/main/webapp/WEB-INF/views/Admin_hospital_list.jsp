@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.HospitalService.model.Hospital" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,12 +76,26 @@
 
                 <div class="hospital-attribute">
                     <strong>ICU:</strong>
-                    <span class="badge ${h.icu_available ? 'icu' : 'no'}">${h.icu_available ? 'Available' : 'Not Available'}</span>
+                    <c:choose>
+                        <c:when test="${h.icuAvailable}">
+                            <span class="badge icu">Available</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="badge no">Not Available</span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
                 <div class="hospital-attribute">
                     <strong>OT:</strong>
-                    <span class="badge ${h.ot_available ? 'ot' : 'no'}">${h.ot_available ? 'Available' : 'Not Available'}</span>
+                    <c:choose>
+                        <c:when test="${h.otAvailable}">
+                            <span class="badge ot">Available</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="badge no">Not Available</span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </c:forEach>
