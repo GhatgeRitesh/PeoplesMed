@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -77,8 +78,8 @@ public class UI_Controller {
             Optional<Hospital> result= hospitalService.getCreds(login);
             if (result.isEmpty()) throw new RuntimeException("Account does not exist");
             String password=login.getPassword();
-            passwordEncryptionService.hashPassword(password);
-            if(password.equals(result.get().getPassword())){
+            String encryptedPassword=passwordEncryptionService.hashPassword(password);
+            if(encryptedPassword.equals(result.get().getPassword())){
                 Hospital hospital=  result.orElse(null);
                 log.info("Current hospital Entity" + hospital.toString());
                 mv.addObject("hospital",result);

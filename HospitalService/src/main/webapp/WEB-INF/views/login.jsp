@@ -6,25 +6,83 @@
     <title>Hospital Service Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body, html {
             height: 100%;
             font-family: 'Poppins', sans-serif;
-            background: #1f1c2c;
+            background: #101820;
+            overflow: hidden;
             color: #fff;
+        }
+
+        /* ECG Pulse Animation Line - Extended with more up-downs */
+        .ecg-line {
+            position: fixed;
+            top: 15%;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 0;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1600 100" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="%2300eaff" stroke-width="2" points="0,50 50,50 70,20 90,80 110,50 130,50 150,20 170,80 190,50 210,50 230,20 250,80 270,50 290,50 310,20 330,80 350,50 1600,50" /></svg>') repeat-x;
+            background-size: contain;
+            animation: moveECG 2s linear infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes moveECG {
+            from { background-position-x: 0; }
+            to { background-position-x: -200px; }
+        }
+
+        /* DNA Spiral Animation */
+        .dna-container {
+            position: fixed;
+            bottom: -100px;
+            left: 10%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 100vh;
+            z-index: 0;
             overflow: hidden;
         }
 
-        canvas#bg {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .dna-bar {
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to right, #6f00ff, #00eaff);
+            margin: 10px 0;
+            border-radius: 50%;
+            animation: wave 2s ease-in-out infinite alternate;
+        }
+
+        .dna-bar:nth-child(even) {
+            animation-delay: 1s;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(-20px) rotate(15deg); opacity: 0.6; }
+            100% { transform: translateX(20px) rotate(-15deg); opacity: 1; }
+        }
+
+        /* Floating Icons (Doctor, Ambulance, fewer Hospital Beds) */
+        .floating-icon {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            background-size: 65%;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: float 20s linear infinite;
             z-index: 0;
+            filter: drop-shadow(0 0 4px #00eaff);
+        }
+
+        @keyframes float {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-200px); }
         }
 
         .login-box {
@@ -64,7 +122,6 @@
             border-radius: 10px;
             color: #fff;
             font-size: 1em;
-            transition: border-color 0.3s ease;
         }
 
         .form-group input:focus {
@@ -115,7 +172,32 @@
 </head>
 <body>
 
-<canvas id="bg"></canvas>
+<div class="ecg-line"></div>
+
+<div class="dna-container">
+    <% for (int i = 0; i < 15; i++) { %>
+        <div class="dna-bar"></div>
+    <% } %>
+</div>
+
+<%-- Floating Icons --%>
+<script>
+    const icons = [
+        'https://img.icons8.com/ios-filled/50/00eaff/hospital-room.png',  // hospital bed
+        'https://img.icons8.com/ios-filled/50/00eaff/doctor-male.png',     // doctor
+        'https://img.icons8.com/ios-filled/50/00eaff/ambulance.png'        // ambulance
+    ];
+
+    for (let i = 0; i < 20; i++) {
+        const icon = document.createElement('div');
+        icon.classList.add('floating-icon');
+        icon.style.left = Math.random() * window.innerWidth + 'px';
+        icon.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        icon.style.top = Math.random() * 100 + 'vh';
+        icon.style.backgroundImage = `url('${icons[i % icons.length]}')`;
+        document.body.appendChild(icon);
+    }
+</script>
 
 <div class="container">
     <div class="login-box">
@@ -141,85 +223,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    const canvas = document.getElementById('bg');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let particlesArray = [];
-
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = Math.random() * 1 - 0.5;
-            this.speedY = Math.random() * 1 - 0.5;
-        }
-
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        }
-
-        draw() {
-            ctx.fillStyle = '#00eaff';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    function init() {
-        particlesArray = [];
-        for (let i = 0; i < 120; i++) {
-            particlesArray.push(new Particle());
-        }
-    }
-
-    function connectParticles() {
-        for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                const dx = particlesArray[a].x - particlesArray[b].x;
-                const dy = particlesArray[a].y - particlesArray[b].y;
-                const distance = dx * dx + dy * dy;
-
-                if (distance < 5000) {
-                    ctx.strokeStyle = 'rgba(0, 234, 255, 0.1)';
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                    ctx.stroke();
-                }
-            }
-        }
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particlesArray.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        connectParticles();
-        requestAnimationFrame(animate);
-    }
-
-    init();
-    animate();
-
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        init();
-    });
-</script>
 
 </body>
 </html>

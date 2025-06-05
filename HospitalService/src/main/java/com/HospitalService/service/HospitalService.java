@@ -67,7 +67,7 @@ public class HospitalService {
             log.info("Fetching hospital creds");
             Optional<Hospital> hospital= hospitalRepo.findByNameAndContact(login.getName(),login.getContact());
 
-            log.info("Fetched Hospital Creds:");
+            log.info("Fetched Hospital Creds:"+ hospital.orElse(null).toString() );
             return hospital;
         }catch (Exception e){
             log.info("Exception in service: "+ e.getMessage());
