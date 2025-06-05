@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface HospitalRepo extends JpaRepository<Hospital, Long> {
     @Query("SELECT new com.HospitalService.model.HospitalStatusDTO(" +
@@ -17,4 +18,5 @@ public interface HospitalRepo extends JpaRepository<Hospital, Long> {
             "WHERE h.city = :city")
     List<HospitalStatusDTO> findHospitalStatusByCity(String city);
 
+    Optional<Hospital> findByNameAndContact(String name, String contact);
 }

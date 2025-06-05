@@ -3,6 +3,7 @@ package com.HospitalService.service;
 import com.HospitalService.model.Hospital;
 import com.HospitalService.model.HospitalStatus;
 import com.HospitalService.model.HospitalStatusDTO;
+import com.HospitalService.model.Login;
 import com.HospitalService.repository.HospitalRepo;
 import com.HospitalService.repository.HospitalStatusRepo;
 import lombok.extern.java.Log;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Log
@@ -56,6 +58,20 @@ public class HospitalService {
         }catch (Exception e){
             log.info("Error while saving hospital status: "+ e.getMessage());
             return false;
+        }
+    }
+
+    public Optional<Hospital> getCreds(Login login){
+        try{
+            if(login == null) throw new RuntimeException("login DTO is empty");
+            log.info("Fetching hospital creds");
+            Optional<Hospital> hospital= hospitalRepo.findByNameAndContact(login.getName(),login.getContact());
+
+            log.info("Fetched Hospital Creds:");
+            return hospital;
+        }catch (Exception e){
+            log.info("Exception in service: "+ e.getMessage());
+            return Optional.empty();
         }
     }
 }
