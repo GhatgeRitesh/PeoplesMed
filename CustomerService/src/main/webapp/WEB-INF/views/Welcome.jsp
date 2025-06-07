@@ -39,6 +39,7 @@
 <div class="login">
   <a href="/login"><button>Login</button></a>
   <a href="/Register/P"><button>SignUp</button></a>
+  <a href="http://localhost:8086/Hospital/login"><button>Hospital Login</button></a>
 </div>
 </div>
 <div class="container">
