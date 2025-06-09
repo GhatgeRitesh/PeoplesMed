@@ -1,11 +1,9 @@
 package com.EmergencyServcice.FeignClient;
 
 import com.EmergencyServcice.Model.Emergency_Requests;
-import com.EmergencyServcice.Model.Hospital;
 import com.EmergencyServcice.Model.HospitalStatusDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

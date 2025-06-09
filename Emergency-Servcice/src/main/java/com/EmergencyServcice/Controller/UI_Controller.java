@@ -3,7 +3,6 @@ package com.EmergencyServcice.Controller;
 import com.EmergencyServcice.FeignClient.Hospital_Service;
 import com.EmergencyServcice.FeignClient.WebService;
 import com.EmergencyServcice.Model.Emergency_Requests;
-import com.EmergencyServcice.Model.Hospital;
 import com.EmergencyServcice.Model.HospitalStatusDTO;
 import com.EmergencyServcice.Model.Patient;
 import lombok.extern.java.Log;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -51,7 +49,7 @@ public class UI_Controller {
             mv.addObject("patient", p);
             return mv;
         }catch(Exception e){
-            log.info("Exception encountered while fetching Emergency form");
+            log.info("Exception encountered while fetching Emergency form: "+ e.getMessage());
             mv.setViewName("Error");
             mv.addObject("Error","Internal Server Error");
             return mv;

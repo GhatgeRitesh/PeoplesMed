@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Emergency_Requests {
 
-
     private Long id;
 
 
     private String name;
-
 
     private String condition;
 
@@ -26,11 +24,12 @@ public class Emergency_Requests {
 
     private String city;
 
-    private Boolean ambulanceNeed;
 
+    private Boolean ambulanceNeed;
 
     private String emergencyType;
 
-
     private String acceptanceStatus;
+
+    private Hospital hospital;
 }
