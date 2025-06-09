@@ -39,6 +39,19 @@ public class HospitalService {
         }
     }
 
+    public Hospital getHosital(String name, String contact){
+        try {
+            if (name == null || contact == null) throw new RuntimeException("Name and Contact are null");
+            log.info("Fetching Hospital details");
+            Optional<Hospital> hospital= hospitalRepo.findByNameAndContact(name , contact);
+            log.info("fetched hospital successfully: "+ hospital.orElse(null).getName());
+            return hospital.orElse(null);
+        }catch (Exception e){
+            log.info("Exception while fetching hospital details: "+ e.getMessage());
+            return null;
+        }
+    }
+
     public List<HospitalStatusDTO> getCityHospitals(String city){
         try{
             if(city == null){throw new RuntimeException("city value is null");}
@@ -53,6 +66,7 @@ public class HospitalService {
 
     public Boolean setStatus(HospitalStatus hospitalStatus){
         try{
+
             hospitalStatusRepo.save(hospitalStatus);
             return true;
         }catch (Exception e){
@@ -72,6 +86,57 @@ public class HospitalService {
         }catch (Exception e){
             log.info("Exception in service: "+ e.getMessage());
             return Optional.empty();
+        }
+    }
+
+    public HospitalStatus getHospitalStatus(Long H_id){
+        try {
+            if (H_id == null) {
+                throw new RuntimeException("Hospital Id is missing");
+            }
+            log.info("Fetching Hospital Status for H_id: "+ H_id);
+            HospitalStatus result = hospitalStatusRepo.findByHospitalId(H_id);
+            log.info("Fetched Successfully: "+ result.toString());
+            return result;
+        }catch(Exception e){
+            log.info("Exception Occurred while fetching hospital status: "+ e.getMessage());
+            return null;
+        }
+    }
+
+    public Hospital getHospitalByID(Long h_Id){
+        try{
+            if (h_Id == null) throw new RuntimeException("ID is null");
+            log.info("Finding hospital for id :"+ h_Id);
+            Optional<Hospital> hospital=hospitalRepo.findById(h_Id);
+            return hospital.orElse(null);
+        }catch (Exception e){
+            log.info("Exception while finding hospital for ID: "+ h_Id +" with exception :"+e.getMessage());
+            return  null;
+        }
+    }
+
+    public boolean updateHospitalStatus(Long hospital_id,HospitalStatus hospitalStatus){
+        try {
+
+            log.info("Fetching Current status");
+            HospitalStatus currStatus= hospitalStatusRepo.findByHospitalId(hospital_id);
+            if(currStatus == null) throw new RuntimeException("Hospital Status Not found");
+            log.info("current Status :-"+ currStatus);
+            log.info("updating current status with : "+ hospitalStatus.toString());
+            currStatus.setIcuAvailable(hospitalStatus.getIcuAvailable());
+            currStatus.setPresentDoctor(hospitalStatus.getPresentDoctor());
+            currStatus.setOtActive(hospitalStatus.getOtActive());
+            currStatus.setStatus_1(hospitalStatus.getStatus_1());
+            currStatus.setStaffCount(hospitalStatus.getStaffCount());
+            currStatus.setAmbulanceCount(hospitalStatus.getAmbulanceCount());
+
+            hospitalStatusRepo.save(currStatus);
+            return true;
+        }catch (Exception e){
+            log.info("Exception While Saving current status:> "+ e.getMessage());
+
+            return false;
         }
     }
 }

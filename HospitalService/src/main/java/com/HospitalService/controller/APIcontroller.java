@@ -2,7 +2,6 @@ package com.HospitalService.controller;
 
 import com.HospitalService.model.*;
 import com.HospitalService.service.DoctorService;
-import com.HospitalService.service.HospitalResourceService;
 import com.HospitalService.service.HospitalService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,7 @@ public class APIcontroller {
     private HospitalService hospitalService;
     @Autowired
     private DoctorService doctorService;
-    @Autowired
-    private HospitalResourceService hospitalResourceService;
+
 
 
     @PostMapping("getCityHospitals")
@@ -39,17 +37,6 @@ public class APIcontroller {
 
     }
 
-    @PostMapping("/setStatus")
-    public ResponseEntity<?> setHospitalStatus(@ModelAttribute HospitalStatus hospitalStatus){
-        try{
-            if(hospitalService.setStatus(hospitalStatus))
-                return new ResponseEntity<>(HttpStatus.OK);
-            else
-                throw new RuntimeException("Error while saving status");
-        }catch (Exception e){
-            log.info("Exception occurred: "+ e.getMessage());
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
-    }
+
 
 }

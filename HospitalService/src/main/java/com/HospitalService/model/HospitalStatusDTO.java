@@ -1,13 +1,15 @@
 package com.HospitalService.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 @Data
+@Scope("prototype")
 @NoArgsConstructor
 @AllArgsConstructor
 public class HospitalStatusDTO {
+    private Long id;
     private String name;
     private String address;
     private String city;
@@ -16,7 +18,7 @@ public class HospitalStatusDTO {
     private String contact;
     private Boolean icuAvailable;
     private Boolean otActive;
-    private Boolean status;
+    private Boolean status_1;
     private String presentDoctor;
     private Integer staffCount;
     private Integer ambulanceCount;

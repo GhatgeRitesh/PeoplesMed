@@ -1,9 +1,11 @@
 package com.HospitalService.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+@Data
 @Entity
 @Getter @Setter
 @Table(name = "HospitalStatus")
@@ -23,7 +25,7 @@ public class HospitalStatus {
         private Boolean otActive;
 
         @Column(name = "status", nullable = false)
-        private String status; // e.g., "open" or "close"
+        private String status_1; // e.g., "open" or "close"
 
         @Column(name = "staff_count")
         private Integer staffCount;
