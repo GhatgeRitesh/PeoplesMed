@@ -13,14 +13,37 @@
 
 
         <div class="header1">
-    		<div class="logo">
-    			<img src="../images/logo.png" alt="Logo" class="logo-img">
-    			<h3 class="logo-h3">PeoplesMed</h3>
-    		</div>
+          <div class="logo">
+            <img src="../images/logo.png" alt="Logo" class="logo-img">
+            <h3 class="logo-h3">PeoplesMed</h3>
+          </div>
 
-                    <a href="/logout"><button>Logout</button></a>
+          <div style="display: flex; align-items: center; gap: 10px; margin-right: 20px;">
+            <a href="http://localhost:8085/EmergencyService/form" target="_blank">
+              <button style="
+                background-color: #d32f2f;
+                color: white;
+                border: none;
+                padding: 10px 16px;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 6px;
+                cursor: pointer;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+              "
+              onmouseover="this.style.backgroundColor='#b71c1c'; this.style.transform='scale(1.05)';"
+              onmouseout="this.style.backgroundColor='#d32f2f'; this.style.transform='scale(1)';">
+                🚨 Emergency
+              </button>
+            </a>
 
-    	</div>
+            <a href="/logout">
+              <button>Logout</button>
+            </a>
+          </div>
+        </div>
+
 
 
 
