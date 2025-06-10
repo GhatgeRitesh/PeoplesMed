@@ -23,9 +23,9 @@ target/
 .settings
 .springBeans
 .sts4-cache
-application.properties
+
 application-dev.properties
-application-prod.properties
+
 
 ### NetBeans ###
 /nbproject/private/
