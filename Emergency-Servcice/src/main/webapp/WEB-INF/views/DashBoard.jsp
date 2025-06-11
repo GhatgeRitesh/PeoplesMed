@@ -30,7 +30,7 @@
         <div class="hospital-type ${hospital.type == 'Private' ? 'private' : 'gov'}">
           ${hospital.type}
         </div>
-        <div class="status">${hospital.status ? 'Open' : 'Close'}</div>
+        <div class="status">${hospital.status_1 ? 'Open' : 'Close'}</div>
       </div>
 
       <div class="hospital-info">

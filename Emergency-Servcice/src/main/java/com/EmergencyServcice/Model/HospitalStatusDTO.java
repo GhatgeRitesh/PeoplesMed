@@ -1,8 +1,11 @@
 package com.EmergencyServcice.Model;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter @Setter
 public class HospitalStatusDTO {
     private Long id;
     private String name;

@@ -70,7 +70,6 @@ public class UI_Controller {
             log.info("Recieved Data is : "+ hospital.toString());
             if(!hospital.getStatusCode().is2xxSuccessful()){throw new RuntimeException("Internal Server Error");}
             mv.addObject("hospitals",hospital.getBody());
-
             mv.setViewName("DashBoard");
             return mv;
         }catch(Exception e){
