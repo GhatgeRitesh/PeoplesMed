@@ -40,10 +40,10 @@
 
       <div class="info-grid">
         <div class="box speciality">Speciality: ${hospital.speciality}</div>
-        <div class="box">ICU Availability: ${hospital.ICU_Availability ? 'Yes' : 'No'}</div>
-        <div class="box">Present Doctor: ${hospital.PresentDoctor}</div>
+        <div class="box">ICU Availability: ${hospital.icuAvailable ? 'Yes' : 'No'}</div>
+        <div class="box">Present Doctor: ${hospital.presentDoctor}</div>
         <div class="box ambulance">Ambulance Count: ${hospital.ambulanceCount}</div>
-        <div class="box">OT Active: ${hospital.OT_Active ? 'Yes' : 'No'}</div>
+        <div class="box">OT Active: ${hospital.otActive ? 'Yes' : 'No'}</div>
         <div class="box contact-green">Contact: ${hospital.contact}</div>
       </div>
 
