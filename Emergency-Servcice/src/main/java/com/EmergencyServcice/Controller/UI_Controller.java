@@ -3,7 +3,10 @@ package com.EmergencyServcice.Controller;
 import com.EmergencyServcice.FeignClient.Hospital_Service;
 import com.EmergencyServcice.FeignClient.WebService;
 import com.EmergencyServcice.Model.Emergency_Requests;
+<<<<<<< Updated upstream
 import com.EmergencyServcice.Model.HospitalStatusDTO;
+=======
+>>>>>>> Stashed changes
 import com.EmergencyServcice.Model.Patient;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,7 @@ public class UI_Controller {
     @Autowired
     private WebService webService;
 
+<<<<<<< Updated upstream
     @Autowired
     private Hospital_Service hospitalService;
 
@@ -38,6 +42,8 @@ public class UI_Controller {
         return mv;
 
     }
+=======
+>>>>>>> Stashed changes
     @GetMapping("/form")
     public ModelAndView getform(ModelAndView mv){
         log.info("Emergency form requested");
@@ -49,12 +55,19 @@ public class UI_Controller {
             mv.addObject("patient", p);
             return mv;
         }catch(Exception e){
+<<<<<<< Updated upstream
             log.info("Exception encountered while fetching Emergency form: "+ e.getMessage());
+=======
+            log.info("Exception encountered while fetching Emergency form");
+>>>>>>> Stashed changes
             mv.setViewName("Error");
             mv.addObject("Error","Internal Server Error");
             return mv;
         }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     }
 
     @PostMapping("/submitEmergency")
@@ -65,12 +78,16 @@ public class UI_Controller {
                 throw new RuntimeException("Form received empty");
             }
             log.info("form data as:- "+ emergencyRequests.toString());
+<<<<<<< Updated upstream
             log.info("Requesting data from hospital service");
             ResponseEntity<List<HospitalStatusDTO>> hospital= hospitalService.getHospitals(emergencyRequests);
             log.info("Recieved Data is : "+ hospital.toString());
             if(!hospital.getStatusCode().is2xxSuccessful()){throw new RuntimeException("Internal Server Error");}
             mv.addObject("hospitals",hospital.getBody());
             mv.setViewName("DashBoard");
+=======
+            mv.setViewName("interface");
+>>>>>>> Stashed changes
             return mv;
         }catch(Exception e){
             log.info("Exception while working with form: "+ e.getMessage());
