@@ -10,7 +10,7 @@ COPY src ./src
 
 # Download dependecies and build application
 
-RUN mvn clean package-DskipTests && cp target/*.jar app.jar
+RUN mvn clean package -DskipTests && cp target/*.jar app.jar
 
 #Stage 2
 

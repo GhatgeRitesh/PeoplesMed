@@ -26,6 +26,7 @@ target/
 
 application-dev.properties
 
+.env
 
 ### NetBeans ###
 /nbproject/private/

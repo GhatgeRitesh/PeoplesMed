@@ -1,0 +1,123 @@
+version: '3.8'
+
+services:
+  registry-service:
+    build:
+      context: ./RegisteryService
+    image: registry-service-image
+    container_name: registry_service
+    ports:
+      - "8761:8761"
+    networks:
+      - peoplesmed-network
+
+  customer-service:
+    build:
+      context: ./CustomerService
+    image: customer-service-image
+    container_name: customer-service
+    depends_on:
+      - registry-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+    ports:
+      - "8091:8083"
+    networks:
+      - peoplesmed-network
+    restart: on-failure
+
+  database-service:
+    build:
+      context: ./DatabaseService
+    image: database-service-image
+    container_name: database-service
+    depends_on:
+      - registry-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      - url=${url}
+      - username=${username}
+      - password=${password}
+    ports:
+      - "8092:8082"
+    networks:
+      - peoplesmed-network
+    restart: on-failure
+
+  notification-service:
+    build:
+      context: ./NotificationService
+    image: notification-service-image
+    container_name: notification-service
+    depends_on:
+      - registry-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      - clientID=${nclientID}
+      - clientSecret=${nclientSecret}
+      - redirectURI=${nredirectURI}
+    ports:
+      - "8093:8081"
+    networks:
+      - peoplesmed-network
+    restart: on-failure
+
+  payment-service:
+    build:
+      context: ./PaymentService
+    image: payment-service-image
+    container_name: payment-service
+    depends_on:
+      - registry-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      - publishableKey=${publishableKey}
+      - secretKey=${secretKey}
+    ports:
+      - "8094:8084"
+    networks:
+      - peoplesmed-network
+    restart: on-failure
+
+  emergency-service:
+    build:
+      context: ./Emergency-Servcice
+    image: emergency-service-image
+    container_name: emergency-service
+    depends_on:
+      - registry-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+    ports:
+      - "8095:8085"
+    networks:
+      - peoplesmed-network
+    restart: on-failure
+
+  hospital-service:
+    build:
+      context: ./HospitalService
+    image: hospital-service-image
+    container_name: hospital-service
+    depends_on:
+      - registry-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      - url=${hurl}
+      - username=${username}
+      - password=${password}
+    ports:
+      - "8096:8086"
+    networks:
+      - peoplesmed-network
+    restart: on-failure
+
+networks:
+  peoplesmed-network:
+    driver: bridge
