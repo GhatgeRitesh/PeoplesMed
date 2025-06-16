@@ -80,7 +80,7 @@ public class UI_Controller {
             mv.addObject("hospitals",hospital.getBody());
             mv.setViewName("DashBoard");
 
-            mv.setViewName("interface");
+
 
             return mv;
         }catch(Exception e){

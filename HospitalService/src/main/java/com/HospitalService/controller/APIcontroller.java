@@ -27,6 +27,7 @@ public class APIcontroller {
         try{
             if(emergencyRequests == null){log.info("Request received empty"); throw new RuntimeException("Internal Server Error");}
             log.info("Requesting hospital Service");
+            log.info("FEtching Hospitals for city:"+ emergencyRequests.getCity());
             List<HospitalStatusDTO> list=hospitalService.getCityHospitals(emergencyRequests.getCity());
             if (list == null){throw new RuntimeException("Empty Result retrived");}
             return new ResponseEntity<>(list,HttpStatus.OK);

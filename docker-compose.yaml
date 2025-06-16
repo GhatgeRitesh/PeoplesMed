@@ -21,6 +21,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      - client_id=${client_id}
+      - client_secret=${client_secret}
+      - redirect_Uri=${redirect_Uri}
     ports:
       - "8091:8083"
     networks:
