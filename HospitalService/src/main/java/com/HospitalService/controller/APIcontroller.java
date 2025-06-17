@@ -2,6 +2,7 @@ package com.HospitalService.controller;
 
 import com.HospitalService.model.*;
 import com.HospitalService.service.DoctorService;
+import com.HospitalService.service.FilterService;
 import com.HospitalService.service.HospitalService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class APIcontroller {
     private HospitalService hospitalService;
     @Autowired
     private DoctorService doctorService;
+    @Autowired
+    private FilterService filterService;
 
 
 
@@ -28,9 +31,12 @@ public class APIcontroller {
             if(emergencyRequests == null){log.info("Request received empty"); throw new RuntimeException("Internal Server Error");}
             log.info("Requesting hospital Service");
             log.info("FEtching Hospitals for city:"+ emergencyRequests.getCity());
+
             List<HospitalStatusDTO> list=hospitalService.getCityHospitals(emergencyRequests.getCity());
             if (list == null){throw new RuntimeException("Empty Result retrived");}
-            return new ResponseEntity<>(list,HttpStatus.OK);
+            List<HospitalStatusDTO> result=filterService.getFilteredHospitals(list,emergencyRequests);
+            if(result == null) {log.info("Filtering Failed Sending Raw Data");return new ResponseEntity<>(list,HttpStatus.OK);}
+            return new ResponseEntity<>(result,HttpStatus.OK);
         }catch (Exception e){
             log.info("Exception occurred : "+ e.getMessage());
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);

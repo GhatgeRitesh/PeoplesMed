@@ -56,7 +56,7 @@ public class HospitalService {
         try{
             if(city == null){throw new RuntimeException("city value is null");}
             List<HospitalStatusDTO> list= hospitalRepo.findHospitalStatusByCity(city);
-            log.info("Hospital Data Fetched as : "+ list.toString());
+            log.info("Hospital Data Fetched");
             return list;
         }catch(Exception e){
             log.info("Exception Occurred while fetching Hospital DTO: "+ e.getMessage());
