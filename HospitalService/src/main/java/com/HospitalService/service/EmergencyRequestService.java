@@ -17,7 +17,6 @@ public class EmergencyRequestService {
     public Boolean SaveRequest(Emergency_Requests emergencyRequests){
         try{
             if(emergencyRequests == null){throw  new RuntimeException("Request Body Received Empty");}
-            if(emergencyRequests.getAcceptanceStatus() == null) {throw  new RuntimeException("Acceptance Status Missing");}
             emergencyRequestRepo.save(emergencyRequests);
             log.info("Request Saved Successfully");
             return true;
@@ -27,4 +26,20 @@ public class EmergencyRequestService {
         }
 
     }
+
+    public Emergency_Requests getRequest(Long id){
+        try{
+            if(id == null) throw new RuntimeException("Id value is null");
+            log.info("finding emergency request for id"+ id);
+            Emergency_Requests request=emergencyRequestRepo.getReferenceById(id);
+            log.info("Fetched successfully Status is :"+ request.getAcceptanceStatus());
+
+            return request;
+        }catch (Exception e){
+            log.info("Exception while retrieving request id:"+id+" with exception:"+e.getMessage());
+            return null;
+        }
+    }
+
+    
 }
