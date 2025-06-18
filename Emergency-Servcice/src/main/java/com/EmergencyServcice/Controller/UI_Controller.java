@@ -10,10 +10,7 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -89,13 +86,18 @@ public class UI_Controller {
             mv.setViewName("Error");
             return mv;
         }
-
     }
 
     @GetMapping("/Ifram")
-    public  ModelAndView  EmergencyService(ModelAndView MV){
+    public ModelAndView emergencyService(@RequestParam("hospitalId") String hospitalId) {
+        ModelAndView mv = new ModelAndView("Ifram"); // Replace with actual JSP view name
+        mv.addObject("hospitalId", hospitalId);
+        log.info("Got the Hospital ID: "+ hospitalId);
+        // Optionally: Fetch hospital details and add to model
+        // Hospital hospital = hospitalService.getHospitalById(hospitalId);
+        // mv.addObject("hospital", hospital);
 
+        return mv;
     }
-
 }
 

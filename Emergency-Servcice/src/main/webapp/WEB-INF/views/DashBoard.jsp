@@ -57,20 +57,26 @@
         <div class="box contact-green">Contact: ${hospital.contact}</div>
       </div>
 
-      <button class="request-btn" onclick="acceptRequest(this)">Request Assistance</button>
-      <!-- Removed the static accepted message -->
+      <!-- ✅ No EL function here, just pass ID as HTML data attribute -->
+      <button class="request-btn"
+              onclick="acceptRequest(this)"
+              data-hospital-id="${hospital.id}">
+        Request Assistance
+      </button>
     </div>
   </c:forEach>
 
   <script>
     function acceptRequest(button) {
       const card = button.closest('.hospital-card');
+      const hospitalId = button.getAttribute('data-hospital-id');
+
       button.style.display = 'none';
 
-      // Create and add the iframe
+      // ✅ Encode hospital ID safely in URL
       const iframe = document.createElement('iframe');
       iframe.className = 'response-frame';
-      iframe.src = '/EmergencyService/Ifram';        // 🔁 Replace with your real page
+      iframe.src = `/EmergencyService/Ifram?hospitalId=${encodeURIComponent(hospitalId)}`;
 
       card.appendChild(iframe);
     }
