@@ -2,6 +2,7 @@ package com.EmergencyServcice.Controller;
 
 import com.EmergencyServcice.FeignClient.Hospital_Service;
 import com.EmergencyServcice.FeignClient.WebService;
+import com.EmergencyServcice.Model.E_ID;
 import com.EmergencyServcice.Model.Emergency_Requests;
 import com.EmergencyServcice.Model.HospitalStatusDTO;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -28,6 +30,9 @@ public class UI_Controller {
     @Autowired
     private Hospital_Service hospitalService;
 
+    private Emergency_Requests emergencyRequestsVar;
+
+    public E_ID e_id;
 
     @GetMapping("/curr-city-hospitals")
     public ModelAndView emergencyPage(ModelAndView mv) {
@@ -69,10 +74,10 @@ public class UI_Controller {
                 throw new RuntimeException("Form received empty");
             }
             log.info("form data as:- "+ emergencyRequests.toString());
-
+             emergencyRequestsVar=emergencyRequests;
             log.info("Requesting data from hospital service");
             ResponseEntity<List<HospitalStatusDTO>> hospital= hospitalService.getHospitals(emergencyRequests);
-            log.info("Recieved Data is : "+ hospital.toString());
+            //log.info("Recieved Data is : "+ hospital.toString());
             if(!hospital.getStatusCode().is2xxSuccessful()){throw new RuntimeException("Internal Server Error");}
             mv.addObject("hospitals",hospital.getBody());
             mv.setViewName("DashBoard");
@@ -89,14 +94,18 @@ public class UI_Controller {
     }
 
     @GetMapping("/Ifram")
-    public ModelAndView emergencyService(@RequestParam("hospitalId") String hospitalId) {
+    public ModelAndView emergencyService(@RequestParam("hospitalId") String hospitalId, Emergency_Requests emergencyRequests) {
         ModelAndView mv = new ModelAndView("Ifram"); // Replace with actual JSP view name
         mv.addObject("hospitalId", hospitalId);
+        log.info("Emergency Request Data: "+ emergencyRequestsVar.toString());
         log.info("Got the Hospital ID: "+ hospitalId);
-        // Optionally: Fetch hospital details and add to model
-        // Hospital hospital = hospitalService.getHospitalById(hospitalId);
-        // mv.addObject("hospital", hospital);
+        UUID uuid = UUID.randomUUID();
+        Long id= uuid.getLeastSignificantBits();
+        emergencyRequestsVar.setId(id);
 
+
+        // request save operation
+        // end
         return mv;
     }
 }

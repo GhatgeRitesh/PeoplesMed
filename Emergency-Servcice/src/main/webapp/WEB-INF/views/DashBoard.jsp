@@ -76,7 +76,7 @@
       // ✅ Encode hospital ID safely in URL
       const iframe = document.createElement('iframe');
       iframe.className = 'response-frame';
-      iframe.src = `/EmergencyService/Ifram?hospitalId=${encodeURIComponent(hospitalId)}`;
+      iframe.src = `/EmergencyService/Ifram?hospitalId=`+hospitalId;
 
       card.appendChild(iframe);
     }

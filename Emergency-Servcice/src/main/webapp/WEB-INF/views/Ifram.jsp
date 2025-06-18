@@ -121,7 +121,7 @@
 
     function getStatus() {
       // Simulating a fetch to backend API for status check
-      fetch('/api/emergency/status') // 🔁 Replace with your backend URL
+      fetch('/api/getStatus') // 🔁 Replace with your backend URL
         .then(res => res.json())
         .then(data => {
           if (data.status) {
