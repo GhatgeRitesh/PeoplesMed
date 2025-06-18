@@ -89,6 +89,13 @@ public class UI_Controller {
             mv.setViewName("Error");
             return mv;
         }
+
     }
+
+    @GetMapping("/Ifram")
+    public  ModelAndView  EmergencyService(ModelAndView MV){
+
+    }
+
 }
 

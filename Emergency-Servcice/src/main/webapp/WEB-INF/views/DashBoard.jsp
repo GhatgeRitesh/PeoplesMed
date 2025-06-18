@@ -10,6 +10,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hospital Dashboard</title>
   <link rel="stylesheet" href="/css/Emergency_Dash.css">
+  <style>
+    iframe.response-frame {
+      width: 100%;
+      height: 400px;
+      border: 2px solid #ccc;
+      margin-top: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+  </style>
 </head>
 <body>
 
@@ -48,17 +58,23 @@
       </div>
 
       <button class="request-btn" onclick="acceptRequest(this)">Request Assistance</button>
-      <div class="accepted">Request Accepted 🚑 Ambulance On The Way</div>
+      <!-- Removed the static accepted message -->
     </div>
   </c:forEach>
 
   <script>
     function acceptRequest(button) {
+      const card = button.closest('.hospital-card');
       button.style.display = 'none';
-      button.nextElementSibling.style.display = 'block';
+
+      // Create and add the iframe
+      const iframe = document.createElement('iframe');
+      iframe.className = 'response-frame';
+      iframe.src = '/EmergencyService/Ifram';        // 🔁 Replace with your real page
+
+      card.appendChild(iframe);
     }
 
-    // Status coloring
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('.status').forEach(statusDiv => {
         const text = statusDiv.textContent.trim().toLowerCase();
@@ -71,7 +87,6 @@
         }
       });
 
-      // ICU / OT colors
       document.querySelectorAll('.box').forEach(box => {
         const text = box.textContent.toLowerCase();
         if (text.includes('icu availability')) {
@@ -84,7 +99,6 @@
         }
       });
 
-      // Hospital type styling
       document.querySelectorAll('.hospital-type').forEach(typeDiv => {
         const text = typeDiv.textContent.trim().toLowerCase();
         if (text === 'private') {
@@ -99,3 +113,4 @@
   </script>
 </body>
 </html>
+
