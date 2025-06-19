@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+ import="com.EmergencyServcice.Model.Emergency_Requests"
+%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,20 +121,27 @@
   </div>
 
   <script>
-    let intervalId;
+    const requestId = 123; // 🔁 Replace with dynamic Request ID if needed
+
+    let intervalId = setInterval(getStatus, 5000); // Call every 5s
 
     function getStatus() {
-      // Simulating a fetch to backend API for status check
-      fetch('/api/getStatus') // 🔁 Replace with your backend URL
-        .then(res => res.json())
-        .then(data => {
-          if (data.status) {
-            showResult(data.status);
-          }
-        })
-        .catch(err => {
-          console.error("Error fetching status:", err);
-        });
+      fetch('/Hospital/getAcceptanceStatus', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: RequestID=${requestId}
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.acceptanceStatus) {
+          showResult(data.acceptanceStatus);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching status:', error);
+      });
     }
 
     function showResult(status) {
@@ -151,16 +162,11 @@
     }
 
     function goBack() {
-      window.history.back(); // One step back in browser history
+      window.history.back();
     }
-
-    // Check every 5 seconds
-    intervalId = setInterval(getStatus, 5000);
-
-    // OPTIONAL: Simulate response for demo
-    setTimeout(() => {
-      showResult("Accepted and Ambulance on the way");
-    }, 10000);
   </script>
+
 </body>
 </html>
+
+-- emergency request

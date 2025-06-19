@@ -2,6 +2,7 @@ package com.HospitalService.controller;
 
 import com.HospitalService.model.*;
 import com.HospitalService.service.DoctorService;
+import com.HospitalService.service.EmergencyRequestService;
 import com.HospitalService.service.FilterService;
 import com.HospitalService.service.HospitalService;
 import lombok.extern.java.Log;
@@ -22,10 +23,12 @@ public class APIcontroller {
     private DoctorService doctorService;
     @Autowired
     private FilterService filterService;
+    @Autowired
+    private EmergencyRequestService emergencyRequestService;
 
 
 
-    @PostMapping("getCityHospitals")
+    @PostMapping("/getCityHospitals")
     public ResponseEntity<List<HospitalStatusDTO>> getHospitals(@RequestBody Emergency_Requests emergencyRequests){
         try{
             if(emergencyRequests == null){log.info("Request received empty"); throw new RuntimeException("Internal Server Error");}
@@ -41,9 +44,35 @@ public class APIcontroller {
             log.info("Exception occurred : "+ e.getMessage());
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
-
     }
 
-
-
+    @PostMapping("/saveEmergencyRequest")
+    public ResponseEntity<?> saveEmergencyRequest(@RequestBody Emergency_Requests emergencyRequests){
+        log.info("saving started");
+        try {
+            if(emergencyRequests == null) throw  new RuntimeException("request received empty while saving");
+            if(!emergencyRequestService.SaveRequest(emergencyRequests)) throw  new RuntimeException("error in service layer");
+            else log.info("request saved successfully");
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+            log.info("Exception occurred : "+ e.getMessage());
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+    @PostMapping("/getAcceptanceStatus")
+    public ResponseEntity<?> getAcceptanceStatus(Long RequestID){
+        log.info("get requset started");
+        try {
+            if (RequestID == null) throw new RuntimeException("eroor in service because of id null");
+            else{
+                Emergency_Requests emergencyRequests = emergencyRequestService.getRequest(RequestID);
+                if(emergencyRequests == null) throw new RuntimeException("get request received null");
+                if(emergencyRequests.getAcceptanceStatus() == null) return new ResponseEntity<>(null,HttpStatus.OK);
+                else return new ResponseEntity<>(emergencyRequests.getAcceptanceStatus(),HttpStatus.OK);
+            }
+        }catch (Exception e){
+            log.info("Exception occurred : "+ e.getMessage());
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
+    }
 }
