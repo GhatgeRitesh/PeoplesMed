@@ -11,7 +11,6 @@ import lombok.*;
 public class Emergency_Requests {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "request_id")
     private Long id;
 

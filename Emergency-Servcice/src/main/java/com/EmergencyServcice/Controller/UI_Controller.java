@@ -2,11 +2,8 @@ package com.EmergencyServcice.Controller;
 
 import com.EmergencyServcice.FeignClient.Hospital_Service;
 import com.EmergencyServcice.FeignClient.WebService;
-import com.EmergencyServcice.Model.DataHolder;
-import com.EmergencyServcice.Model.Emergency_Requests;
-import com.EmergencyServcice.Model.HospitalStatusDTO;
+import com.EmergencyServcice.Model.*;
 
-import com.EmergencyServcice.Model.Patient;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -78,6 +76,7 @@ public class UI_Controller {
              emergencyRequestsVar=emergencyRequests;
             log.info("Requesting data from hospital service");
             ResponseEntity<List<HospitalStatusDTO>> hospital= hospitalService.getHospitals(emergencyRequests);
+            dataHolder.setList(hospital.getBody());
             //log.info("Recieved Data is : "+ hospital.toString());
             if(!hospital.getStatusCode().is2xxSuccessful()){throw new RuntimeException("Internal Server Error");}
             mv.addObject("hospitals",hospital.getBody());
@@ -95,7 +94,7 @@ public class UI_Controller {
     }
 
     @GetMapping("/Ifram")
-    public ModelAndView emergencyService(@RequestParam("hospitalId") String hospitalId) {
+    public ModelAndView emergencyService(@RequestParam("hospitalId") Long hospitalId) {
         ModelAndView mv = new ModelAndView("Ifram"); // Replace with actual JSP view name
         mv.addObject("hospitalId", hospitalId);
         log.info("Emergency Request Data: "+ emergencyRequestsVar.toString());
@@ -103,11 +102,27 @@ public class UI_Controller {
         UUID uuid = UUID.randomUUID();
         Long id= uuid.getLeastSignificantBits();
         emergencyRequestsVar.setId(id);
-        dataHolder.setEmergencyRequestId(id);
+        log.info("Unique Request Id :"+ id);
+        Hospital hospital= new Hospital();
 
+        for(HospitalStatusDTO h: dataHolder.getList()){
+            if(Objects.equals(h.getId(), hospitalId)){
+                hospital.setId(hospitalId);
+                hospital.setId(h.getId());
+                hospital.setName(h.getName());
+                hospital.setAddress(h.getAddress());
+                hospital.setCity(h.getCity());
+                hospital.setType(h.getType());
+                hospital.setSpeciality(h.getSpeciality());
+                hospital.setIcuAvailable(h.getIcuAvailable());
+                hospital.setOtAvailable(h.getOtActive());
+
+            }
+        }
+        emergencyRequestsVar.setHospital(hospital);
+        dataHolder.setEmergencyRequestId(id);
         hospitalService.saveEmergencyRequest(emergencyRequestsVar);
-        // request save operation
-        // end
+        mv.addObject("request",emergencyRequestsVar);
         return mv;
     }
 }

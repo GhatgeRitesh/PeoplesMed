@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/Hospital")
@@ -60,15 +62,18 @@ public class APIcontroller {
         }
     }
     @PostMapping("/getAcceptanceStatus")
-    public ResponseEntity<?> getAcceptanceStatus(Long RequestID){
-        log.info("get requset started");
+    public ResponseEntity<?> getAcceptanceStatus(@RequestBody Long RequestID){
+        log.info("Getting Acceptance Status for Hospital Id :"+ RequestID);
         try {
             if (RequestID == null) throw new RuntimeException("eroor in service because of id null");
             else{
                 Emergency_Requests emergencyRequests = emergencyRequestService.getRequest(RequestID);
                 if(emergencyRequests == null) throw new RuntimeException("get request received null");
                 if(emergencyRequests.getAcceptanceStatus() == null) return new ResponseEntity<>(null,HttpStatus.OK);
-                else return new ResponseEntity<>(emergencyRequests.getAcceptanceStatus(),HttpStatus.OK);
+                Map<String, String> result = new HashMap<>();
+                result.put("acceptanceStatus", emergencyRequests.getAcceptanceStatus());
+                return new ResponseEntity<>(result, HttpStatus.OK);
+
             }
         }catch (Exception e){
             log.info("Exception occurred : "+ e.getMessage());

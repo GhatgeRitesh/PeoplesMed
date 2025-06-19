@@ -19,5 +19,5 @@ public interface Hospital_Service {
     public ResponseEntity<?> saveEmergencyRequest(@RequestBody Emergency_Requests emergencyRequests);
 
     @PostMapping("/Hospital/getAcceptanceStatus")
-    public ResponseEntity<?> getAcceptanceStatus(Long RequestID);
+    public ResponseEntity<?> getAcceptanceStatus(@RequestBody  Long RequestID);
 }
