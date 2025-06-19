@@ -14,4 +14,10 @@ public interface Hospital_Service {
 
     @PostMapping("/Hospital/getCityHospitals")
     public ResponseEntity<List<HospitalStatusDTO>> getHospitals(@RequestBody Emergency_Requests emergencyRequests);
+
+    @PostMapping("/Hospital/saveEmergencyRequest")
+    public ResponseEntity<?> saveEmergencyRequest(@RequestBody Emergency_Requests emergencyRequests);
+
+    @PostMapping("/Hospital/getAcceptanceStatus")
+    public ResponseEntity<?> getAcceptanceStatus(Long RequestID);
 }

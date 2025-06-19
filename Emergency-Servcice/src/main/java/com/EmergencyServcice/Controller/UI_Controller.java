@@ -2,7 +2,7 @@ package com.EmergencyServcice.Controller;
 
 import com.EmergencyServcice.FeignClient.Hospital_Service;
 import com.EmergencyServcice.FeignClient.WebService;
-import com.EmergencyServcice.Model.E_ID;
+import com.EmergencyServcice.Model.DataHolder;
 import com.EmergencyServcice.Model.Emergency_Requests;
 import com.EmergencyServcice.Model.HospitalStatusDTO;
 
@@ -32,7 +32,8 @@ public class UI_Controller {
 
     private Emergency_Requests emergencyRequestsVar;
 
-    public E_ID e_id;
+    @Autowired
+    private DataHolder dataHolder;
 
     @GetMapping("/curr-city-hospitals")
     public ModelAndView emergencyPage(ModelAndView mv) {
@@ -94,7 +95,7 @@ public class UI_Controller {
     }
 
     @GetMapping("/Ifram")
-    public ModelAndView emergencyService(@RequestParam("hospitalId") String hospitalId, Emergency_Requests emergencyRequests) {
+    public ModelAndView emergencyService(@RequestParam("hospitalId") String hospitalId) {
         ModelAndView mv = new ModelAndView("Ifram"); // Replace with actual JSP view name
         mv.addObject("hospitalId", hospitalId);
         log.info("Emergency Request Data: "+ emergencyRequestsVar.toString());
@@ -102,8 +103,9 @@ public class UI_Controller {
         UUID uuid = UUID.randomUUID();
         Long id= uuid.getLeastSignificantBits();
         emergencyRequestsVar.setId(id);
+        dataHolder.setEmergencyRequestId(id);
 
-
+        hospitalService.saveEmergencyRequest(emergencyRequestsVar);
         // request save operation
         // end
         return mv;
