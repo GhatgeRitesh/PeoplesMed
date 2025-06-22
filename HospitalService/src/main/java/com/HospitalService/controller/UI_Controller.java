@@ -29,6 +29,9 @@ public class UI_Controller {
     @Autowired
     private DoctorService doctorService;
 
+    @Autowired
+    private User user;
+
 
     private Long hospital_id;
 
@@ -155,6 +158,7 @@ public class UI_Controller {
             String encryptedPassword=passwordEncryptionService.hashPassword(password);
             HospitalStatus status= hospitalService.getHospitalStatus(hospital.get().getId());
             System.out.println(status.toString());
+            user.setId(hospital.get().getId());
           //  if(status == null) throw new RuntimeException("Failed to fetch the hospital status");
             if(encryptedPassword.equals(hospital.get().getPassword())){
                 Hospital hos=  hospital.orElse(null);
@@ -214,7 +218,12 @@ public class UI_Controller {
         }
     }
 
-
+    @GetMapping("/Iframe")
+    public ModelAndView getIframe(ModelAndView mv){
+        log.info("Iframe Launched");
+        mv.setViewName("Iframe");
+        return mv;
+    }
 
 
 

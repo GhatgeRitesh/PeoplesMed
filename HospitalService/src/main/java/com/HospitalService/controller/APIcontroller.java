@@ -1,6 +1,7 @@
 package com.HospitalService.controller;
 
 import com.HospitalService.model.*;
+import com.HospitalService.repository.EmergencyRequestRepo;
 import com.HospitalService.service.DoctorService;
 import com.HospitalService.service.EmergencyRequestService;
 import com.HospitalService.service.FilterService;
@@ -27,6 +28,10 @@ public class APIcontroller {
     private FilterService filterService;
     @Autowired
     private EmergencyRequestService emergencyRequestService;
+    @Autowired
+    private User user;
+    @Autowired
+    private EmergencyRequestRepo emergencyRequestRepo;
 
 
 
@@ -79,5 +84,27 @@ public class APIcontroller {
             log.info("Exception occurred : "+ e.getMessage());
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
+    }
+
+    @GetMapping("/getERequest")
+    public ResponseEntity<?> getRequest(){
+      log.info("Fetching Emergency Request for Hospital Id:" +user.getId() );
+      Long id=user.getId();
+      List<Emergency_Requests> result= emergencyRequestRepo.findByHospital_Id(id);
+      //log.info("Fetched Emergency Requests: "+ result.toString());
+        List<EmergencyRequestDTO> dtoList = result.stream().map(r -> new EmergencyRequestDTO(
+                r.getId(),
+                r.getName() != null ? r.getName() : "",
+                r.getCondition() != null ? r.getCondition() : "",
+                r.getAddress() != null ? r.getAddress() : "",
+                r.getContact() != null ? r.getContact() : "",
+                r.getAge(),
+                r.getCity() != null ? r.getCity() : "",
+                r.getAmbulanceNeed(),
+                r.getEmergencyType() != null ? r.getEmergencyType() : "",
+                r.getAcceptanceStatus()
+        )).toList();
+
+        return new ResponseEntity<>(dtoList,HttpStatus.OK);
     }
 }

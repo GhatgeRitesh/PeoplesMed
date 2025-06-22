@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.HospitalService.model.Hospital" %>
-    <%@ page import="com.HospitalService.model.HospitalStatus" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.HospitalService.model.Hospital" %>
+<%@ page import="com.HospitalService.model.HospitalStatus" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +8,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard UI</title>
   <link rel="stylesheet" href="/css/hospital.css">
+  <style>
+   .main-content {
+     max-width: 1000px;
+     margin: 0 auto;
+     padding: 20px 10px;
+   }
+
+   .dashboard-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+     gap: 14px;
+     margin-bottom: 30px;
+   }
+
+   .dashboard-card {
+     height: 100px;
+     border-radius: 12px;
+     text-align: center;
+     padding: 10px 5px;
+     background: linear-gradient(to bottom right, #e0e0e0, #ffffff);
+     color: #333;
+     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+     transition: all 0.3s ease-in-out;
+   }
+
+   .dashboard-card:hover {
+     transform: translateY(-4px);
+     box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+   }
+
+   .card-header {
+     font-size: 26px;
+     margin-bottom: 5px;
+   }
+
+   .card-info {
+     font-size: 15px;
+     font-weight: 600;
+     line-height: 1.3;
+   }
+
+   .card-info small {
+     font-size: 11px;
+     opacity: 0.7;
+   }
+
+   /* Color themes */
+   .green {
+     background: linear-gradient(135deg, #b9f6ca, #00c853);
+     color: white;
+   }
+
+   .red {
+     background: linear-gradient(135deg, #ff8a80, #d50000);
+     color: white;
+   }
+
+   .blue {
+     background: linear-gradient(135deg, #82b1ff, #2962ff);
+     color: white;
+   }
+
+   iframe {
+     width: 100%;
+     height: 700px;
+     border: none;
+     border-radius: 12px;
+     box-shadow: 0 0 12px rgba(0,0,0,0.15);
+   }
+
+
+  </style>
 </head>
 <body>
 
@@ -39,94 +110,44 @@
   </div>
 
   <div class="main-content">
-    <div class="stats">
-      <div class="card">
-              <h2>${status.status_1}</h2>
-              <p>Hospital Open/Close</p>
+    <div class="dashboard-grid">
+      <div class="dashboard-card ${status.status_1 == 'open' ? 'green' : 'red'}">
+        <div class="card-header">🏥</div>
+        <div class="card-info">${status.status_1}<br><small>Status</small></div>
       </div>
-       <div class="card">
-       <p>Present Doctor</p>
-                    <h2>${status.presentDoctor}</h2>
-
-       </div>
-      <div class="card">
-        <h2>${status.ambulanceCount}</h2>
-        <p>Total Ambulance</p>
+      <div class="dashboard-card blue">
+        <div class="card-header">👨‍⚕️</div>
+        <div class="card-info">${status.presentDoctor}<br><small>Doctors</small></div>
       </div>
-      <div class="card">
-        <h2>5</h2>
-        <p>Upcoming Visits</p>
+      <div class="dashboard-card ${status.ambulanceCount > 0 ? 'green' : 'red'}">
+        <div class="card-header">🚑</div>
+        <div class="card-info">${status.ambulanceCount}<br><small>Ambulances</small></div>
       </div>
-      <div class="card">
-        <h2>${status.staffCount}</h2>
-        <p>Hospital Staff</p>
+      <div class="dashboard-card blue">
+        <div class="card-header">📅</div>
+        <div class="card-info">5<br><small>Visits</small></div>
       </div>
-      <div class="card">
-        <h2>${hospital.id}</h2>
-        <p>Hospital ID</p>
+      <div class="dashboard-card blue">
+        <div class="card-header">👨‍🔧</div>
+        <div class="card-info">${status.staffCount}<br><small>Staff</small></div>
       </div>
-      <div class="card">
-        <h2>
-          <c:choose>
-            <c:when test="${status.icuAvailable}">Yes</c:when>
-            <c:otherwise>No</c:otherwise>
-          </c:choose>
-        </h2>
-        <p>ICU Available</p>
+      <div class="dashboard-card blue">
+        <div class="card-header">🆔</div>
+        <div class="card-info">${hospital.id}<br><small>Hospital ID</small></div>
       </div>
-      <div class="card">
-        <h2>
-          <c:choose>
-            <c:when test="${status.otActive}">Yes</c:when>
-            <c:otherwise>No</c:otherwise>
-          </c:choose>
-        </h2>
-        <p>OT Operations</p>
+      <div class="dashboard-card ${status.icuAvailable ? 'green' : 'red'}">
+        <div class="card-header">💉</div>
+        <div class="card-info">${status.icuAvailable ? 'Yes' : 'No'}<br><small>ICU</small></div>
+      </div>
+      <div class="dashboard-card ${status.otActive ? 'green' : 'red'}">
+        <div class="card-header">🔬</div>
+        <div class="card-info">${status.otActive ? 'Yes' : 'No'}<br><small>OT</small></div>
       </div>
     </div>
 
-    <div class="bookcards">
-      <h2>Latest Appointments</h2>
-      <hr>
-
-      <!-- Example static card; replace with dynamic list if needed -->
-      <div class="patient-card">
-        <div class="patient-info">
-          <p><strong>Patient Name:</strong> John Doe</p>
-          <p><strong>Condition:</strong> Serious</p>
-          <p><strong>Emergency Type:</strong> Cardiac</p>
-          <p><strong>Address:</strong> 123 Main Street, City</p>
-          <p><strong>Contact:</strong> +91-9876543210</p>
-          <p><strong>Age:</strong> 45</p>
-          <p><strong>Ambulance Needed:</strong> Yes</p>
-        </div>
-        <div class="patient-actions">
-          <a href=""><button class="btn yellow" onclick="updateStatus(this, 'Accepted')">Accept</button>
-          <button class="btn green" onclick="updateStatus(this, 'Accepted and Ambulance Sent')">Accept & Send Ambulance</button>
-          <button class="btn red" onclick="updateStatus(this, 'Rejected')">Reject</button>
-          <div class="status-message"></div>
-        </div>
-      </div>
-
-      <!-- Clone or loop dynamically if needed -->
-    </div>
+    <iframe src="/Hospital/Iframe"></iframe>
   </div>
-</div>
 
-<script>
-  function updateStatus(button, message) {
-    const card = button.closest('.patient-card');
-    const statusDiv = card.querySelector('.status-message');
-    statusDiv.textContent = message;
-    if (message === "Rejected") {
-      statusDiv.style.color = "#f44336";
-    } else if (message === "Accepted and Ambulance Sent") {
-      statusDiv.style.color = "#4caf50";
-    } else {
-      statusDiv.style.color = "#fdd835";
-    }
-  }
-</script>
 
 </body>
 </html>
