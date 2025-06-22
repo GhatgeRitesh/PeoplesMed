@@ -104,7 +104,6 @@
         const AcceptAndAmbulance="accepted ambulance";
         const Reject="rejected";
 
-
         console.log("Button HTML:", `
           <button onclick="postStatus('${post}', 'accepted')">Accept</button>
         `);
