@@ -107,4 +107,21 @@ public class APIcontroller {
 
         return new ResponseEntity<>(dtoList,HttpStatus.OK);
     }
+
+    @PostMapping("/updateRequestStatus")
+    public ResponseEntity<?> updateStatus(@RequestBody Map<String, Object> payload){
+        Long requestId = Long.parseLong(payload.get("requestId").toString());
+        String status = payload.get("acceptanceStatus").toString();
+
+        log.info("Updating Request Status as: " + status);
+        try {
+            int result = emergencyRequestRepo.updateAcceptanceStatusById(requestId, status.toLowerCase());
+            if (result == 0) throw new RuntimeException("Failed to update status");
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            log.info("Exception Occurred: " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+
 }

@@ -85,8 +85,8 @@
 
 <div class="header1">
   <div class="logo">
-    <img src="../images/logo.png" alt="Logo" class="logo-img">
-    <h3 class="logo-h3">Hospital</h3>
+    <img src="/images/logo.png" alt="Logo" class="logo-img">
+    <h3 class="logo-h3">Hospital Service</h3><br><h6>* Powered by PeoplesMed</h6>
   </div>
 </div>
 
