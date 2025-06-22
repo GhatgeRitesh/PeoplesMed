@@ -3,6 +3,8 @@ package com.HospitalService.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 @AllArgsConstructor
 public class EmergencyRequestDTO {
@@ -16,4 +18,5 @@ public class EmergencyRequestDTO {
     private Boolean ambulanceNeed;
     private String emergencyType;
     private String acceptanceStatus;
+    private Timestamp timestamp;
 }

@@ -33,6 +33,7 @@
 <audio id="statusUpdateSound" src="/audio/status-update.mp3" preload="auto"></audio>
 
 <script>
+  let postID=12;
   let knownRequestIds = new Set();
 
   setInterval(fetchRequests, 5000);
@@ -58,73 +59,111 @@
       });
   }
 
-  function renderCards(requests) {
-    const container = document.getElementById('cards-container');
-    container.innerHTML = '';
+      function renderCards(requests) {
+        const container = document.getElementById('cards-container');
+        container.innerHTML = '';
 
-    if (!requests || requests.length === 0) {
-      container.innerHTML = '<p>No emergency requests found.</p>';
-      return;
-    }
+        if (!requests || requests.length === 0) {
+          container.innerHTML = '<p>No emergency requests found.</p>';
+          return;
+        }
 
-    requests.forEach(req => {
-      const card = document.createElement('div');
-      card.className = 'patient-card';
-      card.id = `card-${req.id}`;
+        requests.forEach(req => {
+          const card = document.createElement('div');
+          card.className = 'patient-card';
+          card.id = `card-${req.id}`;
 
-      const ambulanceText = req.ambulanceNeed === true ? 'Yes' :
-                            req.ambulanceNeed === false ? 'No' : 'Unknown';
 
-      const statusText = req.acceptanceStatus != null ? req.acceptanceStatus : 'Pending';
 
-      const statusClass = statusText.toLowerCase().includes('accept') ? 'accepted' :
-                          statusText.toLowerCase().includes('reject') ? 'rejected' : 'pending';
+          const ambulanceText = req.ambulanceNeed === true ? 'Yes' :
+                                req.ambulanceNeed === false ? 'No' : 'Unknown';
 
-      card.innerHTML =`
-        <div class="patient-info">
-          <p><strong>Name:</strong> \${req.name && req.name.trim() !== '' ? req.name : 'N/A'}</p>
-          <p><strong>Condition:</strong> \${req.condition && req.condition.trim() !== '' ? req.condition : 'N/A'}</p>
-          <p><strong>Type:</strong> \${req.emergencyType && req.emergencyType.trim() !== '' ? req.emergencyType : 'N/A'}</p>
-          <p><strong>Address:</strong> \${req.address && req.address.trim() !== '' ? req.address : 'N/A'}, \${req.city && req.city.trim() !== '' ? req.city : 'N/A'}</p>
-          <p><strong>Contact:</strong> \${req.contact && req.contact.trim() !== '' ? req.contact : 'N/A'}</p>
-          <p><strong>Age:</strong> \${req.age != null ? req.age : 'N/A'}</p>
-          <p><strong>Ambulance Needed:</strong> \${ambulanceText}</p>
-        </div>
-      `;
+          const statusText = req.acceptanceStatus != null ? '\${req.acceptanceStatus}' : 'Pending';
 
-      const actions = document.createElement('div');
-      actions.className = 'patient-actions';
+          const statusClass = statusText.toLowerCase().includes('accept') ? 'accepted' :
+                              statusText.toLowerCase().includes('reject') ? 'rejected' : 'pending';
 
-      if (req.acceptanceStatus == null) {
-       console.log('Rendering buttons for request:', req);
+          card.innerHTML =`
+            <div class="patient-info">
+              <p><strong>Name:</strong> \${req.name && req.name.trim() !== '' ? req.name : 'N/A'}</p>
+              <p><strong>Condition:</strong> \${req.condition && req.condition.trim() !== '' ? req.condition : 'N/A'}</p>
+              <p><strong>Type:</strong> \${req.emergencyType && req.emergencyType.trim() !== '' ? req.emergencyType : 'N/A'}</p>
+              <p><strong>Address:</strong> \${req.address && req.address.trim() !== '' ? req.address : 'N/A'}, \${req.city && req.city.trim() !== '' ? req.city : 'N/A'}</p>
+              <p><strong>Contact:</strong> \${req.contact && req.contact.trim() !== '' ? req.contact : 'N/A'}</p>
+              <p><strong>Age:</strong> \${req.age != null ? req.age : 'N/A'}</p>
+              <p><strong>Ambulance Needed:</strong> \${ambulanceText}</p>
+            </div>
+          `;
 
-        const post=req.id;
-        console.log(postStatus);
-        const Accept="accepted";
-        const AcceptAndAmbulance="accepted ambulance";
-        const Reject="rejected";
+          const actions = document.createElement('div');
+          actions.className = 'patient-actions';
 
-        console.log("Button HTML:", `
-          <button onclick="postStatus('${post}', 'accepted')">Accept</button>
-        `);
+          if (req.acceptanceStatus == null) {
+           console.log('Rendering buttons for request:', req);
 
-        actions.innerHTML = `
-          <button class="btn yellow" onclick="postStatus('${post}', '${Accept}')">Accept</button>
-          <button class="btn green" onclick="postStatus('${post}', '${AcceptAndAmbulance}')">Accept & Ambulance</button>
-          <button class="btn red" onclick="postStatus('${post}', '${Reject}')">Reject</button>
-          <div class="status-message pending" id="status-${req.id}">Status: Pending</div>
-        `;
 
-      } else {
-        actions.innerHTML =
-         ` <div class="status-message ${statusClass}" id="status-${req.id}">Status: ${statusText}</div>
-        `;
+            console.log(postID + "<<<<<<The Post Status is >>>>>>>>");
+
+
+
+
+            actions.innerHTML = `
+              <button class="btn yellow accept-btn" data-id="\${req.id}">Accept</button>
+              <button class="btn green accept-amb-btn" data-id="\${req.id}">Accept & Ambulance</button>
+              <button class="btn red reject-btn" data-id="\${req.id}">Reject</button>
+              <div class="status-message pending" id="status-\${req.id}">Status: Pending</div>
+            `;
+
+          } else {
+            actions.innerHTML =
+             ` <div class="status-message \${statusClass}" id="status-\${req.id}">Status: \${req.acceptanceStatus}</div>
+            `;
+          }
+
+
+          card.appendChild(actions);
+          container.appendChild(card);
+        });
+
+        document.querySelectorAll('.accept-btn').forEach(button => {
+          button.addEventListener('click', function () {
+            const id = this.dataset.id;
+            console.log('accept called with ID:', id);
+            postStatus(id, 'accepted');
+          });
+        });
+
+        document.querySelectorAll('.accept-amb-btn').forEach(button => {
+          button.addEventListener('click', function () {
+            const id = this.dataset.id;
+            console.log('accept & ambulance called with ID:', id);
+            postStatus(id, 'accepted ambulance');
+          });
+        });
+
+        document.querySelectorAll('.reject-btn').forEach(button => {
+          button.addEventListener('click', function () {
+            const id = this.dataset.id;
+            console.log('reject called with ID:', id);
+            postStatus(id, 'rejected');
+          });
+        });
+
       }
-
-
-      card.appendChild(actions);
-      container.appendChild(card);
-    });
+      function accept(id){
+    console.log('accept method call');
+    console.log('PostID: >>>>>>>>>' + id);
+    postStatus(id , 'accepted');
+  }
+  function acceptAMB(id){
+    console.log('acceptAMB method call');
+       console.log('PostID: >>>>>>>>>' + id);
+       postStatus(id , 'accepted ambulance');
+  }
+  function reject(id){
+   console.log('reject method call')
+      console.log('PostID: >>>>>>>>>' + id);
+      postStatus(id , 'rejected');
   }
 
   function postStatus(requestId, status) {

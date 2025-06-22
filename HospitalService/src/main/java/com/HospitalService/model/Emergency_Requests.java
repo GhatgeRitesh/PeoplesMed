@@ -3,6 +3,8 @@ package com.HospitalService.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "emergency_patient_request")
 @Data
@@ -36,6 +38,9 @@ public class Emergency_Requests {
 
     @Column(name = "acceptance_status")
     private String acceptanceStatus;
+
+    @Column(name= "time")
+    private Timestamp timestamp;
 
     @ManyToOne
     @JoinColumn(name = "hospital_id", referencedColumnName = "h_id")

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -74,6 +75,7 @@ public class UI_Controller {
             }
             log.info("form data as:- "+ emergencyRequests.toString());
              emergencyRequestsVar=emergencyRequests;
+             emergencyRequestsVar.setTimestamp(new Timestamp(System.currentTimeMillis()));
             log.info("Requesting data from hospital service");
             ResponseEntity<List<HospitalStatusDTO>> hospital= hospitalService.getHospitals(emergencyRequests);
             dataHolder.setList(hospital.getBody());
@@ -99,15 +101,17 @@ public class UI_Controller {
         mv.addObject("hospitalId", hospitalId);
         log.info("Emergency Request Data: "+ emergencyRequestsVar.toString());
         log.info("Got the Hospital ID: "+ hospitalId);
-        UUID uuid = UUID.randomUUID();
-        Long id= uuid.getLeastSignificantBits();
+        long id = 10_000 + (long)(Math.random() * 990_000);
+            // 16-digit unique-ish ID
+
+
         emergencyRequestsVar.setId(id);
         log.info("Unique Request Id :"+ id);
         Hospital hospital= new Hospital();
 
         for(HospitalStatusDTO h: dataHolder.getList()){
             if(Objects.equals(h.getId(), hospitalId)){
-                hospital.setId(hospitalId);
+
                 hospital.setId(h.getId());
                 hospital.setName(h.getName());
                 hospital.setAddress(h.getAddress());
@@ -120,7 +124,7 @@ public class UI_Controller {
             }
         }
         emergencyRequestsVar.setHospital(hospital);
-        dataHolder.setEmergencyRequestId(id);
+        dataHolder.setEmergencyRequestId(emergencyRequestsVar.getId());
         hospitalService.saveEmergencyRequest(emergencyRequestsVar);
         mv.addObject("request",emergencyRequestsVar);
         return mv;

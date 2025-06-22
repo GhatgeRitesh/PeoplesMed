@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Hospital")
@@ -68,7 +69,7 @@ public class APIcontroller {
     }
     @PostMapping("/getAcceptanceStatus")
     public ResponseEntity<?> getAcceptanceStatus(@RequestBody Long RequestID){
-        log.info("Getting Acceptance Status for Hospital Id :"+ RequestID);
+        log.info("Getting Acceptance Status for request ID :"+ RequestID);
         try {
             if (RequestID == null) throw new RuntimeException("eroor in service because of id null");
             else{
@@ -102,10 +103,15 @@ public class APIcontroller {
                 r.getCity() != null ? r.getCity() : "",
                 r.getAmbulanceNeed(),
                 r.getEmergencyType() != null ? r.getEmergencyType() : "",
-                r.getAcceptanceStatus()
+                r.getAcceptanceStatus(),
+                r.getTimestamp()
         )).toList();
 
-        return new ResponseEntity<>(dtoList,HttpStatus.OK);
+        List<EmergencyRequestDTO> sorted = dtoList.stream()
+                .sorted((a, b) -> b.getTimestamp().compareTo(a.getTimestamp()))
+                .toList();
+
+        return new ResponseEntity<>(sorted,HttpStatus.OK);
     }
 
     @PostMapping("/updateRequestStatus")
@@ -114,12 +120,14 @@ public class APIcontroller {
         String status = payload.get("acceptanceStatus").toString();
 
         log.info("Updating Request Status as: " + status);
+        log.info("Updating Request for ID as: " + requestId);
         try {
             int result = emergencyRequestRepo.updateAcceptanceStatusById(requestId, status.toLowerCase());
+            log.info("Repo says rows affected: " + result);
             if (result == 0) throw new RuntimeException("Failed to update status");
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok(Map.of("message", "Status updated successfully"));
         } catch (Exception e) {
-            log.info("Exception Occurred: " + e.getMessage());
+            log.info("Exception Occurred: " + e);
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
     }
