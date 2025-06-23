@@ -27,8 +27,7 @@
             <div class="login">
                <button id="toggleButton"> <a href="/login" style="text-decoration: none; color: white;"> Login </a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
-          
-          
+
             <div class="signin">
               <button id="toggleButton1"> <a href="Register/P" style="text-decoration: none; color: white;">SignUp</a></button>
             </div>

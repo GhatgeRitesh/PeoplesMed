@@ -11,12 +11,7 @@
 
   <nav>
     <div class="logo"><img src="/images/logo.png" alt=""><h4>PeoplesMed</h4></div>
-    <!-- <ul>
-        <li><a href="#">Home</a></li>
-      <li><a href="#">Hospitals</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul> -->
-    <a href=" " class="contact-btn">Home</a>
+    <div><a href="http://localhost:8083/login/profile" class="contact-btn">Home</a> </div>
   </nav>
 
 

@@ -78,6 +78,10 @@
      box-shadow: 0 0 12px rgba(0,0,0,0.15);
    }
 
+   iframe::-webkit-scrollbar {
+           display: none;
+         }
+
 
   </style>
 </head>
@@ -86,8 +90,16 @@
 <div class="header1">
   <div class="logo">
     <img src="/images/logo.png" alt="Logo" class="logo-img">
-    <h3 class="logo-h3">Hospital Service</h3><br><h6>* Powered by PeoplesMed</h6>
+    <div>
+    <h3 class="logo-h3">Hospital Service</h3>
+    <h5>* Powered by PeoplesMed</h5>
+    </div>
   </div>
+
+  <div class="logout">
+        <button>Logout</button>
+      </div>
+
 </div>
 
 <div class="main">
@@ -104,9 +116,7 @@
       <li><a href="/Hospital/addDoctorForm">Add Doctors</a></li>
     </ul>
     <hr>
-    <div class="logout">
-      <button>Logout</button>
-    </div>
+
   </div>
 
   <div class="main-content">

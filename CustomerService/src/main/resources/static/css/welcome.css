@@ -53,20 +53,24 @@ background:transparent;
   color: rgb(50, 50, 50);
 }
 .login{
-  width: 25%;
-  height: 100px;
-  /* background-color: blanchedalmond; */
+  width: 40%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  /*background-color: blanchedalmond;*/
   text-align: center;
-  margin-right:125px;
+  gap:10px;
+  /*margin-right:125px;*/
 }
 
 
 
 .login button{
-   margin-top: 30px;
-   margin-left:15px;
+  /* margin-top: 30px;
+  margin-left:15px; */
+  padding: 10px 20px;
   height: 40px;
-  width: 100px;
+ /* width: 100%; */
   border-radius: 20px;
   font-size: 18px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;

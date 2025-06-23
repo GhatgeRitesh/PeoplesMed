@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/PeoplesMedDB/pom.xml" />
         <option value="$PROJECT_DIR$/HospitalService/pom.xml" />
         <option value="$PROJECT_DIR$/Emergency-Servcice/pom.xml" />
+        <option value="$PROJECT_DIR$/ApiGateway/pom.xml" />
       </list>
     </option>
   </component>

@@ -67,11 +67,12 @@ background:transparent;
  .logincontainer{
   width: 25%;
   height: 100px;
-  /* background-color: blanchedalmond;   */
+  /*background-color: blanchedalmond; */
   text-align: center;
   display: flex;
+  justify-content:center;
+  align-items:center;
   flex-direction: row;
- 
 }
 
 .option{
@@ -83,7 +84,6 @@ background:transparent;
 
 
 .login button{
-  margin-top: 30px;
   height: 40px;
   width: 100px;
   border-radius: 20px;
@@ -102,7 +102,6 @@ color: white;
 
 
 .login button{
-    margin-top: 30px;
     height: 40px;
     width: 100px;
     border-radius: 20px;
@@ -118,7 +117,7 @@ color: white;
 
   
 .signin button {
-    margin-top: 30px;
+
     height: 40px;
     width: 100px;
     border-radius: 20px;

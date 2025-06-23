@@ -27,10 +27,13 @@
   <div class="emergency-section">
     <div class="emergency-header">
       <img src="https://img.icons8.com/ios-filled/50/ambulance.png" alt="Ambulance"/>
+      <div>
       <div class="emergency-title">Emergency Service</div>
+      <div class="emergency-small">*powered by peoplemed</div>
+      </div>
     </div>
-    <div class="emergency-small">*powered by peoplemed</div>
-    <div class="back-btn">Back</div>
+
+    <div class="back-btn"> <a href="http://localhost:8085/EmergencyService/form"  class="contact-btn">Back</a></div>
   </div>
 
   <!-- Dynamic Hospital Cards -->

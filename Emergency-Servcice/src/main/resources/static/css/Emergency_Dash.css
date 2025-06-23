@@ -4,13 +4,14 @@
 
     /* Navbar */
     nav {
+    width:100%;
       background-color: #0c4a6e;
       color: white;
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+     /* flex-wrap: wrap;*/
     }
 
     .logo { font-size: 24px; font-weight: bold; }
@@ -29,6 +30,9 @@
       padding: 20px;
       border-radius: 12px;
       position: relative;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
 
     .emergency-header {
@@ -38,29 +42,29 @@
     }
 
     .emergency-header img {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
     }
 
     .emergency-title {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
       color: red;
+      margin-left: 30px;
     }
 
     .emergency-small {
       font-size: 12px;
       color: #333;
-      margin-left: 50px;
+      margin-left: 30px;
     }
 
     .back-btn {
       font-size: 1.2rem;
       font-weight: 500;
-      position: absolute;
+      /*position: absolute;*/
       right: 20px;
-      top: 20px;
-      background-color: #ccc;
+      /* top: 20px; */
       padding: 5px 10px;
       border-radius: 8px;
       cursor: pointer;
@@ -188,3 +192,19 @@
   color: white;
   font-weight: bold;
 }
+
+
+
+      .contact-btn {
+      padding: 10px 25px;
+      background-color: rgb(75, 75, 244);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .contact-btn:hover {
+      background-color: #e03e41;
+    }

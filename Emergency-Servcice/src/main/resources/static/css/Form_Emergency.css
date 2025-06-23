@@ -58,7 +58,7 @@ body {
        font-weight: 700;
        font-size: 20px;
        padding-right: 30px;
-       background-color: #e03e41;
+       background-color: rgb(75, 75, 244);
    }
 
    nav  .contact-btn:hover{
@@ -84,8 +84,8 @@ body {
 
 
         .contact-btn {
-      padding: 12px 30px;
-      background-color: #ff4e50;
+      padding: 10px 25px;
+      background-color: rgb(75, 75, 244);
       color: white;
       text-decoration: none;
       border-radius: 8px;

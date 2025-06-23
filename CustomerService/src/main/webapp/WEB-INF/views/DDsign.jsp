@@ -23,7 +23,6 @@
         </div>
 
         <div class="logincontainer">
-
             <div class="login">
                <button id="toggleButton"> <a href="/login" style="text-decoration: none; color: white;"> Login </a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>

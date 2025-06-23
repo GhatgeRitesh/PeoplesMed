@@ -115,10 +115,11 @@ body::-webkit-scrollbar {
 
 .logout {
   text-align: center;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 
 .logout button {
+margin-right:20px;
   font-size: 18px;
   background-color: #007bff;
   color: white;
@@ -198,47 +199,6 @@ body::-webkit-scrollbar {
   width: 70%;
   
 }
-
-
-
-/* .appointment-card {
-  border: 1px solid #ddd;
-  margin-top: 30px;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  animation: slideUp 0.8s ease;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.appointment-card h4 {
-  font-size: 22px;
-  color: #007bff;
-  margin-bottom: 10px;
-}
-
-.appointment-card p {
-  font-size: 16px;
-  color: #555;
-}
-
-.appointments .btn {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.appointments .btn:hover {
-  background-color: #0056b3;
-} */
 
 
 /* Animations */
