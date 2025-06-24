@@ -195,7 +195,7 @@
 
      const normalizedStatus = status.toLowerCase();
 
-     if (normalizedStatus.includes('accepted waiting')) {
+     if (normalizedStatus.includes('accepted')) {
        statusDiv.textContent = '✅ Request Accepted — Awaiting your arrival at the hospital.';
        statusDiv.classList.add('accepted');
        document.getElementById('acceptedSound').play();

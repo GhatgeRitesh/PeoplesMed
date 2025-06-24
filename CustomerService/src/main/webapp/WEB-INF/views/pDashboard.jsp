@@ -14,7 +14,7 @@
 
         <div class="header1">
           <div class="logo">
-            <img src="../images/logo.png" alt="Logo" class="logo-img">
+            <img src="/images/logo.png" alt="Logo" class="logo-img">
             <h3 class="logo-h3">PeoplesMed</h3>
           </div>
 
