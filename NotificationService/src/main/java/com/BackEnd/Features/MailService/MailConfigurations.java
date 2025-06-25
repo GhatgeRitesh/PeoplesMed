@@ -21,7 +21,7 @@ public class MailConfigurations {
         mailSender.setHost("smtp.gmail.com"); // Replace with your SMTP server
         mailSender.setPort(587); // Usually 587 for TLS, 465 for SSL
         mailSender.setUsername("riteshghatge5555@gmail.com"); // Replace with your email
-        mailSender.setPassword("xchu jpes veot kyxt"); // Replace with your password
+        mailSender.setPassword("xzjt mehn opah izip"); // Replace with your password
 
         Properties properties = mailSender.getJavaMailProperties();
         properties.put("mail.transport.protocol", "smtp");
